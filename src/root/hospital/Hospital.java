@@ -1,5 +1,7 @@
 package root.hospital;
 
+import root.exception.runtime.ArrayEmptyException;
+import root.exception.ArrayOneElementException;
 import root.hospital.department.Department;
 import root.hospital.department.ICalculatePrice;
 import root.human.property.Address;
@@ -83,7 +85,14 @@ public class Hospital implements ICalculatePrice {
         return patients;
     }
 
-    public void setPatients(Patient[] patients) {
+    public void setPatients(Patient[] patients) throws ArrayOneElementException {
+        if (patients.length == 0) {
+            throw new ArrayEmptyException("patients array is 0");
+        }
+        if (patients.length == 1) {
+            this.patients = patients;
+            throw new ArrayOneElementException("patients only one");
+        }
         this.patients = patients;
     }
 

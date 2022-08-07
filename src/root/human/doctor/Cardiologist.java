@@ -1,4 +1,5 @@
 package root.human.doctor;
+import root.exception.NameInvalidException;
 import root.human.doctor.function.IScreen;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,7 +14,7 @@ public class Cardiologist extends Doctor implements IScreen {
 
     private String ekg;
 
-    public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws NameInvalidException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countCardiologist++;
     }

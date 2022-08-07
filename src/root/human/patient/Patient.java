@@ -2,6 +2,9 @@ package root.human.patient;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import root.exception.runtime.DateInvalidException;
+import root.exception.NameInvalidException;
+import root.exception.NameReplaceException;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
@@ -20,8 +23,32 @@ public class Patient extends Human implements ICure, IRegistrate {
     private String diagnosis;
     private String prescription;
 
-    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) {
+    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate)
+        throws NameInvalidException {
         super(dateOfBirth, name, address, phone, credit);
+        if (super.getDateOfBirth().isBefore(LocalDate.now().minusYears(150))) {
+            throw new DateInvalidException(super.getName() + " Human dob is too in past " + super.getDateOfBirth());
+        }
+        if (super.getName().contains("_")) {
+            super.setName(super.getName().replace("_", "-"));
+            this.toDoctor = toDoctor;
+            this.desireedDate = desireedDate;
+            System.out.println("replace");
+            try {
+                throw new NameReplaceException("Warn name contain (_) replacead by (-) ");
+            } catch (NameReplaceException e) {
+                System.out.println(e);
+            }
+        }
+        if (super.getName().contains(" ")) {
+            throw new NameInvalidException(super.getName() + " Human name contain ( ) ");
+        }
+        if (toDoctor.contains("_")) {
+            throw new NameInvalidException(super.getName() + " Patient to Doctor contain (_) " + toDoctor);
+        }
+        if (desireedDate.isBefore(LocalDate.now())) {
+            throw new DateInvalidException(super.getName() + " Patient desiered date in past " + desireedDate);
+        }
         this.toDoctor = toDoctor;
         this.desireedDate = desireedDate;
     }
@@ -56,9 +83,6 @@ public class Patient extends Human implements ICure, IRegistrate {
     public void think() {
         LOGGER.info("Patient thinks");
     }
-
-
-
 
 
     public LocalDate getDesireedDate() {
@@ -121,7 +145,7 @@ public class Patient extends Human implements ICure, IRegistrate {
     @Override
     public void makeAppointment(Doctor[] doctors) {
         LOGGER.info("make appointment to doctor");
-        LOGGER.info("patient: " + super.getName() +" to doctor " + this.toDoctor);
+        LOGGER.info("patient: " + super.getName() + " to doctor " + this.toDoctor);
         Patient[] patients = new Patient[1];
         patients[0] = this;
         HospitalUtils.match(doctors, patients);

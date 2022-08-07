@@ -2,9 +2,9 @@ package root.human.doctor;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import root.exception.NameInvalidException;
 import root.human.Human;
 import root.human.doctor.function.IWrite;
-import root.human.patient.Patient;
 import root.human.property.Address;
 import root.human.property.Phone;
 
@@ -27,7 +27,7 @@ public abstract class Doctor extends Human implements IWrite {
         countDoctor++;
     }
 
-    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price)  throws NameInvalidException {
         super(dateOfBirth, name, address, phone);
         this.specialty = specialty;
         this.price = price;

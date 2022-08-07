@@ -28,11 +28,11 @@
 <!--            <AppenderRef ref="Print"/>-->
 <!--        </Logger>-->
 
-        <Logger name="root.Main" level="info">
+        <Logger name="root.Main" level="all">
             <AppenderRef ref="Console"/>
         </Logger>
 
-        <Logger name="root.utils.HospitalUtils" level="info">
+        <Logger name="root.utils.HospitalUtils" level="all">
             <AppenderRef ref="Console"/>
         </Logger>
 

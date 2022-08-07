@@ -2,16 +2,15 @@ package root;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import root.exception.DateException;
+import root.exception.*;
+import root.exception.runtime.ArrayEmptyException;
 import root.hospital.Hospital;
 import root.hospital.department.*;
-import root.exception.NameException;
 import root.human.property.Phone;
 import root.human.doctor.*;
 import root.human.patient.Patient;
 import root.utils.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Main {
@@ -35,11 +34,20 @@ public class Main {
             LOGGER.info(item.toString());
         }
         // create doctors
-        Cardiologist[] cardiologists = new ToolDoctor().createCardiologist();
-        Dentist[] dentists = new ToolDoctor().createDentist();
-        Emergency[] emergencys = new ToolDoctor().createEmergency();
-        Infectiologist[] infectiologysts = new ToolDoctor().createInfectioligist();
-        Surgeon[] surgeons = new ToolDoctor().createSurgeon();
+        Cardiologist[] cardiologists;
+        Dentist[] dentists;
+        Emergency[] emergencys;
+        Infectiologist[] infectiologysts;
+        Surgeon[] surgeons;
+        try {
+            cardiologists = new ToolDoctor().createCardiologist();
+            dentists = new ToolDoctor().createDentist();
+            emergencys = new ToolDoctor().createEmergency();
+            infectiologysts = new ToolDoctor().createInfectioligist();
+            surgeons = new ToolDoctor().createSurgeon();
+        } catch (NameInvalidException e) {
+            throw new RuntimeException(e);
+        }
         // create departments
         Department[] departments = new ToolDepartment().create();
         // set doctors to departments
@@ -57,13 +65,33 @@ public class Main {
             LOGGER.info(department.toString());
             for (Doctor doctor : department.getDoctor()) {
                 doctor.setFreeFromDate(LocalDate.now());
-                LOGGER.debug("  " + doctor.toString());
+                LOGGER.debug("  " + doctor);
             }
         }
+
         // create patients
-        Patient[] patients = new ToolPatient().create();
-        hospital.setPatients(patients);
-        LOGGER.info("");
+        LOGGER.debug("try create patients");
+//        Patient[] patients;
+        Patient[] patients = new Patient[0];
+        try {
+            patients = new ToolPatient().create();
+        } catch (NameInvalidException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        } catch (NameReplaceException e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
+            LOGGER.debug("try create Patients end");
+        }
+        // set patients to hospital
+        try {
+            hospital.setPatients(patients);
+        } catch (ArrayOneElementException e) {
+            LOGGER.warn(e.getMessage(), e);
+        } finally {
+            LOGGER.debug("set patients to hospital. end.");
+        }
+
         LOGGER.info("patients:");
         for (Patient patient : hospital.getPatients()) {
             LOGGER.info(patient.toString());
@@ -73,14 +101,15 @@ public class Main {
         LOGGER.info("");
         LOGGER.info("matching patients and doctors...");
         LOGGER.info("");
-        for (Department department : hospital.getDepartments()) {
+        for (
+                Department department : hospital.getDepartments()) {
             LOGGER.debug(department.toString());
-            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
+//            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
         }
 
         LOGGER.info("");
         LOGGER.info("match result:");
-        HospitalUtils.matchResult(hospital.getPatients());
+//        HospitalUtils.matchResult(hospital.getPatients());
 
         // test interface
 //        LOGGER.debug("interface");
@@ -88,54 +117,26 @@ public class Main {
 //        Doctor[] docs = hospital.getDepartments()[1].getDoctor();
 //        patient.makeAppointment(docs);  // (Doctors[], Patient[0])
 
-        // test try catch
-        LOGGER.info("test 1 try");
-
-//        patients[0].setToDoctor("NewName");
-        patients[0].setName("NewN_ame"); //uncheck
-//        patients[0].setDateOfBirth(LocalDate.now().minusYears(200)); //check
-        LOGGER.info("test 2 try");
-        try {
-            patients[0].setName("NewName");
-            patients[0].setToDoctor("NewToDoc");
-//            System.out.println(3/0);
-            patients[0].setDateOfBirth(LocalDate.now().minusYears(200));
-        } catch (NameException e) {
-            LOGGER.error("catch NameException e.getMessage, e = " + e.getMessage(), e);
-        }catch (DateException e) {
-            LOGGER.error("catch DateException e.getMessage, e = " + e.getMessage(), e);
+        // test try with resources
+        try (Resource resource = new Resource()) {
+            LOGGER.info("resource close");
         }
-        catch (Exception e) {
-            LOGGER.error("catch Exception e.getMessage, e = " + e.getMessage(), e);
-        } finally {
-            LOGGER.info("Event error in Patient: ");
+    }
+
+    public static class Resource implements AutoCloseable {
+
+        private String name;
+
+        @Override
+        public void close() {
         }
 
+        public String getName() {
+            return name;
+        }
 
-
-
-        System.out.println("sys.out name: " + patients[0].getName());
-
-//        LOGGER.info("test 2 try");
-//        try {
-//            patients[0].setDateOfBirth(LocalDate.now().minusYears(200));
-//        } catch (DateException e) {
-//            LOGGER.error("e.getMessage, e = " + e.getMessage(), e);
-//        }
-//
-//        LOGGER.info("test 3 try");
-//        try {
-//            patients[0].setDateOfBirth(LocalDate.now().plusYears(2));
-//        } catch (DateException e) {
-//            LOGGER.error("e.getMessage, e = " + e.getMessage(), e);
-//        }
-//
-//        LOGGER.info("test 4 try");
-//        try {
-//            patients[0].setDateOfBirth(LocalDate.now().minusYears(20));
-//        } catch (DateException e) {
-//            LOGGER.error("e.getMessage, e = " + e.getMessage(), e);
-//        }
-
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }

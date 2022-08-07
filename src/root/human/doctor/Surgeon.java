@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.NameInvalidException;
 import root.human.doctor.function.IOperate;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,7 +14,7 @@ public class Surgeon extends Doctor implements IOperate {
 
     private String operation;
 
-    public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) throws NameInvalidException {
         super(dateOB, name, address, phone, specialty, price);
         countSurgeon++;
     }

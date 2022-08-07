@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.NameInvalidException;
 import root.human.doctor.function.ITooth;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,7 +14,7 @@ public class Dentist extends Doctor implements ITooth {
 
     private String tooth;
 
-    public Dentist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Dentist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws NameInvalidException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countDentist++;
     }

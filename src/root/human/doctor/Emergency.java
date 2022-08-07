@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.NameInvalidException;
 import root.human.doctor.function.IRescue;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,7 +14,7 @@ public class Emergency extends Doctor implements IRescue {
 
     private String aid;
 
-    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws NameInvalidException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countEmergency++;
     }
