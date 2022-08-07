@@ -3,6 +3,10 @@ import java.time.LocalDate;
 public class Patients {
 
     //Fields
+
+    private Medicines medicine;
+    int countMedicineTake;
+
     private String name;
     private LocalDate dateOB;
     private int age;
@@ -12,11 +16,11 @@ public class Patients {
     private LocalDate dateAppointed;
     private int priceAppointed;
     private String doctor;
-    //private String diagnosis;
-    //private String prescription;
+
     public static int count = 0;
 
     //Constructors
+
     public Patients(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired) {
         this.name = name;
         this.dateOB = dateOB;
@@ -25,6 +29,19 @@ public class Patients {
         this.problem = problem;
         this.dateDesired = dateDesired;
         this.age = LocalDate.now().getYear() - dateOB.getYear();
+        count++;
+    }
+
+    public Patients(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired, Medicines medicine, int countMedicineTake) {
+        this.name = name;
+        this.dateOB = dateOB;
+        this.credit = credit;
+        this.doctor = doctor;
+        this.problem = problem;
+        this.dateDesired = dateDesired;
+        this.age = LocalDate.now().getYear() - dateOB.getYear();
+        this.medicine = medicine;
+        this.countMedicineTake = countMedicineTake;
         count++;
     }
 
@@ -44,9 +61,33 @@ public class Patients {
     }
 
 
+    public void takeMedicine(Medicines medicine){
+        this.medicine = medicine;
+        this.countMedicineTake++;
+    }
+
+
+
+
 
     // Getters and Setters
 
+
+    public Medicines getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(Medicines medicine) {
+        this.medicine = medicine;
+    }
+
+    public int getCountMedicineTake() {
+        return countMedicineTake;
+    }
+
+    public void setCountMedicineTake(int countMedicineTake) {
+        this.countMedicineTake = countMedicineTake;
+    }
 
     public String getName() {
         return name;

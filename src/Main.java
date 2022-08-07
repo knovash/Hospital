@@ -3,53 +3,88 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        // Create array of Doctors
+        // Create hospital
+        Hospital hospital = new Hospital("Arkham", "Gotham City", "03", 1000000);
+
+        // Hiring staff
         Doctors[] arrayDoctors = new Doctors[9];
-        arrayDoctors[0] = new Doctors("Petr", "Dentist", 500);
-        arrayDoctors[1] = new Doctors("Igor", "Dentist", 300);
-        arrayDoctors[2] = new Doctors("Ivan", "Surgeon", 700);
-        arrayDoctors[3] = new Doctors("Olga", "Surgeon", 1000);
-        arrayDoctors[4] = new Doctors("Natalia", "Cardiologist", 300);
-        arrayDoctors[5] = new Doctors("Elena", "Neurologist", 200);
-        arrayDoctors[6] = new Doctors("Alex", "Emergency", 50);
-        arrayDoctors[7] = new Doctors("Zina", "Emergency", 50);
-        arrayDoctors[8] = new Doctors("Boris", "Emergency", 50);
+        hospital.hireDoctor(arrayDoctors, 0, "Jhon", "Dentist", 200);
+        hospital.hireDoctor(arrayDoctors, 1, "Petr", "Dentist", 500);
+        hospital.hireDoctor(arrayDoctors, 2, "Igor", "Dentist", 300);
+        hospital.hireDoctor(arrayDoctors, 3, "Vladimir", "Surgeon", 600);
+        hospital.hireDoctor(arrayDoctors, 4, "Olga", "Surgeon", 1000);
+        hospital.hireDoctor(arrayDoctors, 5, "Natalia", "Cardiologist", 300);
+        hospital.hireDoctor(arrayDoctors, 6, "Elena", "Neurologist", 200);
+        hospital.hireDoctor(arrayDoctors, 7, "Boris", "Emergency", 50);
+        hospital.hireDoctor(arrayDoctors, 8, "Zina", "Emergency", 50);
 
-        arrayDoctors[0].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[1].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[2].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[3].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[4].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[5].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[6].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[7].setDataFreeFrom(LocalDate.now());
-        arrayDoctors[8].setDataFreeFrom(LocalDate.now());
+        // Dissmis and Hire stuff
+        printArray(arrayDoctors);
+        hospital.dismissDoctor(arrayDoctors, 3);
+        hospital.hireDoctor(arrayDoctors, 3, "Alex", "Surgeon", 700);
+        printArray(arrayDoctors);
 
-        // Create array of Patients
+        // all doctors free from today
+        for (Doctors item:arrayDoctors ) {
+            item.setDataFreeFrom(LocalDate.now() );
+        }
+
+        // Patients registration
         Patients[] arrayPatients = new Patients[11];
-        arrayPatients[0] = new Patients("Oleg", LocalDate.of(1989, 4, 3), 500, "Emergency", "leg fracture", LocalDate.now());
-        arrayPatients[1] = new Patients("Ivan", LocalDate.of(1983, 2, 13), 2000, "Dentist", "toothache", LocalDate.now());
-        arrayPatients[2] = new Patients("Maria", LocalDate.of(1996, 10, 22), 350, "Neurologist", "headache", LocalDate.of(2022, 7, 28));
-        arrayPatients[3] = new Patients("Anna", LocalDate.of(1970, 6, 8), 10, "Cardiologist", "increased blood pressure", LocalDate.of(2022, 8, 3));
-        arrayPatients[4] = new Patients("Boris", LocalDate.of(1989, 4, 3), 500, "Emergency", "gunshot", LocalDate.now().plusDays(3));
-        arrayPatients[5] = new Patients("Ivan", LocalDate.of(1983, 2, 13), 2000, "Dentist", "toothache", LocalDate.now().plusDays(0));
-        arrayPatients[6] = new Patients("Alex", LocalDate.of(1983, 12, 11), 2000, "Dentist", "toothache", LocalDate.now().plusDays(0));
-        arrayPatients[7] = new Patients("Jhon", LocalDate.of(1984, 2, 2), 350, "Dentist", "toothache", LocalDate.now().plusDays(3));
-        arrayPatients[8] = new Patients("Alesja", LocalDate.of(1999, 5, 13), 500, "Dentist", "toothache", LocalDate.now().plusDays(0));
-        arrayPatients[9] = new Patients("Irina", LocalDate.of(1978, 2, 23), 700, "Dentist", "toothache", LocalDate.now().plusDays(2));
-        arrayPatients[10] = new Patients("Sveta", LocalDate.of(1983, 7, 1), 100, "Dentist", "toothache", LocalDate.now().plusDays(0));
+        hospital.registerPatient(arrayPatients, 0, "Oleg", LocalDate.of(1989, 4, 3), 500, "Emergency", "leg fracture", LocalDate.now());
+        hospital.registerPatient(arrayPatients, 1, "Ivan", LocalDate.of(1983, 2, 13), 2000, "Dentist", "toothache", LocalDate.now());
+        hospital.registerPatient(arrayPatients, 2, "Maria", LocalDate.of(1996, 10, 22), 350, "Neurologist", "headache", LocalDate.of(2022, 7, 28));
+        hospital.registerPatient(arrayPatients, 3, "Anna", LocalDate.of(1970, 6, 8), 10, "Cardiologist", "increased blood pressure", LocalDate.of(2022, 8, 3));
+        hospital.registerPatient(arrayPatients, 4, "Boris", LocalDate.of(1989, 4, 3), 500, "Emergency", "gunshot", LocalDate.now().plusDays(3));
+        hospital.registerPatient(arrayPatients, 5, "Ivan", LocalDate.of(1983, 2, 13), 2000, "Dentist", "toothache", LocalDate.now().plusDays(0));
+        hospital.registerPatient(arrayPatients, 6, "Alex", LocalDate.of(1983, 12, 11), 2000, "Dentist", "toothache", LocalDate.now().plusDays(0));
+        hospital.registerPatient(arrayPatients, 7, "Jhon", LocalDate.of(1984, 2, 2), 350, "Dentist", "toothache", LocalDate.now().plusDays(3));
+        hospital.registerPatient(arrayPatients, 8, "Alesja", LocalDate.of(1999, 5, 13), 500, "Dentist", "toothache", LocalDate.now().plusDays(0));
+        hospital.registerPatient(arrayPatients, 9, "Irina", LocalDate.of(1978, 2, 23), 700, "Dentist", "toothache", LocalDate.now().plusDays(2));
+        hospital.registerPatient(arrayPatients, 10, "Sveta", LocalDate.of(1983, 7, 1), 100, "Dentist", "toothache", LocalDate.now().plusDays(0));
 
-//        Create array of Appointments
-//        Appointments[] arrayAppointments = new Appointments[3];
-//        arrayAppointments[0] = new Appointments(arrayDoctors[1].getName(), "Anna", LocalDate.of(2022, 7, 28));
-//        arrayAppointments[1] = new Appointments(arrayDoctors[2].getName(), "Ivan", LocalDate.now().plusDays(3));
-//        arrayAppointments[2] = new Appointments(arrayDoctors[3].getName(), "Oleg", LocalDate.now());
+
+
+
+
 
         // print
-        printArray(arrayDoctors);
         printArray(arrayPatients);
 
+        // match Patients and Doctors
+        searchDoctor(arrayDoctors, arrayPatients);
 
+        // print
+        //printArray(arrayDoctors);
+        //printArray(arrayPatients);
+
+        // Create medicines
+        Medicines aspirin = new Medicines("Aspirin", 10, 0);
+        Medicines insulin = new Medicines("Insulin", 5, 0);
+        Medicines validol = new Medicines("Validol", 15, 0);
+        Medicines morphine = new Medicines("Morphine", 50, 0);
+        Medicines calcium = new Medicines("Calcium", 20, 0);
+        Medicines citramon = new Medicines("Citramon", 40, 0);
+        Medicines suprastin = new Medicines("Suprastin", 35, 0);
+
+        // Hospital store medicines
+        hospital.storeMedicine(aspirin, 500);
+        hospital.storeMedicine(insulin, 1000);
+        hospital.storeMedicine(validol, 100);
+        hospital.storeMedicine(morphine, 50);
+
+        System.out.println(aspirin.getName() + " " + aspirin.getquantity() + " " + aspirin.getPrice());
+       // System.out.println(arrayPatients[2].getName() +"-"+ arrayPatients[2].getMedicine() );
+       // arrayPatients[2].takeMedicine(aspirin);
+       // System.out.println(arrayPatients[2].getName() +"-"+ arrayPatients[2].getMedicine()  +"-"+ arrayPatients[2].getCountMedicineTake());
+
+
+
+    }
+
+    // Methods
+
+    public static void searchDoctor(Doctors[] arrayDoctors, Patients[] arrayPatients) {
         for (int i = 0; i < arrayPatients.length; i++) {
             System.out.println("Patient (" + arrayPatients[i].getName() + ") search for Doctor (" + arrayPatients[i].getDoctor() + ")");
             Integer index = null;
@@ -81,7 +116,7 @@ public class Main {
                 LocalDate doctorDateNew = doctorDate.plusDays(1);
                 arrayDoctors[index].setDataFreeFrom(doctorDateNew);
                 arrayDoctors[index].addCounter();
-                                
+
                 System.out.println();
                 System.out.println("Appointment accepted");
                 System.out.println("Date desired: " + arrayPatients[i].getDateDesired());
@@ -92,18 +127,8 @@ public class Main {
                 System.out.println("Nothing matched");
                 System.out.println();
             }
-
         }
-
-
-        // print
-        printArray(arrayDoctors);
-        printArray(arrayPatients);
-
-
     }
-
-    // Methods
 
     public static void printArray(Doctors[] array) {
         System.out.println("Number of doctors: " + Doctors.count);
