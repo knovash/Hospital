@@ -1,75 +1,69 @@
 import java.time.LocalDate;
 
-// overload method printArray
 public class Main {
     public static void main(String[] args) {
 
         // Create hospital
-        Hospital hospital = new Hospital("Arkham", "Gotham City", "03", 1000000);
-        System.out.println("Creating hospital...");
-        hospital.print();
+        Hospital hospital = ToolHospital.create();
+        
+        // Print hospital
+        System.out.println("Create hospital:");
+        System.out.println(hospital.getName() + " founded at " + hospital.getDateOfFoundation());
+        System.out.println(hospital.getAddress().getCountry() + " " + hospital.getAddress().getCity());
+        System.out.println(hospital.getPhone()[0].getCountryCode() + hospital.getPhone()[0].getCityCode() + hospital.getPhone()[0].getLocalNumber());
+        System.out.println(hospital.getPhone()[1].getCountryCode() + hospital.getPhone()[1].getCityCode() + hospital.getPhone()[1].getLocalNumber());
+        System.out.println(hospital.getPhone()[2].getCountryCode() + hospital.getPhone()[2].getCityCode() + hospital.getPhone()[2].getLocalNumber());
 
-        // Hiring staff
-        CreateDoctors docBot = new CreateDoctors();
-        Doctor[] arrayDoctors = docBot.makeArray(hospital);
-        hospital.print();
 
-        // Create HR. Dismiss and Hire stuff
-        HumanResources hr = new HumanResources();
-        printArray(arrayDoctors);
-        hr.dismissDoctor(arrayDoctors, 3);
-        hr.hireDoctor(hospital, arrayDoctors, 3, "Alex", "Surgeon", 700);
-        printArray(arrayDoctors);
+        // create empty departments (without doctors)
+        Department depSurgery = new Department("Surgery");
+        Department depDental = new Department("Dental");
+        Department depCardio = new Department("Cardiology");
+        Department depEmergency = new Department("Emergency");
+        Department[] arrDepartments = {depSurgery, depDental, depCardio, depEmergency};
 
-        // Patient registration
-        System.out.println("Registating patients...");
-        CreatePatients patBot = new CreatePatients();
-        Patient[] arrayPatients = patBot.makeArray();
+        hospital.setDepartment(arrDepartments);
 
-        // match Patient and Doctor
-        System.out.println("Matching patients and doctors...");
-        Reception.searchDoctor(hospital, arrayDoctors, arrayPatients);
-        printArray(arrayPatients);
-        printArray(arrayDoctors);
-
-        // Medicines
-        CreateMedicines medBot = new CreateMedicines();
-        Medicine[] arrayMedicines = medBot.makeArray();
-        printArray(arrayMedicines);
-
-        // arrayPatients[2].takeMedicine(aspirin);
-        // System.out.println(arrayPatients[2].getName() +"-"+ arrayPatients[2].getMedicine()  +"-"+ arrayPatients[2].getCountMedicineTake());
-
-    }
-
-    // Methods
-
-    public static void printArray(Doctor[] array) {
         System.out.println();
-        System.out.println("Name - Specialty - Price - DateFreeFrom - CounterAppointments");
-        for (Doctor item : array) {
-            System.out.println(item.print());
+        System.out.println("Create departments:");
+        System.out.println("get names from dep[] from hospital");
+        for (Department item : hospital.getDepartment()
+        ) {
+            System.out.println(item.getName());
         }
-        System.out.println();
-    }
 
-    public static void printArray(Patient[] array) {
+        // Create doctors array
+        Doctor[] arrDoctors = new ToolDoctor().create();
         System.out.println();
-        System.out.println("Number of patients: " + Patient.count);
-        System.out.println("Name - Age - Credit - Doctor - Problem - DateDesired - DateAppointed - PriceAppointed");
-        for (Patient item : array) {
-            System.out.println(item.print());
-        }
-        System.out.println();
-    }
+        System.out.println("Doctors:");
+        HospitalUtils.print(arrDoctors);    // owerload
+        depSurgery.setDoctor(arrDoctors);
+        depDental.setDoctor(arrDoctors);
+        depCardio.setDoctor(arrDoctors);
+        depEmergency.setDoctor(arrDoctors);
 
-    public static void printArray(Medicine[] array) {
         System.out.println();
-        //System.out.println("Number of patients: " + Patient.count);
-        System.out.println("Medicine:");
-        for (Medicine item : array) {
-            System.out.println(item.print());
+        System.out.println("Patients:");
+        Patient[] arrPatients = new ToolPatient().create();
+        HospitalUtils.print(arrPatients);   // owerload
+        hospital.setPatient(arrPatients);
+
+        // set all doctors free from now
+        for (Doctor item : arrDoctors
+        ) {
+            item.setDateFreeFrom(LocalDate.now());
         }
+
         System.out.println();
+        System.out.println("matching patients and doctors...");
+        System.out.println();
+        HospitalUtils.match(arrDoctors, arrPatients);
+
+        System.out.println();
+        System.out.println("match result:");
+        HospitalUtils.matchResult(arrPatients);
+
+
+
     }
 }

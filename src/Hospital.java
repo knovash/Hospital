@@ -4,32 +4,29 @@ public class Hospital {
 
     //Fields
     private String name;
-    private String address;
-    private String phone;
-
-    private Doctor doctor;
-    private Patient patient;
-    private Medicine medicine;
-    public int credit;
+    private LocalDate dateOfFoundation;
+    private Address address;
+    private Phone[] phone;
+    private Credit[] credits;
+    private Department[] department;
+    private Patient[] patient;
 
 
     //Constructors
-    public Hospital(String name, String address, String phone, int credit) {
+    public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phone, Credit[] credits) {
         this.name = name;
+        this.dateOfFoundation = dateOfFoundation;
         this.address = address;
         this.phone = phone;
-        this.credit = credit;
+        this.credits = credits;
     }
 
-
+    public Hospital() {
+    }
 
     // Methods
-    public void print(){
-        System.out.println("Hospital name: " + this.name + " address: " + this.address + " credit: " + this.credit);
-    }
 
     // Getters and Setters
-
 
     public String getName() {
         return name;
@@ -39,51 +36,51 @@ public class Hospital {
         this.name = name;
     }
 
-    public String getAddress() {
+    public LocalDate getDateOfFoundation() {
+        return dateOfFoundation;
+    }
+
+    public void setDateOfFoundation(LocalDate dateOfFoundation) {
+        this.dateOfFoundation = dateOfFoundation;
+    }
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public String getPhone() {
+    public Phone[] getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Phone[] phone) {
         this.phone = phone;
     }
 
-    public int getCredit() {
-        return credit;
+    public Credit[] getCredits() {
+        return credits;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setCredits(Credit[] credits) {
+        this.credits = credits;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Department[] getDepartment() {
+        return department;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setDepartment(Department[] department) {
+        this.department = department;
     }
 
-    public Patient getPatient() {
+    public Patient[] getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(Patient[] patient) {
         this.patient = patient;
-    }
-
-    public Medicine getMedicine() {
-        return medicine;
-    }
-
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
     }
 }

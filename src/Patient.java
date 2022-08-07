@@ -2,88 +2,54 @@ import java.time.LocalDate;
 
 public class Patient {
 
-    //Fields
+        //Fields
+        private LocalDate dateOB;
+        private int age;
+        private String name;
+        private FullName fullName;
+        private Address address;
+        private Phone phone;
+        private LocalDate dateDesired;
+        //private LocalDate dateAppointed;
+        private String toDoctor;
+        private Credit credit;
+        private Appointment appointment;
+        private Prescription prescription;
+        static int totalAppointments;
 
-    private Medicine medicine;
-    int countMedicineTake;
 
-    private String name;
-    private LocalDate dateOB;
-    private int age;
-    private int credit;
-    private String problem;
-    private LocalDate dateDesired;
-    private LocalDate dateAppointed;
-    private int priceAppointed;
-    private String doctor;
+        //Constructors
+        public Patient(LocalDate dateOB, String name, Address address, Phone phone) {
+            this.dateOB = dateOB;
+            this.name = name;
+            this.address = address;
+            this.phone = phone;
 
-    public static int count = 0;
+        }
 
-    //Constructors
-
-    public Patient(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired) {
-        this.name = name;
+    public Patient(LocalDate dateOB, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate dateDesired) {
         this.dateOB = dateOB;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
         this.credit = credit;
-        this.doctor = doctor;
-        this.problem = problem;
+        this.toDoctor = toDoctor;
         this.dateDesired = dateDesired;
         this.age = LocalDate.now().getYear() - dateOB.getYear();
-        count++;
     }
 
-    public Patient(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired, Medicine medicine, int countMedicineTake) {
-        this.name = name;
+        // Methods
+
+        // Getters and Setters
+
+
+    public LocalDate getDateOB() {
+        return dateOB;
+    }
+
+    public void setDateOB(LocalDate dateOB) {
         this.dateOB = dateOB;
-        this.credit = credit;
-        this.doctor = doctor;
-        this.problem = problem;
-        this.dateDesired = dateDesired;
         this.age = LocalDate.now().getYear() - dateOB.getYear();
-        this.medicine = medicine;
-        this.countMedicineTake = countMedicineTake;
-        count++;
-    }
-
-    // Methods
-
-    public String print() {
-        String text = (
-                this.name + " " +
-                        this.age + " $" +
-                        this.credit + " " +
-                        this.doctor + " " +
-                        this.problem + " " +
-                        this.dateDesired + " " +
-                        this.dateAppointed + " " +
-                        this.priceAppointed);
-        return text;
-    }
-
-
-    public void takeMedicine(Medicine medicine) {
-        this.medicine = medicine;
-        this.countMedicineTake++;
-    }
-
-
-    // Getters and Setters
-
-
-    public Medicine getMedicine() {
-        return medicine;
-    }
-
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
-    }
-
-    public int getCountMedicineTake() {
-        return countMedicineTake;
-    }
-
-    public void setCountMedicineTake(int countMedicineTake) {
-        this.countMedicineTake = countMedicineTake;
     }
 
     public String getName() {
@@ -94,36 +60,20 @@ public class Patient {
         this.name = name;
     }
 
-    public LocalDate getDateOB() {
-        return dateOB;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setDateOB(LocalDate dateOB) {
-        this.dateOB = dateOB;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public int getAge() {
-        return age;
+    public Phone getPhone() {
+        return phone;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-
-    public String getProblem() {
-        return problem;
-    }
-
-    public void setProblem(String problem) {
-        this.problem = problem;
+    public void setPhone(Phone phone) {
+        this.phone = phone;
     }
 
     public LocalDate getDateDesired() {
@@ -134,27 +84,35 @@ public class Patient {
         this.dateDesired = dateDesired;
     }
 
-    public LocalDate getDateAppointed() {
-        return dateAppointed;
+    public String getToDoctor() {
+        return toDoctor;
     }
 
-    public void setDateAppointed(LocalDate dateAppointed) {
-        this.dateAppointed = dateAppointed;
+    public void setToDoctor(String toDoctor) {
+        this.toDoctor = toDoctor;
     }
 
-    public int getPriceAppointed() {
-        return priceAppointed;
+    public Credit getCredit() {
+        return credit;
     }
 
-    public void setPriceAppointed(int priceAppointed) {
-        this.priceAppointed = priceAppointed;
+    public void setCredit(Credit credit) {
+        this.credit = credit;
     }
 
-    public String getDoctor() {
-        return doctor;
+    public Appointment getAppointment() {
+        return appointment;
     }
 
-    public void setDoctor(String doctor) {
-        this.doctor = doctor;
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
+
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
     }
 }
