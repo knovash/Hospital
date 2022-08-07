@@ -1,37 +1,32 @@
+package root.human;
+
 import java.time.LocalDate;
 
-public class Human {
+public abstract class Human {
 
-    //Fields
-    private LocalDate dateOB;
+    private LocalDate dateOfBirth;
     private int age;
     private String name;
-    private FullName fullName;
     private Address address;
     private Phone phone;
-    private String specialty;
     private Credit credit;
 
-
-
-    //Constructors
-    public Human(LocalDate dateOB, String name) {
-        this.dateOB = dateOB;
-        this.age = LocalDate.now().getYear() - dateOB.getYear();
+    public Human(LocalDate dateOfBirth, String name) {
+        this.dateOfBirth = dateOfBirth;
         this.name = name;
     }
 
-    // Methods
-
-    // Getters and Setters
-
-    public LocalDate getDateOB() {
-        return dateOB;
+    public void run() {
+        System.out.println("Human run");
     }
 
-    public void setDateOB(LocalDate dateOB) {
-        this.dateOB = dateOB;
-        this.age = LocalDate.now().getYear() - dateOB.getYear();
+    public LocalDate getDateOB() {
+        return dateOfBirth;
+    }
+
+    public void setDateOB(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        this.age = LocalDate.now().getYear() - dateOfBirth.getYear();
     }
 
     public String getName() {
@@ -56,14 +51,6 @@ public class Human {
 
     public void setPhone(Phone phone) {
         this.phone = phone;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
     }
 
     public Credit getCredit() {

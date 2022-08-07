@@ -1,3 +1,10 @@
+package root.hospital;
+
+import root.human.patient.Appointment;
+import root.human.doctor.Doctor;
+import root.human.Credit;
+import root.human.patient.Patient;
+
 import java.time.LocalDate;
 
 public class HospitalUtils {
@@ -9,7 +16,7 @@ public class HospitalUtils {
             for (int j = 0; j < arrayDoctors.length; j++) {
                 if (arrayPatients[i].getToDoctor() == arrayDoctors[j].getSpecialty()) {
                     System.out.println(arrayDoctors[j].getSpecialty() + " " + arrayDoctors[j].getName() + " Free from: " + arrayDoctors[j].getDateFreeFrom());
-                    System.out.println("doctor Price: $" + arrayDoctors[j].getPrice() + " patient Credit: $" + arrayPatients[i].getCredit().getBalance());
+                    System.out.println("doctor Price: $" + arrayDoctors[j].getPrice() + " Credit: $" + arrayPatients[i].getCredit().getBalance());
 
                     if (arrayDoctors[j].getPrice() <= arrayPatients[i].getCredit().getBalance()) {
                         System.out.println("Price matched!");
@@ -28,9 +35,7 @@ public class HospitalUtils {
             }
 
             if (index != null) {
-                //create Appointment
-                //public Appointment(LocalDate date, Doctor doctor, Patient patient, int price, String place)
-                Appointment appointment = new Appointment(arrayDoctors[index].getDateFreeFrom(), arrayDoctors[index], arrayPatients[i], arrayDoctors[index].getPrice(), "cabinet 2");
+                Appointment appointment = new Appointment(arrayDoctors[index].getDateFreeFrom(), arrayDoctors[index], arrayPatients[i], arrayDoctors[index].getPrice(), "cabinet");
                 arrayPatients[i].setAppointment(appointment);
 
                 LocalDate doctorDate = arrayDoctors[index].getDateFreeFrom();
@@ -38,7 +43,7 @@ public class HospitalUtils {
                 arrayDoctors[index].setDateFreeFrom(doctorDateNew);
                 arrayDoctors[index].appointmentCounter++;
                 Credit tmpCredit = arrayPatients[i].getCredit();
-                tmpCredit.setBalance(tmpCredit.getBalance()-arrayDoctors[index].getPrice());
+                tmpCredit.setBalance(tmpCredit.getBalance() - arrayDoctors[index].getPrice());
                 arrayPatients[i].setCredit(tmpCredit);
                 System.out.println();
                 System.out.println("Appointment accepted: " + arrayPatients[i].getName() + " to " + arrayPatients[i].getToDoctor() + " " + arrayDoctors[index].getName() +
@@ -52,8 +57,7 @@ public class HospitalUtils {
         }
     }
 
-    public static void matchResult(Patient[] arrayPatients)
-    {
+    public static void matchResult(Patient[] arrayPatients) {
         for (Patient item : arrayPatients
         ) {
             System.out.println(item.getAppointment().getDate() + " " +

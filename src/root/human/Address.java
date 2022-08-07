@@ -1,3 +1,5 @@
+package root.human;
+
 public class Address {
     //fields
     private String country;
@@ -13,9 +15,9 @@ public class Address {
         this.houseNumber = houseNumber;
     }
 
-    //methods
-
-    //setters and getters
+    public void sendAddress() {
+        System.out.println("Send " + this.country+ " " +this.city+ " " +this.street+ " " +this.houseNumber);
+    }
 
     public String getCountry() {
         return country;

@@ -1,18 +1,21 @@
-public class Department {
+package root.hospital.department;
 
-    //fields
+import root.human.doctor.Doctor;
+
+public abstract class Department {
+
     private String name;
-    private Doctor[] doctor;
-    static int totalDoctorsInHospital;
+    private Doctor[] doctors;
+    private Department[] subDepartment;
 
-    //constructors
     public Department(String name) {
         this.name = name;
     }
 
-    //methods
 
-    //setters and getters
+    public void Report() {
+        System.out.println("Department report:");
+    }
 
     public String getName() {
         return name;
@@ -23,10 +26,10 @@ public class Department {
     }
 
     public Doctor[] getDoctor() {
-        return doctor;
+        return doctors;
     }
 
     public void setDoctor(Doctor[] doctor) {
-        this.doctor = doctor;
+        this.doctors = doctors;
     }
 }

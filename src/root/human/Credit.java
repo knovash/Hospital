@@ -1,3 +1,5 @@
+package root.human;
+
 public class Credit {
     //fields
     private String bank;

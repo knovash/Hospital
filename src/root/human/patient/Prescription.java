@@ -1,16 +1,13 @@
-import java.time.LocalDate;
+package root.human.patient;
+
+import root.medicine.Medicine;
 
 public class Prescription {
-    //fields
-      private Medicine[] medicine;
+    private Medicine[] medicine;
 
-    //Constructors
     public Prescription(Medicine[] medicine) {
-            this.medicine = medicine;
+        this.medicine = medicine;
     }
-    //methods
-
-    //setters and getters
 
     public Medicine[] getMedicine() {
         return medicine;

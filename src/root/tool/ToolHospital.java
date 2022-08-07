@@ -1,3 +1,10 @@
+package root.tool;
+
+import root.human.Address;
+import root.human.Credit;
+import root.hospital.Hospital;
+import root.human.Phone;
+
 import java.time.LocalDate;
 
 public class ToolHospital {
@@ -13,6 +20,6 @@ public class ToolHospital {
         Credit[] hospitalCredits = {hospitalCreditByn, hospitalCreditRub};
         LocalDate dateOfFoundation = LocalDate.of(1888, 10, 3);
         Hospital hospital = new Hospital("Arkham", dateOfFoundation, hospitalAddress, hospitalPhones, hospitalCredits);
-    return hospital;
+        return hospital;
     }
 }

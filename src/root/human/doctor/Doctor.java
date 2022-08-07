@@ -1,11 +1,16 @@
+package root.human.doctor;
+
+import root.human.Address;
+import root.human.Credit;
+import root.human.Human;
+import root.human.Phone;
+
 import java.time.LocalDate;
 
-public class Doctor {
+public abstract class Doctor {
 
-    //Fields
-    private LocalDate dateOB;
+    private LocalDate dateOfBirth;
     private String name;
-    private FullName fullName;
     private Address address;
     private Phone phone;
 
@@ -15,29 +20,38 @@ public class Doctor {
     private int price;
     private Credit credit;
     public int appointmentCounter;
+    public static int countDoctor;
 
 
-    //Constructors
-    public Doctor(LocalDate dateOB, String name, Address address, Phone phone, String specialty, int price) {
-        this.dateOB = dateOB;
+    public Doctor() {
+         }
+
+    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, int price) {
+        this.dateOfBirth = dateOfBirth;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.specialty = specialty;
         this.price = price;
+        countDoctor++;
     }
 
-    // Methods
 
-    // Getters and Setters
+    public void makePrescription() {
+        System.out.println("Doctor make prescription.");
+    }
+
+    public void makeDiagnosis() {
+        System.out.println("Doctor make diagnosis.");
+    }
 
 
     public LocalDate getDateOB() {
-        return dateOB;
+        return dateOfBirth;
     }
 
-    public void setDateOB(LocalDate dateOB) {
-        this.dateOB = dateOB;
+    public void setDateOB(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {

@@ -1,32 +1,38 @@
+package root.hospital;
+
+import root.hospital.department.Department;
+import root.human.Address;
+import root.human.Credit;
+import root.human.Phone;
+import root.human.patient.Patient;
+
 import java.time.LocalDate;
 
 public class Hospital {
 
-    //Fields
     private String name;
     private LocalDate dateOfFoundation;
     private Address address;
-    private Phone[] phone;
+    private Phone[] phones;
     private Credit[] credits;
-    private Department[] department;
-    private Patient[] patient;
+    private Department[] departments;
+    private Patient[] patients;
 
 
-    //Constructors
-    public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phone, Credit[] credits) {
+    public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phones, Credit[] credits) {
         this.name = name;
         this.dateOfFoundation = dateOfFoundation;
         this.address = address;
-        this.phone = phone;
+        this.phones = phones;
         this.credits = credits;
     }
-
     public Hospital() {
     }
 
-    // Methods
+    public String toString() {
+        return ("Hospital " + this.name);
+    }
 
-    // Getters and Setters
 
     public String getName() {
         return name;
@@ -53,11 +59,11 @@ public class Hospital {
     }
 
     public Phone[] getPhone() {
-        return phone;
+        return phones;
     }
 
     public void setPhone(Phone[] phone) {
-        this.phone = phone;
+        this.phones = phone;
     }
 
     public Credit[] getCredits() {
@@ -69,18 +75,18 @@ public class Hospital {
     }
 
     public Department[] getDepartment() {
-        return department;
+        return departments;
     }
 
     public void setDepartment(Department[] department) {
-        this.department = department;
+        this.departments = department;
     }
 
     public Patient[] getPatient() {
-        return patient;
+        return patients;
     }
 
     public void setPatient(Patient[] patient) {
-        this.patient = patient;
+        this.patients = patient;
     }
 }

@@ -1,3 +1,5 @@
+package root.human;
+
 public class Phone {
 
     //fields
@@ -12,9 +14,11 @@ public class Phone {
         this.localNumber = localNumber;
     }
 
-    //methods
 
-    //setters and getters
+    public void sendNumber() {
+        System.out.println("Send " + this.countryCode+this.cityCode+this.localNumber);
+    }
+
 
     public String getCountryCode() {
         return countryCode;

@@ -1,41 +1,43 @@
+package root.human.patient;
+
+import root.human.Address;
+import root.human.Credit;
+import root.human.Human;
+import root.human.Phone;
+
 import java.time.LocalDate;
 
 public class Patient {
 
         //Fields
-        private LocalDate dateOB;
+        private LocalDate dateOfBirth;
         private int age;
         private String name;
-        private FullName fullName;
+
         private Address address;
         private Phone phone;
-        private LocalDate dateDesired;
+        private LocalDate desireedDate;
         //private LocalDate dateAppointed;
         private String toDoctor;
         private Credit credit;
         private Appointment appointment;
         private Prescription prescription;
+        private Human[] childrens;
         static int totalAppointments;
 
 
         //Constructors
-        public Patient(LocalDate dateOB, String name, Address address, Phone phone) {
-            this.dateOB = dateOB;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
 
-        }
 
-    public Patient(LocalDate dateOB, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate dateDesired) {
-        this.dateOB = dateOB;
+    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) {
+        this.dateOfBirth = dateOfBirth;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.credit = credit;
         this.toDoctor = toDoctor;
-        this.dateDesired = dateDesired;
-        this.age = LocalDate.now().getYear() - dateOB.getYear();
+        this.desireedDate = desireedDate;
+        this.age = LocalDate.now().getYear() - dateOfBirth.getYear();
     }
 
         // Methods
@@ -44,12 +46,12 @@ public class Patient {
 
 
     public LocalDate getDateOB() {
-        return dateOB;
+        return dateOfBirth;
     }
 
-    public void setDateOB(LocalDate dateOB) {
-        this.dateOB = dateOB;
-        this.age = LocalDate.now().getYear() - dateOB.getYear();
+    public void setDateOB(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        this.age = LocalDate.now().getYear() - dateOfBirth.getYear();
     }
 
     public String getName() {
@@ -77,11 +79,11 @@ public class Patient {
     }
 
     public LocalDate getDateDesired() {
-        return dateDesired;
+        return desireedDate;
     }
 
-    public void setDateDesired(LocalDate dateDesired) {
-        this.dateDesired = dateDesired;
+    public void setDateDesired(LocalDate desireedDate) {
+        this.desireedDate = desireedDate;
     }
 
     public String getToDoctor() {

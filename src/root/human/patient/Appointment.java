@@ -1,3 +1,8 @@
+package root.human.patient;
+
+import root.human.doctor.Doctor;
+import root.human.patient.Patient;
+
 import java.time.LocalDate;
 
 public class Appointment {
