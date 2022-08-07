@@ -1,4 +1,4 @@
-package root.human.patient.prescription.medicine;
+package root.medicine;
 
 import java.math.BigDecimal;
 

@@ -6,7 +6,7 @@ public class ToolDepartment {
 
     public Department[] create() {
         Department[] array = new Department[5];
-        array[0] = new DepartmentDental("Cardiology");
+        array[0] = new DepartmentCardiology("Cardiology");
         array[1] = new DepartmentDental("Dental");
         array[2] = new DepartmentEmergency("Emergency");
         array[3] = new DepartmentInfectious("Infectious");

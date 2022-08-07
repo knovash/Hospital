@@ -3,9 +3,9 @@ package root.utils;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import root.human.properties.Address;
+import root.human.property.Address;
 import root.human.doctor.*;
-import root.human.properties.Phone;
+import root.human.property.Phone;
 
 public class ToolDoctor {
 

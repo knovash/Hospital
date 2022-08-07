@@ -1,4 +1,4 @@
-package root.instrument;
+package root.medicine.instrument;
 
 public class Scalpel extends Instrument{
 

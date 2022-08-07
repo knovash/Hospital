@@ -1,9 +1,9 @@
 package root.utils;
 
-import root.human.properties.Address;
-import root.human.properties.Credit;
+import root.human.property.Address;
+import root.human.property.Credit;
 import root.hospital.Hospital;
-import root.human.properties.Phone;
+import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

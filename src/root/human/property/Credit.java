@@ -1,4 +1,4 @@
-package root.human.properties;
+package root.human.property;
 
 import java.math.BigDecimal;
 
@@ -26,9 +26,16 @@ public class Credit {
             return false;
         }
         Credit other = (Credit) object;
-        return this.bank.equals(other.bank) &&
-                this.balance.equals(other.balance) &&
-                this.currency.equals(other.currency);
+        return this.balance.equals(other.balance) &&
+               this.bank.equals(other.bank) &&
+               this.currency.equals(other.currency);
+    }
+
+    public int hashCode(){
+        int result = this.balance.hashCode() +
+                     this.bank.hashCode() +
+                     31*this.currency.hashCode();
+        return result;
     }
 
     public String getBank() {

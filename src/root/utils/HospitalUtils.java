@@ -1,13 +1,11 @@
 package root.utils;
 
-import root.hospital.Hospital;
 import root.human.patient.Appointment;
 import root.human.doctor.Doctor;
-import root.human.properties.Credit;
+import root.human.property.Credit;
 import root.human.patient.Patient;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 public class HospitalUtils {
@@ -18,18 +16,15 @@ public class HospitalUtils {
             Integer index = null;
             for (int j = 0; j < arrayDoctors.length; j++) {
                 if (arrayPatients[i].getToDoctor() == arrayDoctors[j].getSpecialty()) {
-                    System.out.println(arrayDoctors[j].getSpecialty() + " " + arrayDoctors[j].getName() + " Free from: " + arrayDoctors[j].getDateFreeFrom());
+                    System.out.println(arrayDoctors[j].getSpecialty() + " " + arrayDoctors[j].getName() + " Free from: " + arrayDoctors[j].getFreeFromDate());
                     System.out.println("doctor Price: $" + arrayDoctors[j].getPrice() + " Credit: $" + arrayPatients[i].getCredit().getBalance());
-
-
                     BigDecimal max = arrayDoctors[j].getPrice().max(arrayPatients[i].getCredit().getBalance());
-                    if (max.compareTo(arrayPatients[i].getCredit().getBalance()) == 0){
-                  //  if (arrayDoctors[j].getPrice().<= (arrayPatients[i].getCredit().getBalance())) {
+                    if (max.compareTo(arrayPatients[i].getCredit().getBalance()) == 0) {
                         System.out.println("Price matched!");
                         if (index == null) {
                             index = j;
                         } else {
-                            if (arrayDoctors[j].getDateFreeFrom().isBefore(arrayDoctors[index].getDateFreeFrom())) {
+                            if (arrayDoctors[j].getFreeFromDate().isBefore(arrayDoctors[index].getFreeFromDate())) {
                                 index = j;
                                 System.out.println("Earlier date was found!");
                             }
@@ -41,12 +36,11 @@ public class HospitalUtils {
             }
 
             if (index != null) {
-                Appointment appointment = new Appointment(arrayDoctors[index].getDateFreeFrom(), arrayDoctors[index], arrayPatients[i], arrayDoctors[index].getPrice(), "cabinet");
+                Appointment appointment = new Appointment(arrayDoctors[index].getFreeFromDate(), arrayDoctors[index], arrayPatients[i], arrayDoctors[index].getPrice(), "cabinet");
                 arrayPatients[i].setAppointment(appointment);
-
-                LocalDate doctorDate = arrayDoctors[index].getDateFreeFrom();
+                LocalDate doctorDate = arrayDoctors[index].getFreeFromDate();
                 LocalDate doctorDateNew = doctorDate.plusDays(1);
-                arrayDoctors[index].setDateFreeFrom(doctorDateNew);
+                arrayDoctors[index].setFreeFromDate(doctorDateNew);
                 arrayDoctors[index].appointmentCounter++;
                 Credit tmpCredit = arrayPatients[i].getCredit();
                 tmpCredit.setBalance(tmpCredit.getBalance().subtract(arrayDoctors[index].getPrice()));
@@ -66,18 +60,21 @@ public class HospitalUtils {
     public static void matchResult(Patient[] arrayPatients) {
         for (Patient item : arrayPatients
         ) {
-            System.out.println(item.getAppointment().getDate() + " " +
-                    item.getAppointment().getPatient().getName() + " to " +
-                    item.getAppointment().getDoctor().getSpecialty() + " " +
-                    item.getAppointment().getDoctor().getName() + " price " +
-                    item.getAppointment().getPrice());
+            if (item.getAppointment() != null) {
+                System.out.println(item.getAppointment().getDate() + " " +
+                        item.getAppointment().getPatient().getName() + " to " +
+                        item.getAppointment().getDoctor().getSpecialty() + " " +
+                        item.getAppointment().getDoctor().getName() + " price " +
+                        item.getAppointment().getPrice());
+            } else {
+                System.out.println(item.getName() + " to " + item.getToDoctor() + " nothing matched.");
+            }
         }
-
     }
 
     public static void print(Doctor[] array) {
         for (Doctor item : array) {
-            System.out.println(item.getName() + " " + item.getSpecialty() + " " + item.getPrice() + " " + item.getDateFreeFrom());
+            System.out.println(item.getName() + " " + item.getSpecialty() + " " + item.getPrice() + " " + item.getFreeFromDate());
         }
     }
 
@@ -86,6 +83,4 @@ public class HospitalUtils {
             System.out.println(item.getName() + " to " + item.getToDoctor() + " " + item.getDesireedDate() + " $" + item.getCredit().getBalance());
         }
     }
-
-
 }

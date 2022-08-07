@@ -1,21 +1,47 @@
 package root.human.doctor;
-import root.human.properties.Address;
-import root.human.properties.Phone;
+import root.human.doctor.function.IScreen;
+import root.human.property.Address;
+import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Cardiologist extends Doctor {
-    private String ekg;
-    public static int countCardiologist;
+public class Cardiologist extends Doctor implements IScreen {
 
-    public Cardiologist(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) {
-        super(dateOB, name, address, phone, specialty, price);
+    private static int countCardiologist;
+
+    private String ekg;
+
+    public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+        super(dateOfBirth, name, address, phone, specialty, price);
         countCardiologist++;
     }
 
+    public Cardiologist(String name) {
+        super(name);
+        countCardiologist++;
+    }
+
+    public String makeDiagnosis() {
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        return "diagnosis";
+    }
+
+
+    @Override
+    public void makePrescription() {
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
+
+
+    }
+
+    @Override
+    public void think() {
+
+    }
+
     public void doEkg() {
-        System.out.println("Cardiologist make EKG");
+        System.out.println("Cardiologist make cardiogram");
     }
 
     public String getEkg() {
@@ -24,5 +50,18 @@ public class Cardiologist extends Doctor {
 
     public void setEkg(String ekg) {
         this.ekg = ekg;
+    }
+
+    public static int getCountCardiologist() {
+        return countCardiologist;
+    }
+
+    public static void setCountCardiologist(int countCardiologist) {
+        Cardiologist.countCardiologist = countCardiologist;
+    }
+
+    @Override
+    public void makeEkg() {
+
     }
 }

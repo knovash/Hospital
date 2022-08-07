@@ -1,6 +1,4 @@
-package root.human.properties;
-
-import root.human.doctor.Doctor;
+package root.human.property;
 
 public class Address {
 
@@ -28,12 +26,27 @@ public class Address {
             return false;
         }
         Address other = (Address) object;
-        return this.country.equals(other.country) &&
-                this.city.equals(other.city) &&
-                this.street.equals(other.street) &&
-                this.houseNumber == other.houseNumber;
+        return this.houseNumber == other.houseNumber &&
+               this.country.equals(other.country) &&
+               this.city.equals(other.city) &&
+               this.street.equals(other.street);
     }
 
+    public int hashCode(){
+        int result = houseNumber;
+
+        System.out.println("country: " + this.country + " " + this.country.hashCode());
+        System.out.println("city: " + this.city + " " + this.city.hashCode());
+        System.out.println("street: " + this.street + " " + this.street.hashCode());
+        System.out.println("houseNumber: " + this.houseNumber + " " + this.houseNumber.hashCode());
+
+        result =
+                this.country.hashCode() +
+                this.city.hashCode() +
+               this.street.hashCode();
+        System.out.println("HASH: " + result);
+        return result;
+    }
 
     public String getCountry() {
         return country;

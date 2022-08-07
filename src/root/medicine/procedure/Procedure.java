@@ -1,4 +1,4 @@
-package root.human.patient.prescription.procedure;
+package root.medicine.procedure;
 
 import java.math.BigDecimal;
 
@@ -15,7 +15,6 @@ public class Procedure {
         this.price = price;
         this.duration = duration;
     }
-
 
     public void takeProcedure() {
         System.out.println("take procedure");

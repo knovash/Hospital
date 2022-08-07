@@ -1,14 +1,16 @@
 package root.hospital;
 
 import root.hospital.department.Department;
-import root.human.properties.Address;
-import root.human.properties.Credit;
-import root.human.properties.Phone;
+import root.hospital.department.ICalculatePrice;
+import root.human.property.Address;
+import root.human.property.Credit;
+import root.human.property.Phone;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
 
-public class Hospital {
+public class Hospital implements ICalculatePrice {
+
     private String name;
     private LocalDate dateOfFoundation;
     private Address address;
@@ -23,8 +25,6 @@ public class Hospital {
         this.address = address;
         this.phones = phones;
         this.credits = credits;
-    }
-    public Hospital() {
     }
 
     public String toString() {
@@ -85,5 +85,10 @@ public class Hospital {
 
     public void setPatients(Patient[] patients) {
         this.patients = patients;
+    }
+
+    @Override
+    public void calculateDoctorsPrice() {
+
     }
 }

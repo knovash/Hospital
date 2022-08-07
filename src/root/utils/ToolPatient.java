@@ -1,9 +1,9 @@
 package root.utils;
 
-import root.human.properties.Address;
-import root.human.properties.Credit;
+import root.human.property.Address;
+import root.human.property.Credit;
 import root.human.patient.Patient;
-import root.human.properties.Phone;
+import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,8 +15,8 @@ public class ToolPatient {
         array[0] = new Patient(LocalDate.of(1965, 2, 13), "Igor",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
-                new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now());
-        array[1] = new Patient(LocalDate.of(1965, 2, 13), "Igor",
+                new Credit("Prior", "BYN", new BigDecimal("3000")), "Dentist", LocalDate.now());
+        array[1] = new Patient(LocalDate.of(1965, 2, 13), "Alex",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now());

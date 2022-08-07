@@ -2,18 +2,20 @@ package root.human.patient;
 
 import root.human.Human;
 import root.human.doctor.Doctor;
-import root.human.patient.prescription.Prescription;
-import root.human.properties.Address;
-import root.human.properties.Credit;
-import root.human.properties.Phone;
+import root.human.property.Address;
+import root.human.property.Credit;
+import root.human.property.Phone;
+import root.utils.HospitalUtils;
 
 import java.time.LocalDate;
 
-public class Patient extends Human {
+public class Patient extends Human implements ICure, IRegistrate {
+
     private LocalDate desireedDate;
     private String toDoctor;
     private Appointment appointment;
-    private Prescription prescription;
+    private String diagnosis;
+    private String prescription;
 
     public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) {
         super(dateOfBirth, name, address, phone, credit);
@@ -33,44 +35,19 @@ public class Patient extends Human {
             return false;
         }
         Patient other = (Patient) object;
-        if (super.getName().equals(other.getName())) {
-        } else {
-            System.out.println("not equal: name ");
-            return false;
-        }
-        if (super.getAddress().equals(other.getAddress())) {
-        } else {
-            System.out.println("not equal: address ");
-            return false;
-        }
-        if (super.getPhone().equals(other.getPhone())) {
-        } else {
-            System.out.println("not equal: phone ");
-            return false;
-        }
-        if (this.getCredit().equals(other.getCredit())) {
-        } else {
-            System.out.println("not equal: credit ");
-            return false;
-        }
-        if (this.desireedDate.equals(other.desireedDate)) {
-        } else {
-            System.out.println("not equal: date ");
-            return false;
-        }
-        if (this.toDoctor.equals(other.toDoctor)) {
-        } else {
-            System.out.println("not equal: doctor ");
-            return false;
-        }
-        return true;
-//                super.getDateOfBirth().equals(other.getDateOfBirth()) &&
-//                super.getName().equals(other.getName()) &&
-//                super.getAddress().equals(other.getAddress()) &&
-//                super.getPhone().equals(other.getPhone()) &&
-//                super.getCredit().equals(other.getCredit()) &&
-//                this.desireedDate.equals(other.desireedDate) &&
-//                this.toDoctor.equals(other.toDoctor);
+        return
+                super.getDateOfBirth().equals(other.getDateOfBirth()) &&
+                        super.getName().equals(other.getName()) &&
+                        super.getAddress().equals(other.getAddress()) &&
+                        super.getPhone().equals(other.getPhone());
+    }
+
+    public int hashCode() {
+        int result = super.getDateOfBirth().hashCode() +
+                super.getName().hashCode() +
+                super.getAddress().hashCode() +
+                super.getPhone().hashCode();
+        return result;
     }
 
     public void think() {
@@ -101,11 +78,45 @@ public class Patient extends Human {
         this.appointment = appointment;
     }
 
-    public Prescription getPrescription() {
-        return prescription;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    @Override
+    public void takePill() {
+
+    }
+
+    @Override
+    public void takeInjection() {
+
+    }
+
+    @Override
+    public void takeProcedure() {
+
+    }
+
+    @Override
+    public void getInHospital() {
+
+    }
+
+    @Override
+    public void getOutHospital() {
+
+    }
+
+    @Override
+    public void makeAppointment(Doctor[] doctors) {
+        System.out.println("make appointment to doctor");
+        System.out.println("patient: " + super.getName() +" to doctor " + this.toDoctor);
+        Patient[] patients = new Patient[1];
+        patients[0] = this;
+        HospitalUtils.match(doctors, patients);
     }
 }

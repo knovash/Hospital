@@ -1,14 +1,17 @@
 package root.human.doctor;
 
-import root.human.properties.Address;
-import root.human.properties.Phone;
+import root.human.doctor.function.IAnalyze;
+import root.human.property.Address;
+import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Infectiologist extends Doctor {
+public class Infectiologist extends Doctor implements IAnalyze {
+
+    private static int countInectiologist;
+
     private String virus;
-    public static int countInectiologist;
 
     public Infectiologist(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) {
         super(dateOB, name, address, phone, specialty, price);
@@ -18,6 +21,7 @@ public class Infectiologist extends Doctor {
     public void think() {
         System.out.println("thinks");
     }
+
 
     public void doPullOutTooth() {
         System.out.println("Infectiologist disinfect virus");
@@ -29,5 +33,28 @@ public class Infectiologist extends Doctor {
 
     public void setVirus(String virus) {
         this.virus = virus;
+    }
+
+    @Override
+    public String makeDiagnosis() {
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        return "diagnosis";
+    }
+
+    @Override
+    public void makePrescription() {
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
+    }
+
+    @Override
+    public void makeAnalisis() {
+    }
+
+    public static int getCountInectiologist() {
+        return countInectiologist;
+    }
+
+    public static void setCountInectiologist(int countInectiologist) {
+        Infectiologist.countInectiologist = countInectiologist;
     }
 }

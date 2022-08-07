@@ -1,4 +1,4 @@
-package root.human.properties;
+package root.human.property;
 
 public class Phone {
 
@@ -23,6 +23,13 @@ public class Phone {
         return this.countryCode.equals(other.countryCode) &&
                 this.cityCode.equals(other.cityCode) &&
                 this.localNumber.equals(other.localNumber);
+    }
+
+    public int hashCode(){
+        int result = 31 * this.countryCode.hashCode() +
+                    this.cityCode.hashCode() +
+                    this.localNumber.hashCode();
+        return result;
     }
 
     public String toString() {

@@ -1,12 +1,13 @@
 package root.human;
 
-import root.human.properties.Address;
-import root.human.properties.Credit;
-import root.human.properties.Phone;
+import root.human.property.Address;
+import root.human.property.Credit;
+import root.human.property.Phone;
 
 import java.time.LocalDate;
 
 public abstract class Human {
+
     private LocalDate dateOfBirth;
     private String name;
     private Address address;
@@ -31,6 +32,32 @@ public abstract class Human {
         this.name = name;
         this.address = address;
         this.phone = phone;
+    }
+
+    public Human(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return ("Human: " + this.name + " " + this.dateOfBirth.toString());
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Human other = (Human) object;
+        return this.dateOfBirth.equals(other.dateOfBirth) && this.name.equals(other.name);
+    }
+    @Override
+    public int hashCode(){
+        int result = this.dateOfBirth.hashCode() + this.name.hashCode();
+        return result;
     }
 
     public abstract void think();
