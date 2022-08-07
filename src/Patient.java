@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 
-public class Patients {
+public class Patient {
 
     //Fields
 
-    private Medicines medicine;
+    private Medicine medicine;
     int countMedicineTake;
 
     private String name;
@@ -21,7 +21,7 @@ public class Patients {
 
     //Constructors
 
-    public Patients(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired) {
+    public Patient(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired) {
         this.name = name;
         this.dateOB = dateOB;
         this.credit = credit;
@@ -32,7 +32,7 @@ public class Patients {
         count++;
     }
 
-    public Patients(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired, Medicines medicine, int countMedicineTake) {
+    public Patient(String name, LocalDate dateOB, int credit, String doctor, String problem, LocalDate dateDesired, Medicine medicine, int countMedicineTake) {
         this.name = name;
         this.dateOB = dateOB;
         this.credit = credit;
@@ -49,7 +49,7 @@ public class Patients {
 
     public String print() {
         String text = (
-                        this.name + " " +
+                this.name + " " +
                         this.age + " $" +
                         this.credit + " " +
                         this.doctor + " " +
@@ -61,23 +61,20 @@ public class Patients {
     }
 
 
-    public void takeMedicine(Medicines medicine){
+    public void takeMedicine(Medicine medicine) {
         this.medicine = medicine;
         this.countMedicineTake++;
     }
 
 
-
-
-
     // Getters and Setters
 
 
-    public Medicines getMedicine() {
+    public Medicine getMedicine() {
         return medicine;
     }
 
-    public void setMedicine(Medicines medicine) {
+    public void setMedicine(Medicine medicine) {
         this.medicine = medicine;
     }
 

@@ -1,4 +1,4 @@
-public class Medicines {
+public class Medicine {
     //Fields
     private String name;
     private int price;
@@ -6,7 +6,7 @@ public class Medicines {
 
 
     //Constructors
-    public Medicines(String name, int price, int quantity) {
+    public Medicine(String name, int price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -17,6 +17,11 @@ public class Medicines {
     public void storeMedicine(int quantity) {
         this.quantity = quantity;
         System.out.println("Take medicine");
+    }
+
+    public String print() {
+        String text = (this.name + " " + this.price + " " + this.quantity);
+        return text;
     }
 
     // Getters and Setters

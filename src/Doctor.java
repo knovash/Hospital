@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Doctors {
+public class Doctor {
 
     //Fields
     private String name;
@@ -8,16 +8,15 @@ public class Doctors {
     private LocalDate dataFreeFrom;
     private int price;
     private int countAppointments;
-    public static int count = 0;
+
 
     //Constructors
-    public Doctors(String name, String specialty, int price) {
+    public Doctor(String name, String specialty, int price) {
         this.name = name;
         this.specialty = specialty;
         this.price = price;
         this.countAppointments = 0;
-        count++;
-        //countPriv++;
+        this.dataFreeFrom = LocalDate.now();
     }
 
     // Methods
