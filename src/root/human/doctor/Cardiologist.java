@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 public class Cardiologist extends Doctor implements IScreen {
 
+
     private static int countCardiologist;
 
     private String ekg;
@@ -23,25 +24,22 @@ public class Cardiologist extends Doctor implements IScreen {
     }
 
     public String makeDiagnosis() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
 
     @Override
     public void makePrescription() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
-
-
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void think() {
-
     }
 
     public void doEkg() {
-        System.out.println("Cardiologist make cardiogram");
+        LOGGER.info("Cardiologist make cardiogram");
     }
 
     public String getEkg() {
@@ -62,6 +60,6 @@ public class Cardiologist extends Doctor implements IScreen {
 
     @Override
     public void makeEkg() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make cardiogram");
     }
 }

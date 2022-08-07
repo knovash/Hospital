@@ -5,6 +5,7 @@ import root.human.property.Credit;
 import root.human.patient.Patient;
 import root.human.property.Phone;
 
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -16,11 +17,11 @@ public class ToolPatient {
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Dentist", LocalDate.now());
-        array[1] = new Patient(LocalDate.of(1965, 2, 13), "Alex",
+        array[1] = new Patient(LocalDate.of(1965, 2, 13), "Al ex",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now());
-        array[2] = new Patient(LocalDate.of(1965, 2, 13), "Vera",
+        array[2] = new Patient(LocalDate.of(1965, 2, 13), "Ve_ra",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Emergency", LocalDate.now());

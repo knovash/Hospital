@@ -1,5 +1,9 @@
 package root.human;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.exception.NameException;
+import root.exception.DateException;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
@@ -7,6 +11,8 @@ import root.human.property.Phone;
 import java.time.LocalDate;
 
 public abstract class Human {
+
+    private static Logger LOGGER = LogManager.getLogger(Human.class);
 
     private LocalDate dateOfBirth;
     private String name;
@@ -66,7 +72,14 @@ public abstract class Human {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth)  throws DateException {
+//        LOGGER.error("Human set date throw Invalid date: " + dateOfBirth.toString());
+        if (dateOfBirth.isAfter(LocalDate.now())) {
+            throw new DateException("Invalid date in the future.");
+        }
+        if (dateOfBirth.isBefore(LocalDate.now().minusYears(150))) {
+            throw new DateException("Invalid date is too in past.");
+        }
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -74,7 +87,15 @@ public abstract class Human {
         return name;
     }
 
+
     public void setName(String name) {
+        //LOGGER.error("Human setname. Invalid char in name: " + this.name);
+        if (name.contains("_")) {
+            throw new NameException("contain (_)");
+        }
+        if (name.contains(" ")) {
+            throw new NameException("contain ( )");
+        }
         this.name = name;
     }
 

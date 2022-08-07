@@ -1,7 +1,10 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.human.Human;
 import root.human.doctor.function.IWrite;
+import root.human.patient.Patient;
 import root.human.property.Address;
 import root.human.property.Phone;
 
@@ -9,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public abstract class Doctor extends Human implements IWrite {
+    protected static Logger LOGGER = LogManager.getLogger(Doctor.class);
 
     private static int countDoctor;
 
@@ -68,7 +72,7 @@ public abstract class Doctor extends Human implements IWrite {
 
     public abstract void think();
     //{
-    //System.out.println("thinks");
+    //LOGGER.info("thinks");
     //}
 
     public String getSpecialty() {

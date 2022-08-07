@@ -1,8 +1,13 @@
 package root.medicine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.human.property.Address;
+
 import java.math.BigDecimal;
 
 public class Medicine {
+    protected static Logger LOGGER = LogManager.getLogger(Medicine.class);
 
     private String name;
     private String description;
@@ -18,7 +23,7 @@ public class Medicine {
 
 
     public void takeMedicine() {
-        System.out.println("take medicine");
+        LOGGER.info("take medicine");
     }
 
 

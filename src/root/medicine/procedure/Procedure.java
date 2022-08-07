@@ -1,8 +1,14 @@
 package root.medicine.procedure;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.medicine.Medicine;
+
 import java.math.BigDecimal;
 
 public class Procedure {
+
+    protected static Logger LOGGER = LogManager.getLogger(Procedure.class);
 
     private String name;
     private String description;
@@ -17,7 +23,7 @@ public class Procedure {
     }
 
     public void takeProcedure() {
-        System.out.println("take procedure");
+        LOGGER.info("take procedure");
     }
 
     public String getName() {

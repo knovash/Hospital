@@ -24,11 +24,11 @@ public class Surgeon extends Doctor implements IOperate {
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
     public void doOperation() {
-        System.out.println("Surgeon do operation");
+        LOGGER.info("Surgeon do operation");
     }
 
     public String getOperation() {
@@ -41,18 +41,18 @@ public class Surgeon extends Doctor implements IOperate {
 
     @Override
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeOperation() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make operation");
     }
 
     public static int getCountSurgeon() {

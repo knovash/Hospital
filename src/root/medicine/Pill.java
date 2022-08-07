@@ -1,6 +1,10 @@
 package root.medicine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Pill {
+    protected static Logger LOGGER = LogManager.getLogger(Pill.class);
 
     public Pill(String name) {
         this.name = name;
@@ -9,11 +13,11 @@ public class Pill {
     public String name;
 
     public void say() {
-        System.out.println("say hello");
+        LOGGER.info("say hello");
     }
 
     public void takePill() {
-        System.out.println("pill implement show info   " + name);
+        LOGGER.info("pill implement show info   " + name);
     }
 
 

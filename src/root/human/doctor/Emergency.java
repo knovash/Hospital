@@ -19,21 +19,21 @@ public class Emergency extends Doctor implements IRescue {
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
     public void doFirstAid() {
-        System.out.println("Emergency do first aid " + this.aid);
+        LOGGER.info("Emergency do first aid " + this.aid);
     }
 
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     public String getAid() {
@@ -54,6 +54,7 @@ public class Emergency extends Doctor implements IRescue {
 
     @Override
     public void makeFirstAid() {
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make first aid");
 
     }
 }

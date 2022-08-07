@@ -19,12 +19,12 @@ public class Infectiologist extends Doctor implements IAnalyze {
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
 
     public void doPullOutTooth() {
-        System.out.println("Infectiologist disinfect virus");
+        LOGGER.info("Infectiologist disinfect virus");
     }
 
     public String getVirus() {
@@ -37,17 +37,18 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     @Override
     public String makeDiagnosis() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeAnalisis() {
+        LOGGER.info(super.getName() + " make Analisis");
     }
 
     public static int getCountInectiologist() {

@@ -15,15 +15,15 @@ public class DepartmentCardiology extends Department {
     }
 
     public void calculateDoctorsPrice(){
-//        System.out.println(doctors[0].toString());
-        System.out.println(hospital.getDepartments()[0].getDoctor());
+//        LOGGER.info(doctors[0].toString());
+        LOGGER.info(hospital.getDepartments()[0].getDoctor());
         BigDecimal result = new BigDecimal("0");
 //        for (Doctor doctor:super.getDoctor()
 //        ) {
 //            result = result.add(doctor.getPrice());
-//            System.out.println(doctor.getName() + " " + doctor.getPrice());
+//            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
 //        }
-        System.out.println(this.getName() + " total price: " + result);
+        LOGGER.info(this.getName() + " total price: " + result);
     }
 
 
