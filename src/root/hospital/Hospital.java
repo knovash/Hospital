@@ -1,9 +1,9 @@
 package root.hospital;
 
 import root.hospital.department.Department;
-import root.human.Address;
-import root.human.Credit;
-import root.human.Phone;
+import root.human.properties.Address;
+import root.human.properties.Credit;
+import root.human.properties.Phone;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
@@ -33,7 +33,6 @@ public class Hospital {
         return ("Hospital " + this.name);
     }
 
-
     public String getName() {
         return name;
     }
@@ -58,12 +57,12 @@ public class Hospital {
         this.address = address;
     }
 
-    public Phone[] getPhone() {
+    public Phone[] getPhones() {
         return phones;
     }
 
-    public void setPhone(Phone[] phone) {
-        this.phones = phone;
+    public void setPhones(Phone[] phones) {
+        this.phones = phones;
     }
 
     public Credit[] getCredits() {
@@ -74,19 +73,19 @@ public class Hospital {
         this.credits = credits;
     }
 
-    public Department[] getDepartment() {
+    public Department[] getDepartments() {
         return departments;
     }
 
-    public void setDepartment(Department[] department) {
-        this.departments = department;
+    public void setDepartments(Department[] departments) {
+        this.departments = departments;
     }
 
-    public Patient[] getPatient() {
+    public Patient[] getPatients() {
         return patients;
     }
 
-    public void setPatient(Patient[] patient) {
-        this.patients = patient;
+    public void setPatients(Patient[] patients) {
+        this.patients = patients;
     }
 }

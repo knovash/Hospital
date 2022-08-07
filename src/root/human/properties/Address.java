@@ -1,13 +1,12 @@
-package root.human;
+package root.human.properties;
 
 public class Address {
-    //fields
+
     private String country;
     private String city;
     private String street;
     private Integer houseNumber;
 
-    //constructors
     public Address(String country, String city, String street, int houseNumber) {
         this.country = country;
         this.city = city;
@@ -15,8 +14,8 @@ public class Address {
         this.houseNumber = houseNumber;
     }
 
-    public void sendAddress() {
-        System.out.println("Send " + this.country+ " " +this.city+ " " +this.street+ " " +this.houseNumber);
+    public String toString() {
+        return ("Address: " + this.country + " " + this.city + " " + this.street + " " + this.houseNumber);
     }
 
     public String getCountry() {

@@ -1,10 +1,10 @@
-package root.tool;
+package root.utils;
 
 import java.time.LocalDate;
 
-import root.human.Address;
+import root.human.properties.Address;
 import root.human.doctor.*;
-import root.human.Phone;
+import root.human.properties.Phone;
 
 public class ToolDoctor {
 

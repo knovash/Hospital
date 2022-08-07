@@ -1,7 +1,7 @@
 package root.human.doctor;
 
-import root.human.Address;
-import root.human.Phone;
+import root.human.properties.Address;
+import root.human.properties.Phone;
 
 import java.time.LocalDate;
 

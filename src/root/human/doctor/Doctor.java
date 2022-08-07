@@ -1,36 +1,24 @@
 package root.human.doctor;
 
-import root.human.Address;
-import root.human.Credit;
 import root.human.Human;
-import root.human.Phone;
+import root.human.properties.Address;
+import root.human.properties.Credit;
+import root.human.properties.Phone;
 
 import java.time.LocalDate;
 
-public abstract class Doctor {
-
-    private LocalDate dateOfBirth;
-    private String name;
-    private Address address;
-    private Phone phone;
+public abstract class Doctor extends Human {
 
     private String specialty;
     private LocalDate dateFreeFrom;
     private LocalDate[] dateReserved;
     private int price;
-    private Credit credit;
     public int appointmentCounter;
     public static int countDoctor;
 
 
-    public Doctor() {
-         }
-
     public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, int price) {
-        this.dateOfBirth = dateOfBirth;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
+        super(dateOfBirth, name, address, phone);
         this.specialty = specialty;
         this.price = price;
         countDoctor++;
@@ -45,38 +33,10 @@ public abstract class Doctor {
         System.out.println("Doctor make diagnosis.");
     }
 
-
-    public LocalDate getDateOB() {
-        return dateOfBirth;
+    public void think() {
+        System.out.println("thinks");
     }
 
-    public void setDateOB(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Address getAddres() {
-        return address;
-    }
-
-    public void setAddres(Address addres) {
-        this.address = addres;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
 
     public String getSpecialty() {
         return specialty;
@@ -110,13 +70,6 @@ public abstract class Doctor {
         this.price = price;
     }
 
-    public Credit getCredit() {
-        return credit;
-    }
-
-    public void setCredit(Credit credit) {
-        this.credit = credit;
-    }
 
     public int getAppointmentCounter() {
         return appointmentCounter;

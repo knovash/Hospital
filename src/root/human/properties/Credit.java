@@ -1,4 +1,4 @@
-package root.human;
+package root.human.properties;
 
 public class Credit {
     //fields
@@ -6,16 +6,15 @@ public class Credit {
     private String currency;
     private int balance;
 
-    //constructors
     public Credit(String bank, String currency, int balance) {
         this.bank = bank;
         this.currency = currency;
         this.balance = balance;
     }
 
-    //methods
-
-    //setters and getters
+    public String toString() {
+        return ("Credit: " + this.bank + " " + this.balance + " " + this.currency);
+    }
 
     public String getBank() {
         return bank;

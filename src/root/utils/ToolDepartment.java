@@ -1,4 +1,4 @@
-package root.tool;
+package root.utils;
 
 import root.hospital.department.*;
 

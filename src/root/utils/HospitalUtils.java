@@ -1,8 +1,8 @@
-package root.hospital;
+package root.utils;
 
 import root.human.patient.Appointment;
 import root.human.doctor.Doctor;
-import root.human.Credit;
+import root.human.properties.Credit;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
@@ -77,7 +77,7 @@ public class HospitalUtils {
 
     public static void print(Patient[] array) {
         for (Patient item : array) {
-            System.out.println(item.getName() + " to " + item.getToDoctor() + " " + item.getDateDesired() + " $" + item.getCredit().getBalance());
+            System.out.println(item.getName() + " to " + item.getToDoctor() + " " + item.getDesireedDate() + " $" + item.getCredit().getBalance());
         }
     }
 

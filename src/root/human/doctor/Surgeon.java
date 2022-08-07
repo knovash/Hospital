@@ -1,7 +1,7 @@
 package root.human.doctor;
 
-import root.human.Address;
-import root.human.Phone;
+import root.human.properties.Address;
+import root.human.properties.Phone;
 
 import java.time.LocalDate;
 
@@ -12,6 +12,10 @@ public class Surgeon extends Doctor {
     public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, int price) {
         super(dateOB, name, address, phone, specialty, price);
         countSurgeon++;
+    }
+
+    public void think() {
+        System.out.println("thinks");
     }
 
     public void doOperation() {

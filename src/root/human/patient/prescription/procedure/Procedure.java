@@ -1,24 +1,23 @@
-package root.medicine;
+package root.human.patient.prescription.procedure;
 
-public class Medicine {
+public class Procedure {
     //Fields
     private String name;
     private String description;
     private int price;
-    private int quantity;
+    private int duration;
 
-    public Medicine(String name, String description, int price, int quantity) {
+    public Procedure(String name, String description, int price, int quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantity = quantity;
+        this.duration = duration;
     }
 
 
-    public void heal() {
-        System.out.println("Medicine " + this.name + " healing human");
+    public void takeProcedure() {
+        System.out.println("take procedure");
     }
-
 
     public String getName() {
         return name;
@@ -44,11 +43,11 @@ public class Medicine {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

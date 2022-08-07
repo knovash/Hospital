@@ -1,32 +1,55 @@
 package root.human;
 
+import root.human.patient.Appointment;
+import root.human.properties.Address;
+import root.human.properties.Credit;
+import root.human.properties.Phone;
+
 import java.time.LocalDate;
 
 public abstract class Human {
 
     private LocalDate dateOfBirth;
-    private int age;
     private String name;
     private Address address;
     private Phone phone;
     private Credit credit;
+    private Human[] childrens;
 
     public Human(LocalDate dateOfBirth, String name) {
         this.dateOfBirth = dateOfBirth;
         this.name = name;
     }
 
+    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) {
+        this.dateOfBirth = dateOfBirth;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.credit = credit;
+    }
+
+    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone) {
+        this.dateOfBirth = dateOfBirth;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+
+    }
+
+
+    public abstract void think();
+
     public void run() {
         System.out.println("Human run");
     }
 
-    public LocalDate getDateOB() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOB(LocalDate dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-        this.age = LocalDate.now().getYear() - dateOfBirth.getYear();
     }
 
     public String getName() {
@@ -59,5 +82,13 @@ public abstract class Human {
 
     public void setCredit(Credit credit) {
         this.credit = credit;
+    }
+
+    public Human[] getChildrens() {
+        return childrens;
+    }
+
+    public void setChildrens(Human[] childrens) {
+        this.childrens = childrens;
     }
 }

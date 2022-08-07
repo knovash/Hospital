@@ -1,7 +1,7 @@
 package root.human.doctor;
 
-import root.human.Address;
-import root.human.Phone;
+import root.human.properties.Address;
+import root.human.properties.Phone;
 
 import java.time.LocalDate;
 
@@ -10,9 +10,7 @@ public class Dentist extends Doctor {
     private String tooth;
     public static int countDentist;
 
-    public Dentist() {
 
-    }
 
 
 
@@ -22,7 +20,9 @@ public class Dentist extends Doctor {
         countDentist++;
     }
 
-
+    public void think() {
+        System.out.println("thinks");
+    }
 
     public void doPullOutTooth() {
         System.out.println("Dentist pull out tooth");

@@ -1,4 +1,4 @@
-package root.human;
+package root.utils;
 
 import root.hospital.department.Department;
 

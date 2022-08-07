@@ -1,45 +1,57 @@
 package root;
 
 import root.hospital.Hospital;
-import root.hospital.HospitalUtils;
+import root.utils.HospitalUtils;
 import root.hospital.department.Department;
-import root.human.Phone;
-import root.human.TestPolymorph;
+import root.human.properties.Phone;
+import root.utils.TestPolymorph;
 import root.human.doctor.*;
 import root.human.patient.Patient;
-import root.tool.ToolDepartment;
-import root.tool.ToolDoctor;
-import root.tool.ToolHospital;
-import root.tool.ToolPatient;
+import root.human.patient.prescription.medicine.Injection;
+import root.human.patient.prescription.medicine.Medicine;
+import root.human.patient.prescription.medicine.Pill;
+import root.utils.ToolDepartment;
+import root.utils.ToolDoctor;
+import root.utils.ToolHospital;
+import root.utils.ToolPatient;
 
 import java.time.LocalDate;
-
-import static root.human.TestPolymorph.printName;
 
 public class Main {
     public static void main(String[] args) {
 
+        // test polymorphysm
+
+       Injection insulin = new Injection("insulin", "shugar", 10,100);
+       Pill aspirin = new Pill("aspirin", "head", 20,200);
+       Medicine calcium = new Medicine("aspirin", "head", 20,200);
+       Medicine iod = new Pill("aspirin", "head", 20,200);
+       insulin.takeInjection();
+       insulin.takeMedicine();
+       aspirin.takePill();
+       aspirin.takeMedicine();
+       calcium.takeMedicine();
+       iod.takeMedicine();
+
+
         // create hospital
         Hospital hospital = ToolHospital.create();
-        // print hospital
+        // print hospital. test ToString override
         System.out.println("Create hospital:");
-        System.out.println(hospital.getName() + " founded at " + hospital.getDateOfFoundation());
-        System.out.println(hospital.getAddress().getCountry() + " " + hospital.getAddress().getCity());
-        for (Phone item : hospital.getPhone()) {
-            System.out.println(item.getCountryCode() + item.getCityCode() + item.getLocalNumber());
+        System.out.println(hospital);
+        System.out.println(hospital.getAddress().toString());
+        for (Phone item : hospital.getPhones()) {
+            System.out.println(item.toString());
         }
-
-        // test toString override. print hospital
-        System.out.println("to string " + hospital.toString());
 
         // create empty departments (without doctors)
         Department[] departments = new ToolDepartment().create();
-        hospital.setDepartment(departments);
+        hospital.setDepartments(departments);
 
         // print hospital departments names
         System.out.println();
-        System.out.println("get names from dep[] from hospital");
-        for (Department item : hospital.getDepartment()
+        System.out.println("get names from departments[] from hospital");
+        for (Department item : hospital.getDepartments()
         ) {
             System.out.println(item.getName());
         }
@@ -64,8 +76,8 @@ public class Main {
 
         System.out.println();
         System.out.println("Doctors:");
-        HospitalUtils.print(dentists);    // owerload
-        HospitalUtils.print(emergencys);    // owerload
+        HospitalUtils.print(dentists);    // overload
+        HospitalUtils.print(emergencys);    // overload
 
         departments[0].setDoctor(cardiologists);
         departments[1].setDoctor(dentists);
@@ -95,9 +107,9 @@ public class Main {
         System.out.println();
         System.out.println("Patients:");
         Patient[] patients = new ToolPatient().create();
-        hospital.setPatient(patients);
+        hospital.setPatients(patients);
         System.out.println("hospital.getPatients:");
-        HospitalUtils.print(hospital.getPatient());   // owerload
+        //HospitalUtils.print(hospital.getPatients());   // owerload
 
 
         System.out.println();
@@ -131,20 +143,13 @@ public class Main {
         System.out.println();
         System.out.println("matching patients and doctors...");
         System.out.println();
-
         HospitalUtils.match(cardiologists, patients);
         HospitalUtils.match(dentists, patients);
         HospitalUtils.match(emergencys, patients);
         HospitalUtils.match(infectiologists, patients);
         HospitalUtils.match(surgeons, patients);
-
         System.out.println();
         System.out.println("match result:");
         HospitalUtils.matchResult(patients);
-
-
-
-
-
     }
 }

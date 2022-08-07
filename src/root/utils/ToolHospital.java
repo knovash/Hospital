@@ -1,9 +1,9 @@
-package root.tool;
+package root.utils;
 
-import root.human.Address;
-import root.human.Credit;
+import root.human.properties.Address;
+import root.human.properties.Credit;
 import root.hospital.Hospital;
-import root.human.Phone;
+import root.human.properties.Phone;
 
 import java.time.LocalDate;
 

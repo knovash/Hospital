@@ -1,4 +1,4 @@
-package root.human;
+package root.human.properties;
 
 public class Phone {
 
@@ -14,11 +14,9 @@ public class Phone {
         this.localNumber = localNumber;
     }
 
-
-    public void sendNumber() {
-        System.out.println("Send " + this.countryCode+this.cityCode+this.localNumber);
+    public String toString() {
+        return ("Phone: " + this.countryCode + this.cityCode + this.localNumber);
     }
-
 
     public String getCountryCode() {
         return countryCode;
