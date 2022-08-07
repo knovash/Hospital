@@ -1,7 +1,5 @@
 package root.human.doctor.function;
 
-public interface IScreen {
-
+public interface Cardiogram {
     void makeEkg();
-
 }

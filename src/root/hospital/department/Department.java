@@ -1,8 +1,9 @@
 package root.hospital.department;
 
 import root.human.doctor.Doctor;
+import root.utils.ToolDepartment;
 
-public abstract class Department implements ICalculatePrice {
+public abstract class Department implements TotalPrice {
 
     private String name;
     private Doctor[] doctors;

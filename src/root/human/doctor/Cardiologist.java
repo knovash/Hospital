@@ -1,16 +1,15 @@
 package root.human.doctor;
-import root.human.doctor.function.IScreen;
+import root.human.doctor.function.Cardiogram;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Cardiologist extends Doctor implements IScreen {
-
-    private static int countCardiologist;
+public class Cardiologist extends Doctor implements Cardiogram {
 
     private String ekg;
+    public static int countCardiologist;
 
     public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
         super(dateOfBirth, name, address, phone, specialty, price);
@@ -50,14 +49,6 @@ public class Cardiologist extends Doctor implements IScreen {
 
     public void setEkg(String ekg) {
         this.ekg = ekg;
-    }
-
-    public static int getCountCardiologist() {
-        return countCardiologist;
-    }
-
-    public static void setCountCardiologist(int countCardiologist) {
-        Cardiologist.countCardiologist = countCardiologist;
     }
 
     @Override

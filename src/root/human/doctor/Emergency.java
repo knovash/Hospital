@@ -1,15 +1,15 @@
 package root.human.doctor;
 
-import root.human.doctor.function.IRescue;
+import root.human.doctor.function.FirstAid;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Emergency extends Doctor implements IRescue {
+public class Emergency extends Doctor implements FirstAid {
 
-    private static int countEmergency;
+    public static int countEmergency;
 
     private String aid;
 
@@ -27,13 +27,13 @@ public class Emergency extends Doctor implements IRescue {
     }
 
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     public String getAid() {
@@ -42,14 +42,6 @@ public class Emergency extends Doctor implements IRescue {
 
     public void setAid(String aid) {
         this.aid = aid;
-    }
-
-    public static int getCountEmergency() {
-        return countEmergency;
-    }
-
-    public static void setCountEmergency(int countEmergency) {
-        Emergency.countEmergency = countEmergency;
     }
 
     @Override

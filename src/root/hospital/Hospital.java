@@ -1,7 +1,7 @@
 package root.hospital;
 
 import root.hospital.department.Department;
-import root.hospital.department.ICalculatePrice;
+import root.hospital.department.TotalPrice;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
@@ -9,7 +9,7 @@ import root.human.patient.Patient;
 
 import java.time.LocalDate;
 
-public class Hospital implements ICalculatePrice {
+public class Hospital implements TotalPrice {
 
     private String name;
     private LocalDate dateOfFoundation;

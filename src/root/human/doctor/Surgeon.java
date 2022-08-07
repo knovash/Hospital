@@ -1,15 +1,15 @@
 package root.human.doctor;
 
-import root.human.doctor.function.IOperate;
+import root.human.doctor.function.Operation;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Surgeon extends Doctor implements IOperate {
+public class Surgeon extends Doctor implements Operation {
 
-    private static int countSurgeon;
+    public static int countSurgeon;
 
     private String operation;
 
@@ -41,25 +41,17 @@ public class Surgeon extends Doctor implements IOperate {
 
     @Override
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeOperation() {
 
-    }
-
-    public static int getCountSurgeon() {
-        return countSurgeon;
-    }
-
-    public static void setCountSurgeon(int countSurgeon) {
-        Surgeon.countSurgeon = countSurgeon;
     }
 }

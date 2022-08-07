@@ -1,7 +1,5 @@
 package root.human.doctor.function;
 
-public interface IOperate {
-
+public interface Operation {
     void makeOperation();
-
 }

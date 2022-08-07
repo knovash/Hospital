@@ -1,9 +1,6 @@
 package root.human.doctor.function;
 
-public interface ITooth {
-
+public interface Tooth {
     void makeDentalFilling();
-
     void makePullOutTooth();
-
 }
