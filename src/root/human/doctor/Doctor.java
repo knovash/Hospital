@@ -2,31 +2,47 @@ package root.human.doctor;
 
 import root.human.Human;
 import root.human.properties.Address;
-import root.human.properties.Credit;
 import root.human.properties.Phone;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public abstract class Doctor extends Human {
-
+    public static int countDoctor;
     private String specialty;
     private LocalDate dateFreeFrom;
     private LocalDate[] dateReserved;
-    private int price;
+    private BigDecimal price;
     public int appointmentCounter;
-    public static int countDoctor;
 
-
-    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, int price) {
+    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
         super(dateOfBirth, name, address, phone);
         this.specialty = specialty;
         this.price = price;
         countDoctor++;
     }
 
+    public String toString() {
+        return ("Doctor: " + super.getName() + " " + this.specialty + " " + this.price + " " + this.dateFreeFrom);
+    }
 
-    public void makePrescription() {
-        System.out.println("Doctor make prescription.");
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Doctor other = (Doctor) object;
+        return
+        super.getDateOfBirth().equals(other.getDateOfBirth()) &&
+        super.getName().equals(other.getName()) &&
+        super.getAddress().equals(other.getAddress()) &&
+        super.getPhone().equals(other.getPhone()) &&
+        this.specialty.equals(other.specialty) &&
+        this.dateFreeFrom.equals(other.dateFreeFrom) &&
+        //this.dateReserved.equals(other.dateReserved) &&
+        this.price.equals(other.price);
     }
 
     public void makeDiagnosis() {
@@ -36,7 +52,6 @@ public abstract class Doctor extends Human {
     public void think() {
         System.out.println("thinks");
     }
-
 
     public String getSpecialty() {
         return specialty;
@@ -62,20 +77,11 @@ public abstract class Doctor extends Human {
         this.dateReserved = dateReserved;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-
-    public int getAppointmentCounter() {
-        return appointmentCounter;
-    }
-
-    public void setAppointmentCounter(int appointmentCounter) {
-        this.appointmentCounter = appointmentCounter;
     }
 }

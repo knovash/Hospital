@@ -1,31 +1,25 @@
 package root.human.patient;
 
 import root.human.doctor.Doctor;
-import root.human.patient.Patient;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Appointment {
 
-    //fields
     private LocalDate date;
     private Doctor doctor;
     private Patient patient;
-    private int price;
+    private BigDecimal price;
     private String place;
 
-    //constructors
-    public Appointment(LocalDate date, Doctor doctor, Patient patient, int price, String place) {
+    public Appointment(LocalDate date, Doctor doctor, Patient patient, BigDecimal price, String place) {
         this.date = date;
         this.doctor = doctor;
         this.patient = patient;
         this.price = price;
         this.place = place;
     }
-
-    //methods
-
-    //setters and getters
 
     public LocalDate getDate() {
         return date;
@@ -51,11 +45,11 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

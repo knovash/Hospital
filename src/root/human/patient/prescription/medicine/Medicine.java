@@ -1,13 +1,15 @@
 package root.human.patient.prescription.medicine;
 
+import java.math.BigDecimal;
+
 public class Medicine {
-    //Fields
+
     private String name;
     private String description;
-    private int price;
+    private BigDecimal price;
     private int quantity;
 
-    public Medicine(String name, String description, int price, int quantity) {
+    public Medicine(String name, String description, BigDecimal price, int quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -36,11 +38,11 @@ public class Medicine {
         this.description = description;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

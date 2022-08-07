@@ -9,7 +9,6 @@ import root.human.patient.Patient;
 import java.time.LocalDate;
 
 public class Hospital {
-
     private String name;
     private LocalDate dateOfFoundation;
     private Address address;
@@ -17,7 +16,6 @@ public class Hospital {
     private Credit[] credits;
     private Department[] departments;
     private Patient[] patients;
-
 
     public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phones, Credit[] credits) {
         this.name = name;
@@ -30,7 +28,7 @@ public class Hospital {
     }
 
     public String toString() {
-        return ("Hospital " + this.name);
+        return ("Hospital: " + this.name);
     }
 
     public String getName() {

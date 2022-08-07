@@ -1,10 +1,13 @@
 package root.utils;
 
+import root.hospital.Hospital;
 import root.human.patient.Appointment;
 import root.human.doctor.Doctor;
 import root.human.properties.Credit;
 import root.human.patient.Patient;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 public class HospitalUtils {
@@ -18,7 +21,10 @@ public class HospitalUtils {
                     System.out.println(arrayDoctors[j].getSpecialty() + " " + arrayDoctors[j].getName() + " Free from: " + arrayDoctors[j].getDateFreeFrom());
                     System.out.println("doctor Price: $" + arrayDoctors[j].getPrice() + " Credit: $" + arrayPatients[i].getCredit().getBalance());
 
-                    if (arrayDoctors[j].getPrice() <= arrayPatients[i].getCredit().getBalance()) {
+
+                    BigDecimal max = arrayDoctors[j].getPrice().max(arrayPatients[i].getCredit().getBalance());
+                    if (max.compareTo(arrayPatients[i].getCredit().getBalance()) == 0){
+                  //  if (arrayDoctors[j].getPrice().<= (arrayPatients[i].getCredit().getBalance())) {
                         System.out.println("Price matched!");
                         if (index == null) {
                             index = j;
@@ -43,7 +49,7 @@ public class HospitalUtils {
                 arrayDoctors[index].setDateFreeFrom(doctorDateNew);
                 arrayDoctors[index].appointmentCounter++;
                 Credit tmpCredit = arrayPatients[i].getCredit();
-                tmpCredit.setBalance(tmpCredit.getBalance() - arrayDoctors[index].getPrice());
+                tmpCredit.setBalance(tmpCredit.getBalance().subtract(arrayDoctors[index].getPrice()));
                 arrayPatients[i].setCredit(tmpCredit);
                 System.out.println();
                 System.out.println("Appointment accepted: " + arrayPatients[i].getName() + " to " + arrayPatients[i].getToDoctor() + " " + arrayDoctors[index].getName() +

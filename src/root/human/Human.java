@@ -1,6 +1,5 @@
 package root.human;
 
-import root.human.patient.Appointment;
 import root.human.properties.Address;
 import root.human.properties.Credit;
 import root.human.properties.Phone;
@@ -8,13 +7,11 @@ import root.human.properties.Phone;
 import java.time.LocalDate;
 
 public abstract class Human {
-
     private LocalDate dateOfBirth;
     private String name;
     private Address address;
     private Phone phone;
     private Credit credit;
-    private Human[] childrens;
 
     public Human(LocalDate dateOfBirth, String name) {
         this.dateOfBirth = dateOfBirth;
@@ -34,15 +31,9 @@ public abstract class Human {
         this.name = name;
         this.address = address;
         this.phone = phone;
-
     }
-
 
     public abstract void think();
-
-    public void run() {
-        System.out.println("Human run");
-    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
@@ -82,13 +73,5 @@ public abstract class Human {
 
     public void setCredit(Credit credit) {
         this.credit = credit;
-    }
-
-    public Human[] getChildrens() {
-        return childrens;
-    }
-
-    public void setChildrens(Human[] childrens) {
-        this.childrens = childrens;
     }
 }

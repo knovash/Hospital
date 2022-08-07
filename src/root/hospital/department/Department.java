@@ -6,15 +6,13 @@ public abstract class Department {
 
     private String name;
     private Doctor[] doctors;
-    private Department[] subDepartment;
 
     public Department(String name) {
         this.name = name;
     }
 
-
-    public void Report() {
-        System.out.println("Department report:");
+    public String toString() {
+        return ("Department: " + this.name + " total doctors: " + this.getDoctor().length);
     }
 
     public String getName() {

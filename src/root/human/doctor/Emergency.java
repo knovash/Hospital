@@ -3,16 +3,16 @@ package root.human.doctor;
 import root.human.properties.Address;
 import root.human.properties.Phone;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Emergency extends Doctor {
     private String aid;
     public static int countEmergency;
 
-    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, int price) {
+    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
         super(dateOfBirth, name, address, phone, specialty, price);
         countEmergency++;
-
     }
 
     public void think() {
@@ -25,5 +25,13 @@ public class Emergency extends Doctor {
 
     public void makeDiagnosis() {
         System.out.println("Only first aid. for diagnosis please contact the doctor");
+    }
+
+    public String getAid() {
+        return aid;
+    }
+
+    public void setAid(String aid) {
+        this.aid = aid;
     }
 }

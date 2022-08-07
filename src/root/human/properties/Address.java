@@ -1,5 +1,7 @@
 package root.human.properties;
 
+import root.human.doctor.Doctor;
+
 public class Address {
 
     private String country;
@@ -17,6 +19,21 @@ public class Address {
     public String toString() {
         return ("Address: " + this.country + " " + this.city + " " + this.street + " " + this.houseNumber);
     }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Address other = (Address) object;
+        return this.country.equals(other.country) &&
+                this.city.equals(other.city) &&
+                this.street.equals(other.street) &&
+                this.houseNumber == other.houseNumber;
+    }
+
 
     public String getCountry() {
         return country;

@@ -2,16 +2,27 @@ package root.human.properties;
 
 public class Phone {
 
-    //fields
     private String countryCode;
     private String cityCode;
     private String localNumber;
 
-    //constructors
     public Phone(String countryCode, String cityCode, String localNumber) {
         this.countryCode = countryCode;
         this.cityCode = cityCode;
         this.localNumber = localNumber;
+    }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Phone other = (Phone) object;
+        return this.countryCode.equals(other.countryCode) &&
+                this.cityCode.equals(other.cityCode) &&
+                this.localNumber.equals(other.localNumber);
     }
 
     public String toString() {
