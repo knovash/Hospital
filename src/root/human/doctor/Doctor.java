@@ -1,16 +1,16 @@
 package root.human.doctor;
 
 import root.human.Human;
-import root.human.doctor.function.Function;
+import root.human.doctor.function.IWrite;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public abstract class Doctor extends Human implements Function {
+public abstract class Doctor extends Human implements IWrite {
 
-    public static int countDoctor;
+    private static int countDoctor;
 
     private String specialty;
     private LocalDate freeFromDate;
@@ -45,14 +45,15 @@ public abstract class Doctor extends Human implements Function {
         }
         Doctor other = (Doctor) object;
         return
-        super.getDateOfBirth().equals(other.getDateOfBirth()) &&
-        super.getName().equals(other.getName()) &&
-        this.specialty.equals(other.specialty) &&
-        this.freeFromDate.equals(other.freeFromDate) &&
-        this.price.equals(other.price);
+                super.getDateOfBirth().equals(other.getDateOfBirth()) &&
+                        super.getName().equals(other.getName()) &&
+                        this.specialty.equals(other.specialty) &&
+                        this.freeFromDate.equals(other.freeFromDate) &&
+                        this.price.equals(other.price);
     }
+
     @Override
-    public int hashCode(){
+    public int hashCode() {
         int result = super.getDateOfBirth().hashCode() +
                 super.getName().hashCode() +
                 this.specialty.hashCode() +
@@ -67,7 +68,7 @@ public abstract class Doctor extends Human implements Function {
 
     public abstract void think();
     //{
-        //System.out.println("thinks");
+    //System.out.println("thinks");
     //}
 
     public String getSpecialty() {
@@ -102,4 +103,23 @@ public abstract class Doctor extends Human implements Function {
         this.price = price;
     }
 
+    public static int getCountDoctor() {
+        return countDoctor;
+    }
+
+    public static void setCountDoctor(int countDoctor) {
+        Doctor.countDoctor = countDoctor;
+    }
+
+    public void setReservedDates(LocalDate[] reservedDates) {
+        this.reservedDates = reservedDates;
+    }
+
+    public int getAppointmentCounter() {
+        return appointmentCounter;
+    }
+
+    public void setAppointmentCounter(int appointmentCounter) {
+        this.appointmentCounter = appointmentCounter;
+    }
 }

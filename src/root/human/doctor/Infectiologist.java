@@ -1,15 +1,15 @@
 package root.human.doctor;
 
-import root.human.doctor.function.Analysis;
+import root.human.doctor.function.IAnalyze;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Infectiologist extends Doctor implements Analysis {
+public class Infectiologist extends Doctor implements IAnalyze {
 
-    public static int countInectiologist;
+    private static int countInectiologist;
 
     private String virus;
 
@@ -48,6 +48,13 @@ public class Infectiologist extends Doctor implements Analysis {
 
     @Override
     public void makeAnalisis() {
+    }
 
+    public static int getCountInectiologist() {
+        return countInectiologist;
+    }
+
+    public static void setCountInectiologist(int countInectiologist) {
+        Infectiologist.countInectiologist = countInectiologist;
     }
 }

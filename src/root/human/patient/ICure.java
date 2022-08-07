@@ -1,7 +1,11 @@
 package root.human.patient;
 
-public interface Therapy {
+public interface ICure {
+
     void takePill();
+
     void takeInjection();
+
     void takeProcedure();
+
 }

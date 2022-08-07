@@ -1,6 +1,5 @@
 package root.human.patient;
 
-import root.hospital.Hospital;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
@@ -10,7 +9,7 @@ import root.utils.HospitalUtils;
 
 import java.time.LocalDate;
 
-public class Patient extends Human implements Therapy, Registration {
+public class Patient extends Human implements ICure, IRegistrate {
 
     private LocalDate desireedDate;
     private String toDoctor;

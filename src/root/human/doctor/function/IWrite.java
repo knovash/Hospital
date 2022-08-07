@@ -1,6 +1,9 @@
 package root.human.doctor.function;
 
-public interface Function {
+public interface IWrite {
+
     String makeDiagnosis();
+
     void makePrescription();
+
 }

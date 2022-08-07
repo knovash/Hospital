@@ -1,5 +1,7 @@
 package root.human.doctor.function;
 
-public interface FirstAid {
+public interface IRescue {
+
     void makeFirstAid();
+
 }

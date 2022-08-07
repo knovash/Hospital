@@ -1,5 +1,7 @@
 package root.human.doctor.function;
 
-public interface Analysis {
+public interface IAnalyze {
+    
     void makeAnalisis();
+
 }

@@ -2,7 +2,6 @@ package root;
 
 import root.hospital.Hospital;
 import root.hospital.department.*;
-import root.human.doctor.function.Function;
 import root.human.property.Phone;
 import root.human.doctor.*;
 import root.human.patient.Patient;

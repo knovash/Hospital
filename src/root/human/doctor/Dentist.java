@@ -1,15 +1,15 @@
 package root.human.doctor;
 
-import root.human.doctor.function.Tooth;
+import root.human.doctor.function.ITooth;
 import root.human.property.Address;
 import root.human.property.Phone;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Dentist extends Doctor implements Tooth {
+public class Dentist extends Doctor implements ITooth {
 
-    public static int countDentist;
+    private static int countDentist;
 
     private String tooth;
 
@@ -42,6 +42,14 @@ public class Dentist extends Doctor implements Tooth {
 
     public void setTooth(String tooth) {
         this.tooth = tooth;
+    }
+
+    public static int getCountDentist() {
+        return countDentist;
+    }
+
+    public static void setCountDentist(int countDentist) {
+        Dentist.countDentist = countDentist;
     }
 
     @Override
