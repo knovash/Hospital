@@ -10,7 +10,14 @@ import root.human.doctor.*;
 import root.human.patient.Patient;
 import root.utils.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
@@ -20,7 +27,7 @@ public class Main {
 
     static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         LOGGER.debug("log debug");
         LOGGER.info("log info");
         LOGGER.error("log error");
@@ -78,7 +85,7 @@ public class Main {
         } catch (InvalidNameException e) {
             LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
-        }  finally {
+        } finally {
             LOGGER.debug("try create Patients end");
         }
         // set patients to hospital
@@ -101,12 +108,12 @@ public class Main {
         LOGGER.info("");
         for (Department department : hospital.getDepartments()) {
             LOGGER.debug(department.toString());
-            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
+//            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
         }
 
         LOGGER.info("");
         LOGGER.info("match result:");
-        HospitalUtils.matchResult(hospital.getPatients());
+//        HospitalUtils.matchResult(hospital.getPatients());
 
         // test interface
         LOGGER.debug("interface");
@@ -115,25 +122,47 @@ public class Main {
         patient.makeAppointment(docs);  // (Doctors[], Patient[0])
 
         // test try with resources
-        try (Resource resource = new Resource()) {
-            LOGGER.info("resource close");
+
+        FileOutputStream output = null;
+        try {
+            output = new FileOutputStream("list.txt");
+            output.write(2);
+        } catch (ArithmeticException e) {LOGGER.error("ArithmeticException");
+        } catch (IOException e) {LOGGER.error("IOException");
+        } finally {
+            if (output != null){
+            output.close();}
+            LOGGER.debug("file closed");
         }
+
+        // test try-with-res method already with close()
+        try(FileOutputStream outputNew = new FileOutputStream("list_new.txt"))
+        {outputNew.write(3);}
+        LOGGER.debug("file closed");
+
+        // test try-with-res my method Text with AutoCloseable
+        try(Text text = new Text("list_new.txt"))
+        {text.write(7/0 + "xxx");}
+
     }
 
-    public static class Resource implements AutoCloseable {
+    public static class Text implements AutoCloseable {
+        private String path;
 
-        private String name;
+        public Text(String path) {
+            this.path = path;
+        }
+
+        public void write(String value) throws IOException {
+            LOGGER.debug("write to: "+ this.path + " value: " + value);
+            Files.writeString(Path.of(path), value);
+        }
 
         @Override
         public void close() {
+            LOGGER.info("file auto closed");
         }
 
-        public String getName() {
-            return name;
-        }
 
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 }
