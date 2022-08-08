@@ -1,4 +1,5 @@
 package root.human.doctor;
+import root.exception.InvalidNameException;
 import root.human.doctor.function.IScreen;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -8,11 +9,12 @@ import java.time.LocalDate;
 
 public class Cardiologist extends Doctor implements IScreen {
 
+
     private static int countCardiologist;
 
     private String ekg;
 
-    public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Cardiologist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countCardiologist++;
     }
@@ -23,25 +25,22 @@ public class Cardiologist extends Doctor implements IScreen {
     }
 
     public String makeDiagnosis() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
 
     @Override
     public void makePrescription() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
-
-
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void think() {
-
     }
 
     public void doEkg() {
-        System.out.println("Cardiologist make cardiogram");
+        LOGGER.info("Cardiologist make cardiogram");
     }
 
     public String getEkg() {
@@ -62,6 +61,6 @@ public class Cardiologist extends Doctor implements IScreen {
 
     @Override
     public void makeEkg() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make cardiogram");
     }
 }

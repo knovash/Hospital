@@ -1,5 +1,9 @@
 package root.human;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.exception.InvalidNameException;
+import root.exception.DateInvalidException;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
@@ -7,6 +11,8 @@ import root.human.property.Phone;
 import java.time.LocalDate;
 
 public abstract class Human {
+
+    static final Logger LOGGER = LogManager.getLogger(Human.class);
 
     private LocalDate dateOfBirth;
     private String name;
@@ -20,6 +26,7 @@ public abstract class Human {
     }
 
     public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) {
+
         this.dateOfBirth = dateOfBirth;
         this.name = name;
         this.address = address;
@@ -54,8 +61,9 @@ public abstract class Human {
         Human other = (Human) object;
         return this.dateOfBirth.equals(other.dateOfBirth) && this.name.equals(other.name);
     }
+
     @Override
-    public int hashCode(){
+    public int hashCode() {
         int result = this.dateOfBirth.hashCode() + this.name.hashCode();
         return result;
     }
@@ -67,6 +75,12 @@ public abstract class Human {
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
+        if (dateOfBirth.isAfter(LocalDate.now())) {
+            throw new DateInvalidException("Invalid date in the future.");
+        }
+        if (dateOfBirth.isBefore(LocalDate.now().minusYears(150))) {
+            throw new DateInvalidException("Invalid date is too in past.");
+        }
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -74,7 +88,14 @@ public abstract class Human {
         return name;
     }
 
-    public void setName(String name) {
+
+    public void setName(String name) throws InvalidNameException {
+        if (name.contains("_")) {
+            throw new InvalidNameException("Human name contain (_)");
+        }
+        if (name.contains(" ")) {
+            throw new InvalidNameException("Human name contain ( )");
+        }
         this.name = name;
     }
 

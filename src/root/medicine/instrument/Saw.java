@@ -11,7 +11,7 @@ public class Saw extends Instrument{
 
 
     public void useScalpel() {
-        System.out.println("use instrument scalpel");
+        LOGGER.info("use instrument scalpel");
     }
 
 }

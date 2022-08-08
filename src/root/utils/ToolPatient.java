@@ -1,30 +1,37 @@
 package root.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.exception.InvalidNameException;
+import root.exception.NameReplaceException;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.patient.Patient;
 import root.human.property.Phone;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ToolPatient {
 
-    public Patient[] create() {
+    static final Logger LOGGER = LogManager.getLogger(ToolPatient.class);
+
+    public Patient[] create() throws InvalidNameException {
         Patient[] array = new Patient[9];
-        array[0] = new Patient(LocalDate.of(1965, 2, 13), "Igor",
+        array[0] = new Patient(LocalDate.of(1988, 2, 13), "Igor",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Dentist", LocalDate.now());
-        array[1] = new Patient(LocalDate.of(1965, 2, 13), "Alex",
+        array[1] = new Patient(LocalDate.of(1999, 2, 13), "A_lex",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
-                new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now());
-        array[2] = new Patient(LocalDate.of(1965, 2, 13), "Vera",
+                new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now().minusDays(0));
+        array[2] = new Patient(LocalDate.of(1999, 2, 13), "Vera",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Emergency", LocalDate.now());
-        array[3] = new Patient(LocalDate.of(1965, 2, 13), "Konstantin",
+        array[3] = new Patient(LocalDate.of(1999, 2, 13), "Konstantin",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("300")), "Dentist", LocalDate.now());

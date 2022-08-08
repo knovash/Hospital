@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.InvalidNameException;
 import root.human.doctor.function.IRescue;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,27 +14,27 @@ public class Emergency extends Doctor implements IRescue {
 
     private String aid;
 
-    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countEmergency++;
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
     public void doFirstAid() {
-        System.out.println("Emergency do first aid " + this.aid);
+        LOGGER.info("Emergency do first aid " + this.aid);
     }
 
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     public String getAid() {
@@ -54,6 +55,7 @@ public class Emergency extends Doctor implements IRescue {
 
     @Override
     public void makeFirstAid() {
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make first aid");
 
     }
 }

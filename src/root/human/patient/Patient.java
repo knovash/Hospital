@@ -1,5 +1,10 @@
 package root.human.patient;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.exception.DateInvalidException;
+import root.exception.InvalidNameException;
+import root.exception.NameReplaceException;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
@@ -11,14 +16,34 @@ import java.time.LocalDate;
 
 public class Patient extends Human implements ICure, IRegistrate {
 
+    static final Logger LOGGER = LogManager.getLogger(Patient.class);
+
     private LocalDate desireedDate;
     private String toDoctor;
     private Appointment appointment;
     private String diagnosis;
     private String prescription;
 
-    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) {
+    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, credit);
+        if (super.getDateOfBirth().isBefore(LocalDate.now().minusYears(150))) {
+            throw new DateInvalidException(super.getName() + " Human dob is too in past " + super.getDateOfBirth());
+        }
+        if (super.getName().contains("_")) {
+            super.setName(super.getName().replace("_", "-"));
+            this.toDoctor = toDoctor;
+            this.desireedDate = desireedDate;
+            LOGGER.info("in name (_) replaced by (-)");
+        }
+        if (super.getName().contains(" ")) {
+            throw new InvalidNameException(super.getName() + " Human name contain ( ) ");
+        }
+        if (toDoctor.contains("_")) {
+            throw new InvalidNameException(super.getName() + " Patient to Doctor contain (_) " + toDoctor);
+        }
+        if (desireedDate.isBefore(LocalDate.now())) {
+            throw new DateInvalidException(super.getName() + " Patient desiered date in past " + desireedDate);
+        }
         this.toDoctor = toDoctor;
         this.desireedDate = desireedDate;
     }
@@ -51,8 +76,9 @@ public class Patient extends Human implements ICure, IRegistrate {
     }
 
     public void think() {
-        System.out.println("Patient thinks");
+        LOGGER.info("Patient thinks");
     }
+
 
     public LocalDate getDesireedDate() {
         return desireedDate;
@@ -86,35 +112,43 @@ public class Patient extends Human implements ICure, IRegistrate {
         this.diagnosis = diagnosis;
     }
 
+    public String getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
+
     @Override
     public void takePill() {
-
+        LOGGER.info(super.getName() + " take pill");
     }
 
     @Override
     public void takeInjection() {
-
+        LOGGER.info(super.getName() + " take injection");
     }
 
     @Override
     public void takeProcedure() {
-
+        LOGGER.info(super.getName() + " take procedure");
     }
 
     @Override
     public void getInHospital() {
-
+        LOGGER.info(super.getName() + " get in hospital");
     }
 
     @Override
     public void getOutHospital() {
-
+        LOGGER.info(super.getName() + " get out hospital");
     }
 
     @Override
     public void makeAppointment(Doctor[] doctors) {
-        System.out.println("make appointment to doctor");
-        System.out.println("patient: " + super.getName() +" to doctor " + this.toDoctor);
+        LOGGER.info("make appointment to doctor");
+        LOGGER.info("patient: " + super.getName() + " to doctor " + this.toDoctor);
         Patient[] patients = new Patient[1];
         patients[0] = this;
         HospitalUtils.match(doctors, patients);

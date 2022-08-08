@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.InvalidNameException;
 import root.human.doctor.function.ITooth;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,27 +14,27 @@ public class Dentist extends Doctor implements ITooth {
 
     private String tooth;
 
-    public Dentist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Dentist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, specialty, price);
         countDentist++;
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     public void doPullOutTooth() {
-        System.out.println("Dentist pull out tooth");
+        LOGGER.info("Dentist pull out tooth");
     }
 
     public String getTooth() {
@@ -54,11 +55,11 @@ public class Dentist extends Doctor implements ITooth {
 
     @Override
     public void makeDentalFilling() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make dental filling");
     }
 
     @Override
     public void makePullOutTooth() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make pull out tooth");
     }
 }

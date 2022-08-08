@@ -26,8 +26,8 @@ public class DepartmentSurgery extends Department {
         for (Doctor doctor:this.getDoctor()
         ) {
             result = result.add(doctor.getPrice());
-            System.out.println(doctor.getName() + " " + doctor.getPrice());
+            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
         }
-        System.out.println(this.getName() + " total price: " + result);
+        LOGGER.info(this.getName() + " total price: " + result);
     }
 }

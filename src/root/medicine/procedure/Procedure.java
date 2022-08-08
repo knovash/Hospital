@@ -1,15 +1,22 @@
 package root.medicine.procedure;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.medicine.Medicine;
+
 import java.math.BigDecimal;
 
 public class Procedure {
+
+    static final Logger LOGGER = LogManager.getLogger(Procedure.class);
 
     private String name;
     private String description;
     private BigDecimal price;
     private int duration;
 
-    public Procedure(String name, String description, BigDecimal price, int quantity) {
+
+    public Procedure(String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -17,7 +24,7 @@ public class Procedure {
     }
 
     public void takeProcedure() {
-        System.out.println("take procedure");
+        LOGGER.info("take procedure");
     }
 
     public String getName() {

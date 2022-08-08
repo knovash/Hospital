@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.InvalidNameException;
 import root.human.doctor.function.IOperate;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,7 +14,7 @@ public class Surgeon extends Doctor implements IOperate {
 
     private String operation;
 
-    public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
         super(dateOB, name, address, phone, specialty, price);
         countSurgeon++;
     }
@@ -24,11 +25,11 @@ public class Surgeon extends Doctor implements IOperate {
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
     public void doOperation() {
-        System.out.println("Surgeon do operation");
+        LOGGER.info("Surgeon do operation");
     }
 
     public String getOperation() {
@@ -41,18 +42,18 @@ public class Surgeon extends Doctor implements IOperate {
 
     @Override
     public String makeDiagnosis() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println(this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeOperation() {
-
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make operation");
     }
 
     public static int getCountSurgeon() {

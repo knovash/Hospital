@@ -1,5 +1,8 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.exception.InvalidNameException;
 import root.human.Human;
 import root.human.doctor.function.IWrite;
 import root.human.property.Address;
@@ -9,6 +12,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public abstract class Doctor extends Human implements IWrite {
+
+    static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 
     private static int countDoctor;
 
@@ -23,7 +28,7 @@ public abstract class Doctor extends Human implements IWrite {
         countDoctor++;
     }
 
-    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price)  throws InvalidNameException {
         super(dateOfBirth, name, address, phone);
         this.specialty = specialty;
         this.price = price;
@@ -65,11 +70,6 @@ public abstract class Doctor extends Human implements IWrite {
     public abstract String makeDiagnosis();
 
     public abstract void makePrescription();
-
-    public abstract void think();
-    //{
-    //System.out.println("thinks");
-    //}
 
     public String getSpecialty() {
         return specialty;

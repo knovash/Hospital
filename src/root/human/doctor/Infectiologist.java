@@ -1,5 +1,6 @@
 package root.human.doctor;
 
+import root.exception.InvalidNameException;
 import root.human.doctor.function.IAnalyze;
 import root.human.property.Address;
 import root.human.property.Phone;
@@ -13,18 +14,18 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     private String virus;
 
-    public Infectiologist(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) {
+    public Infectiologist(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
         super(dateOB, name, address, phone, specialty, price);
         countInectiologist++;
     }
 
     public void think() {
-        System.out.println("thinks");
+        LOGGER.info("thinks");
     }
 
 
     public void doPullOutTooth() {
-        System.out.println("Infectiologist disinfect virus");
+        LOGGER.info("Infectiologist disinfect virus");
     }
 
     public String getVirus() {
@@ -37,17 +38,18 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     @Override
     public String makeDiagnosis() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        System.out.println( this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeAnalisis() {
+        LOGGER.info(super.getName() + " make Analisis");
     }
 
     public static int getCountInectiologist() {

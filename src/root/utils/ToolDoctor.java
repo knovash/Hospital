@@ -3,13 +3,14 @@ package root.utils;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import root.exception.InvalidNameException;
 import root.human.property.Address;
 import root.human.doctor.*;
 import root.human.property.Phone;
 
 public class ToolDoctor {
 
-    public Cardiologist[] createCardiologist() {
+    public Cardiologist[] createCardiologist() throws InvalidNameException {
         Cardiologist[] array = new Cardiologist[2];
         Address docAddress = new Address("Belarus", "Minsk", "Pushkina", 66);
         Phone docPhone = new Phone("+375", "17", "33-44-55");
@@ -22,7 +23,7 @@ public class ToolDoctor {
         return array;
     }
 
-    public Dentist[] createDentist() {
+    public Dentist[] createDentist() throws InvalidNameException {
         Dentist[] array = new Dentist[2];
         Address docAddress = new Address("Belarus", "Minsk", "Pushkina", 66);
         Phone docPhone = new Phone("+375", "17", "33-44-55");
@@ -35,7 +36,7 @@ public class ToolDoctor {
         return array;
     }
 
-    public Emergency[] createEmergency() {
+    public Emergency[] createEmergency()throws InvalidNameException {
         Emergency[] array = new Emergency[3];
         Address docAddress = new Address("Belarus", "Minsk", "Pushkina", 66);
         Phone docPhone = new Phone("+375", "17", "33-44-55");
@@ -51,7 +52,7 @@ public class ToolDoctor {
         return array;
     }
 
-    public Infectiologist[] createInfectioligist() {
+    public Infectiologist[] createInfectioligist() throws InvalidNameException {
         Infectiologist[] array = new Infectiologist[1];
         Address docAddress = new Address("Belarus", "Minsk", "Pushkina", 66);
         Phone docPhone = new Phone("+375", "17", "33-44-55");
@@ -61,7 +62,7 @@ public class ToolDoctor {
         return array;
     }
 
-    public Surgeon[] createSurgeon() {
+    public Surgeon[] createSurgeon() throws InvalidNameException {
         Surgeon[] array = new Surgeon[2];
         Address docAddress = new Address("Belarus", "Minsk", "Pushkina", 66);
         Phone docPhone = new Phone("+375", "17", "33-44-55");

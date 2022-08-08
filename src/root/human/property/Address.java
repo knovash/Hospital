@@ -1,6 +1,12 @@
 package root.human.property;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import root.human.patient.Patient;
+
 public class Address {
+
+    static final Logger LOGGER = LogManager.getLogger(Address.class);
 
     private String country;
     private String city;
@@ -35,16 +41,16 @@ public class Address {
     public int hashCode(){
         int result = houseNumber;
 
-        System.out.println("country: " + this.country + " " + this.country.hashCode());
-        System.out.println("city: " + this.city + " " + this.city.hashCode());
-        System.out.println("street: " + this.street + " " + this.street.hashCode());
-        System.out.println("houseNumber: " + this.houseNumber + " " + this.houseNumber.hashCode());
+        LOGGER.info("country: " + this.country + " " + this.country.hashCode());
+        LOGGER.info("city: " + this.city + " " + this.city.hashCode());
+        LOGGER.info("street: " + this.street + " " + this.street.hashCode());
+        LOGGER.info("houseNumber: " + this.houseNumber + " " + this.houseNumber.hashCode());
 
         result =
                 this.country.hashCode() +
                 this.city.hashCode() +
                this.street.hashCode();
-        System.out.println("HASH: " + result);
+        LOGGER.info("HASH: " + result);
         return result;
     }
 
