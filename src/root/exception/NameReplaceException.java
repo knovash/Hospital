@@ -1,14 +1,12 @@
 package root.exception;
 
-public class NameReplaceException extends Exception{
+public class NameReplaceException extends Exception {
 
-        public NameReplaceException(String message) {
-            super(message);
-        }
+    public NameReplaceException(String message) {
+        super(message);
+    }
 
-        public NameReplaceException(String message, Throwable cause) {
-            super(message, cause);
-        }
-
-
+    public NameReplaceException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -2,8 +2,8 @@ package root.human;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.exception.NameInvalidException;
-import root.exception.runtime.DateInvalidException;
+import root.exception.InvalidNameException;
+import root.exception.DateInvalidException;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public abstract class Human {
 
-    private static Logger LOGGER = LogManager.getLogger(Human.class);
+    static final Logger LOGGER = LogManager.getLogger(Human.class);
 
     private LocalDate dateOfBirth;
     private String name;
@@ -25,7 +25,7 @@ public abstract class Human {
         this.name = name;
     }
 
-    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit)  {
+    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) {
 
         this.dateOfBirth = dateOfBirth;
         this.name = name;
@@ -74,8 +74,7 @@ public abstract class Human {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) throws DateInvalidException {
-//        LOGGER.error("Human set date throw Invalid date: " + dateOfBirth.toString());
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         if (dateOfBirth.isAfter(LocalDate.now())) {
             throw new DateInvalidException("Invalid date in the future.");
         }
@@ -90,13 +89,12 @@ public abstract class Human {
     }
 
 
-    public void setName(String name) throws NameInvalidException {
-        //LOGGER.error("Human setname. Invalid char in name: " + this.name);
+    public void setName(String name) throws InvalidNameException {
         if (name.contains("_")) {
-            throw new NameInvalidException("Human name contain (_)");
+            throw new InvalidNameException("Human name contain (_)");
         }
         if (name.contains(" ")) {
-            throw new NameInvalidException("Human name contain ( )");
+            throw new InvalidNameException("Human name contain ( )");
         }
         this.name = name;
     }

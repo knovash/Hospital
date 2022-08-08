@@ -4,7 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Pill {
-    protected static Logger LOGGER = LogManager.getLogger(Pill.class);
+
+    static final Logger LOGGER = LogManager.getLogger(Pill.class);
 
     public Pill(String name) {
         this.name = name;

@@ -5,7 +5,8 @@ import org.apache.logging.log4j.Logger;
 import root.human.doctor.Doctor;
 
 public abstract class Department implements ICalculatePrice {
-    protected static Logger LOGGER = LogManager.getLogger(Department.class);
+
+    static final Logger LOGGER = LogManager.getLogger(Department.class);
 
     private String name;
     private Doctor[] doctors;

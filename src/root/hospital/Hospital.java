@@ -1,6 +1,6 @@
 package root.hospital;
 
-import root.exception.runtime.ArrayEmptyException;
+import root.exception.ArrayEmptyException;
 import root.exception.ArrayOneElementException;
 import root.hospital.department.Department;
 import root.hospital.department.ICalculatePrice;

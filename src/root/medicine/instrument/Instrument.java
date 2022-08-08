@@ -5,7 +5,8 @@ import org.apache.logging.log4j.Logger;
 import root.human.property.Address;
 
 public class Instrument {
-    protected static Logger LOGGER = LogManager.getLogger(Instrument.class);
+
+    static final Logger LOGGER = LogManager.getLogger(Instrument.class);
 
     private String name;
     private int quantity;

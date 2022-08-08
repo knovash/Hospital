@@ -2,7 +2,7 @@ package root.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.exception.NameInvalidException;
+import root.exception.InvalidNameException;
 import root.exception.NameReplaceException;
 import root.human.property.Address;
 import root.human.property.Credit;
@@ -14,26 +14,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ToolPatient {
-    private static Logger LOGGER = LogManager.getLogger(ToolPatient.class);
 
-    public Patient[] create() throws NameInvalidException, NameReplaceException {
+    static final Logger LOGGER = LogManager.getLogger(ToolPatient.class);
+
+    public Patient[] create() throws InvalidNameException {
         Patient[] array = new Patient[9];
-        System.out.println("arr0");
         array[0] = new Patient(LocalDate.of(1988, 2, 13), "Igor",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Dentist", LocalDate.now());
-        System.out.println("arr1");
         array[1] = new Patient(LocalDate.of(1999, 2, 13), "A_lex",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("500")), "Dentist", LocalDate.now().minusDays(0));
-        System.out.println("arr2");
-        array[2] = new Patient(LocalDate.of(1600, 2, 13), "Vera",
+        array[2] = new Patient(LocalDate.of(1999, 2, 13), "Vera",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),
                 new Credit("Prior", "BYN", new BigDecimal("3000")), "Emergency", LocalDate.now());
-        System.out.println("arr3");
         array[3] = new Patient(LocalDate.of(1999, 2, 13), "Konstantin",
                 new Address("Belarus", "Minsk", "Berezovaja", 16),
                 new Phone("+375", "29", "883300"),

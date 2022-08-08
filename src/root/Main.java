@@ -3,7 +3,6 @@ package root;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import root.exception.*;
-import root.exception.runtime.ArrayEmptyException;
 import root.hospital.Hospital;
 import root.hospital.department.*;
 import root.human.property.Phone;
@@ -14,11 +13,12 @@ import root.utils.*;
 import java.time.LocalDate;
 
 public class Main {
+
     static {
         System.setProperty("log4j.configurationFile", "log4j2.xml");
     }
 
-    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+    static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         LOGGER.debug("log debug");
@@ -45,7 +45,8 @@ public class Main {
             emergencys = new ToolDoctor().createEmergency();
             infectiologysts = new ToolDoctor().createInfectioligist();
             surgeons = new ToolDoctor().createSurgeon();
-        } catch (NameInvalidException e) {
+        } catch (InvalidNameException e) {
+            LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
         // create departments
@@ -65,22 +66,19 @@ public class Main {
             LOGGER.info(department.toString());
             for (Doctor doctor : department.getDoctor()) {
                 doctor.setFreeFromDate(LocalDate.now());
-                LOGGER.debug("  " + doctor);
+                LOGGER.info("  " + doctor);
             }
         }
 
         // create patients
         LOGGER.debug("try create patients");
-//        Patient[] patients;
         Patient[] patients = new Patient[0];
         try {
             patients = new ToolPatient().create();
-        } catch (NameInvalidException e) {
+        } catch (InvalidNameException e) {
             LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
-        } catch (NameReplaceException e) {
-            LOGGER.error(e.getMessage(), e);
-        } finally {
+        }  finally {
             LOGGER.debug("try create Patients end");
         }
         // set patients to hospital
@@ -97,25 +95,24 @@ public class Main {
             LOGGER.info(patient.toString());
         }
 
-//        // match patients and doctors
+        // match patients and doctors
         LOGGER.info("");
         LOGGER.info("matching patients and doctors...");
         LOGGER.info("");
-        for (
-                Department department : hospital.getDepartments()) {
+        for (Department department : hospital.getDepartments()) {
             LOGGER.debug(department.toString());
-//            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
+            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
         }
 
         LOGGER.info("");
         LOGGER.info("match result:");
-//        HospitalUtils.matchResult(hospital.getPatients());
+        HospitalUtils.matchResult(hospital.getPatients());
 
         // test interface
-//        LOGGER.debug("interface");
-//        Patient patient = hospital.getPatients()[0];
-//        Doctor[] docs = hospital.getDepartments()[1].getDoctor();
-//        patient.makeAppointment(docs);  // (Doctors[], Patient[0])
+        LOGGER.debug("interface");
+        Patient patient = hospital.getPatients()[0];
+        Doctor[] docs = hospital.getDepartments()[1].getDoctor();
+        patient.makeAppointment(docs);  // (Doctors[], Patient[0])
 
         // test try with resources
         try (Resource resource = new Resource()) {

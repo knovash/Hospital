@@ -7,7 +7,8 @@ import root.human.property.Address;
 import java.math.BigDecimal;
 
 public class Medicine {
-    protected static Logger LOGGER = LogManager.getLogger(Medicine.class);
+
+    static final Logger LOGGER = LogManager.getLogger(Medicine.class);
 
     private String name;
     private String description;

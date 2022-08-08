@@ -2,8 +2,8 @@ package root.human.patient;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.exception.runtime.DateInvalidException;
-import root.exception.NameInvalidException;
+import root.exception.DateInvalidException;
+import root.exception.InvalidNameException;
 import root.exception.NameReplaceException;
 import root.human.Human;
 import root.human.doctor.Doctor;
@@ -15,7 +15,8 @@ import root.utils.HospitalUtils;
 import java.time.LocalDate;
 
 public class Patient extends Human implements ICure, IRegistrate {
-    private static Logger LOGGER = LogManager.getLogger(Patient.class);
+
+    static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
     private LocalDate desireedDate;
     private String toDoctor;
@@ -23,8 +24,7 @@ public class Patient extends Human implements ICure, IRegistrate {
     private String diagnosis;
     private String prescription;
 
-    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate)
-        throws NameInvalidException {
+    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, credit);
         if (super.getDateOfBirth().isBefore(LocalDate.now().minusYears(150))) {
             throw new DateInvalidException(super.getName() + " Human dob is too in past " + super.getDateOfBirth());
@@ -33,18 +33,13 @@ public class Patient extends Human implements ICure, IRegistrate {
             super.setName(super.getName().replace("_", "-"));
             this.toDoctor = toDoctor;
             this.desireedDate = desireedDate;
-            System.out.println("replace");
-            try {
-                throw new NameReplaceException("Warn name contain (_) replacead by (-) ");
-            } catch (NameReplaceException e) {
-                System.out.println(e);
-            }
+            LOGGER.info("in name (_) replaced by (-)");
         }
         if (super.getName().contains(" ")) {
-            throw new NameInvalidException(super.getName() + " Human name contain ( ) ");
+            throw new InvalidNameException(super.getName() + " Human name contain ( ) ");
         }
         if (toDoctor.contains("_")) {
-            throw new NameInvalidException(super.getName() + " Patient to Doctor contain (_) " + toDoctor);
+            throw new InvalidNameException(super.getName() + " Patient to Doctor contain (_) " + toDoctor);
         }
         if (desireedDate.isBefore(LocalDate.now())) {
             throw new DateInvalidException(super.getName() + " Patient desiered date in past " + desireedDate);
@@ -115,6 +110,14 @@ public class Patient extends Human implements ICure, IRegistrate {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public String getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
     }
 
     @Override
