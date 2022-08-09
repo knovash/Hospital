@@ -11,6 +11,9 @@ import root.human.patient.Patient;
 import root.utils.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -49,6 +52,37 @@ public class Main {
             LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
+
+        List<Cardiologist> cardList =new ArrayList<>();
+        List<Dentist> dentList =new ArrayList<>();
+        List<Emergency> emerList =new ArrayList<>();
+        List<Infectiologist> infList =new ArrayList<>();
+        List<Surgeon> surList =new ArrayList<>();
+
+        Collections.addAll(cardList, cardiologists);
+        Collections.addAll(dentList, dentists);
+        Collections.addAll(emerList, emergencys);
+        Collections.addAll(infList, infectiologysts);
+        Collections.addAll(surList, surgeons);
+
+        List<Department> depsList = new ArrayList<>();
+
+        DepartmentCardiology depCard = new DepartmentCardiology("Cardiology");
+        DepartmentDental depDent = new DepartmentDental("Dental");
+        Department depEmr = new DepartmentEmergency("Emergency");
+        DepartmentInfectious depInf = new DepartmentInfectious("Infectious");
+        DepartmentSurgery depSur = new DepartmentSurgery("Surgery");
+
+        depsList.add(depCard);
+        depsList.add(depDent);
+        depsList.add(depEmr);
+        depsList.add(depInf);
+        depsList.add(depSur);
+
+        depsList.get(0).setDoctor(dentList);
+
+
+
         // create departments
         Department[] departments = new ToolDepartment().create();
         // set doctors to departments
@@ -58,7 +92,7 @@ public class Main {
         departments[3].setDoctor(infectiologysts);
         departments[4].setDoctor(surgeons);
         // set departments to hospital
-        hospital.setDepartments(departments);
+        hospital.setDepartments(depsList);
         // set doctors date free from now
         LOGGER.info("");
         LOGGER.info("doctors:");
@@ -109,10 +143,10 @@ public class Main {
         HospitalUtils.matchResult(hospital.getPatients());
 
         // test interface
-        LOGGER.debug("interface");
-        Patient patient = hospital.getPatients()[0];
-        Doctor[] docs = hospital.getDepartments()[1].getDoctor();
-        patient.makeAppointment(docs);  // (Doctors[], Patient[0])
+//        LOGGER.debug("interface");
+//        Patient patient = hospital.getPatients()[0];
+//        Doctor[] docs = hospital.getDepartments()[1].getDoctor();
+//        patient.makeAppointment(docs);  // (Doctors[], Patient[0])
 
         // test try with resources
         try (Resource resource = new Resource()) {

@@ -12,13 +12,7 @@ public class DepartmentEmergency extends Department {
         super(name);
     }
 
-    public Doctor[] getDoctor() {
-        return doctors;
-    }
 
-    public void setDoctor(Doctor[] doctors) {
-        this.doctors = doctors;
-    }
 
     @Override
     public void calculateDoctorsPrice() {

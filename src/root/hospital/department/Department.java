@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import root.human.doctor.Doctor;
 
+import java.util.List;
+
 public abstract class Department implements ICalculatePrice {
 
     static final Logger LOGGER = LogManager.getLogger(Department.class);
@@ -16,7 +18,7 @@ public abstract class Department implements ICalculatePrice {
     }
 
     public String toString() {
-        return ("Department: " + this.name + " total doctors: " + this.getDoctor().length);
+        return ("Department: " + this.name + " total doctors: ");
     }
 
     public String getName() {

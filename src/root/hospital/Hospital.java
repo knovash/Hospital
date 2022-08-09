@@ -10,6 +10,7 @@ import root.human.property.Phone;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Hospital implements ICalculatePrice {
 
@@ -18,7 +19,7 @@ public class Hospital implements ICalculatePrice {
     private Address address;
     private Phone[] phones;
     private Credit[] credits;
-    private Department[] departments;
+    private List<Department> departments;
     private Patient[] patients;
 
     public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phones, Credit[] credits) {
@@ -73,11 +74,11 @@ public class Hospital implements ICalculatePrice {
         this.credits = credits;
     }
 
-    public Department[] getDepartments() {
+    public List<Department> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Department[] departments) {
+    public void setDepartments(List<Department> departments) {
         this.departments = departments;
     }
 

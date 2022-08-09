@@ -6,19 +6,13 @@ import java.math.BigDecimal;
 
 public class DepartmentDental extends Department {
 
-    private Doctor[] doctors;
+
 
     public DepartmentDental(String name) {
         super(name);
     }
 
-    public Doctor[] getDoctor() {
-        return doctors;
-    }
 
-    public void setDoctor(Doctor[] doctors) {
-        this.doctors = doctors;
-    }
 
     @Override
     public void calculateDoctorsPrice() {

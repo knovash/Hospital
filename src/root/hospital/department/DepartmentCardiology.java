@@ -3,10 +3,10 @@ package root.hospital.department;
 import root.human.doctor.Doctor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class DepartmentCardiology extends Department {
 
-    private Doctor[] doctors;
 
     public DepartmentCardiology(String name) {
         super(name);
@@ -22,12 +22,4 @@ public class DepartmentCardiology extends Department {
         LOGGER.info(this.getName() + " total price: " + result);
     }
 
-
-     public Doctor[] getDoctor() {
-        return doctors;
     }
-
-    public void setDoctor(Doctor[] doctors) {
-        this.doctors = doctors;
-    }
-}
