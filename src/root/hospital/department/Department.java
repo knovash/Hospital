@@ -11,7 +11,7 @@ public abstract class Department implements ICalculatePrice {
     static final Logger LOGGER = LogManager.getLogger(Department.class);
 
     private String name;
-    private Doctor[] doctors;
+    private List<Doctor> doctors;
 
     public Department(String name) {
         this.name = name;
@@ -29,11 +29,11 @@ public abstract class Department implements ICalculatePrice {
         this.name = name;
     }
 
-    public Doctor[] getDoctor() {
+    public List<Doctor> getDoctor() {
         return doctors;
     }
 
-    public void setDoctor(Doctor[] doctor) {
+    public void setDoctor(List<Doctor> doctor) {
         this.doctors = doctors;
     }
 }

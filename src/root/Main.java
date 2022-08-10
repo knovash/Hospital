@@ -86,11 +86,11 @@ public class Main {
         // create departments
         Department[] departments = new ToolDepartment().create();
         // set doctors to departments
-        departments[0].setDoctor(cardiologists);
-        departments[1].setDoctor(dentists);
-        departments[2].setDoctor(emergencys);
-        departments[3].setDoctor(infectiologysts);
-        departments[4].setDoctor(surgeons);
+//        departments[0].setDoctor(cardiologists);
+//        departments[1].setDoctor(dentists);
+//        departments[2].setDoctor(emergencys);
+//        departments[3].setDoctor(infectiologysts);
+//        departments[4].setDoctor(surgeons);
         // set departments to hospital
         hospital.setDepartments(depsList);
         // set doctors date free from now

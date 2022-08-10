@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import root.exception.DateInvalidException;
 import root.exception.InvalidNameException;
-import root.exception.NameReplaceException;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
@@ -13,6 +12,7 @@ import root.human.property.Phone;
 import root.utils.HospitalUtils;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Patient extends Human implements ICure, IRegistrate {
 
@@ -146,7 +146,7 @@ public class Patient extends Human implements ICure, IRegistrate {
     }
 
     @Override
-    public void makeAppointment(Doctor[] doctors) {
+    public void makeAppointment(List<Doctor> doctors) {
         LOGGER.info("make appointment to doctor");
         LOGGER.info("patient: " + super.getName() + " to doctor " + this.toDoctor);
         Patient[] patients = new Patient[1];
