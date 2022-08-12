@@ -21,6 +21,14 @@
             <AppenderRef ref="File"/>
         </Logger>
 
+        <Logger name="root.utils.Test" level="info" additivity="true">
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <Logger name="root.utils.doctor.Surgeon" level="info" additivity="true">
+            <AppenderRef ref="File"/>
+        </Logger>
+
         <Logger name="root.human.patient.Patient" level="debug" additivity="true">
             <AppenderRef ref="File"/>
         </Logger>

@@ -20,11 +20,6 @@ public abstract class Human {
     private Phone phone;
     private Credit credit;
 
-    public Human(LocalDate dateOfBirth, String name) {
-        this.dateOfBirth = dateOfBirth;
-        this.name = name;
-    }
-
     public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) {
 
         this.dateOfBirth = dateOfBirth;
@@ -32,13 +27,6 @@ public abstract class Human {
         this.address = address;
         this.phone = phone;
         this.credit = credit;
-    }
-
-    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone) {
-        this.dateOfBirth = dateOfBirth;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
     }
 
     public Human(String name) {
@@ -87,7 +75,6 @@ public abstract class Human {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) throws InvalidNameException {
         if (name.contains("_")) {

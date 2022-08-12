@@ -4,34 +4,51 @@ import root.exception.ArrayEmptyException;
 import root.exception.ArrayOneElementException;
 import root.hospital.department.Department;
 import root.hospital.department.ICalculatePrice;
+import root.human.doctor.Doctor;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Hospital implements ICalculatePrice {
 
     private String name;
     private LocalDate dateOfFoundation;
     private Address address;
-    private Phone[] phones;
-    private Credit[] credits;
-    private List<Department> departments;
-    private Patient[] patients;
+    private List<Phone> phones;
+    private List<Credit> credits;
+    private Map<String, Department> departments;
+    private List<Patient> patients;
+    private List<Appointment> appointments;
 
-    public Hospital(String name, LocalDate dateOfFoundation, Address address, Phone[] phones, Credit[] credits) {
+    public Hospital(String name, LocalDate dateOfFoundation, Address address, List<Phone> phones, List<Credit> credits) {
         this.name = name;
         this.dateOfFoundation = dateOfFoundation;
         this.address = address;
         this.phones = phones;
         this.credits = credits;
+        this.appointments =  new ArrayList<>();
+    }
+
+    private static void makeAppointment (Patient patient, Doctor doctor){
+
     }
 
     public String toString() {
         return ("Hospital: " + this.name);
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public String getName() {
@@ -58,39 +75,39 @@ public class Hospital implements ICalculatePrice {
         this.address = address;
     }
 
-    public Phone[] getPhones() {
+    public List<Phone> getPhones() {
         return phones;
     }
 
-    public void setPhones(Phone[] phones) {
+    public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 
-    public Credit[] getCredits() {
+    public List<Credit> getCredits() {
         return credits;
     }
 
-    public void setCredits(Credit[] credits) {
+    public void setCredits(List<Credit> credits) {
         this.credits = credits;
     }
 
-    public List<Department> getDepartments() {
+    public Map<String, Department> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(List<Department> departments) {
+    public void setDepartments(Map<String, Department> departments) {
         this.departments = departments;
     }
 
-    public Patient[] getPatients() {
+    public List<Patient> getPatients() {
         return patients;
     }
 
-    public void setPatients(Patient[] patients) throws ArrayOneElementException {
-        if (patients.length == 0) {
+    public void setPatients(List<Patient> patients) throws ArrayOneElementException {
+        if (patients.size() == 0) {
             throw new ArrayEmptyException("patients array is 0");
         }
-        if (patients.length == 1) {
+        if (patients.size() == 1) {
             this.patients = patients;
             throw new ArrayOneElementException("patients only one");
         }

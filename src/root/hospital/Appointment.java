@@ -1,8 +1,9 @@
-package root.human.patient;
+package root.hospital;
 
 import root.human.doctor.Doctor;
+import root.human.patient.Patient;
 
-import java.math.BigDecimal;
+import javax.print.Doc;
 import java.time.LocalDate;
 
 public class Appointment {
@@ -10,15 +11,11 @@ public class Appointment {
     private LocalDate date;
     private Doctor doctor;
     private Patient patient;
-    private BigDecimal price;
-    private String place;
 
-    public Appointment(LocalDate date, Doctor doctor, Patient patient, BigDecimal price, String place) {
+    public Appointment(LocalDate date, Doctor doctor, Patient patient) {
         this.date = date;
         this.doctor = doctor;
         this.patient = patient;
-        this.price = price;
-        this.place = place;
     }
 
     public LocalDate getDate() {
@@ -43,21 +40,5 @@ public class Appointment {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
     }
 }

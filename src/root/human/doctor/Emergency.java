@@ -2,11 +2,8 @@ package root.human.doctor;
 
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IRescue;
-import root.human.property.Address;
-import root.human.property.Phone;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class Emergency extends Doctor implements IRescue {
 
@@ -14,8 +11,8 @@ public class Emergency extends Doctor implements IRescue {
 
     private String aid;
 
-    public Emergency(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
-        super(dateOfBirth, name, address, phone, specialty, price);
+    public Emergency(String name, String specialty, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, price);
         countEmergency++;
     }
 
@@ -56,6 +53,5 @@ public class Emergency extends Doctor implements IRescue {
     @Override
     public void makeFirstAid() {
         LOGGER.info(this.getSpecialty() + " " + super.getName() + " make first aid");
-
     }
 }

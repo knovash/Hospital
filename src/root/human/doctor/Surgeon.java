@@ -1,26 +1,26 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IOperate;
-import root.human.property.Address;
-import root.human.property.Phone;
+import root.human.patient.Patient;
+import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Surgeon extends Doctor implements IOperate {
+
+    static final Logger LOGGER = LogManager.getLogger(Surgeon.class);
 
     private static int countSurgeon;
 
     private String operation;
 
-    public Surgeon(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
-        super(dateOB, name, address, phone, specialty, price);
-        countSurgeon++;
-    }
-
-    public Surgeon(String name) {
-        super(name);
+    public Surgeon(String name, String specialty, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, price);
         countSurgeon++;
     }
 
@@ -29,7 +29,12 @@ public class Surgeon extends Doctor implements IOperate {
     }
 
     public void doOperation() {
+        System.out.println("SURGEON");
         LOGGER.info("Surgeon do operation");
+        LOGGER.info(super.getAppointedPatients());
+        for (Patient patient : super.getAppointedPatients()) {
+            LOGGER.info(patient);
+        }
     }
 
     public String getOperation() {

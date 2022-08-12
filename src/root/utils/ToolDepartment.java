@@ -1,16 +1,20 @@
 package root.utils;
 
+import root.exception.InvalidNameException;
 import root.hospital.department.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ToolDepartment {
 
-    public Department[] create() {
-        Department[] array = new Department[5];
-        array[0] = new DepartmentCardiology("Cardiology");
-        array[1] = new DepartmentDental("Dental");
-        array[2] = new DepartmentEmergency("Emergency");
-        array[3] = new DepartmentInfectious("Infectious");
-        array[4] = new DepartmentSurgery("Surgery");
-        return array;
+    public Map<String, Department> createDepartment() throws InvalidNameException {
+        Map<String, Department> departments = new HashMap<>();
+        departments.put("crd", new DepartmentCardiology("Cardiology"));
+        departments.put("dnt", new DepartmentDental("Dental"));
+        departments.put("emr", new DepartmentEmergency("Emergency"));
+        departments.put("inf", new DepartmentInfectious("Infectious"));
+        departments.put("sur", new DepartmentSurgery("Surgery"));
+        return departments;
     }
 }

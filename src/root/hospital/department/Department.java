@@ -18,7 +18,7 @@ public abstract class Department implements ICalculatePrice {
     }
 
     public String toString() {
-        return ("Department: " + this.name + " total doctors: ");
+        return ("Department: " + this.name + " total doctors: " + this.getDoctor().size());
     }
 
     public String getName() {
@@ -33,7 +33,7 @@ public abstract class Department implements ICalculatePrice {
         return doctors;
     }
 
-    public void setDoctor(List<Doctor> doctor) {
+    public void setDoctor(List<Doctor> doctors) {
         this.doctors = doctors;
     }
 }

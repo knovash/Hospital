@@ -5,11 +5,12 @@ import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.Human;
 import root.human.doctor.function.IWrite;
-import root.human.property.Address;
-import root.human.property.Phone;
+import root.human.patient.Patient;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Doctor extends Human implements IWrite {
 
@@ -19,25 +20,22 @@ public abstract class Doctor extends Human implements IWrite {
 
     private String specialty;
     private LocalDate freeFromDate;
-    private LocalDate[] reservedDates;
+    private List<LocalDate> reservedDates;
+    private List<Patient> appointedPatients;
     private BigDecimal price;
-    public int appointmentCounter;
 
-    public Doctor(String name) {
+    public Doctor(String name, String specialty, BigDecimal price) throws InvalidNameException {
         super(name);
-        countDoctor++;
-    }
-
-    public Doctor(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price)  throws InvalidNameException {
-        super(dateOfBirth, name, address, phone);
         this.specialty = specialty;
         this.price = price;
         countDoctor++;
+        this.reservedDates = new ArrayList<>();
+        this.appointedPatients = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return ("Doctor: " + super.getName() + " " + this.specialty + " " + this.price + " " + this.freeFromDate);
+        return ("Doctor: " + super.getName() + " $" + this.price + " " + this.specialty);
     }
 
     @Override
@@ -71,6 +69,14 @@ public abstract class Doctor extends Human implements IWrite {
 
     public abstract void makePrescription();
 
+    public static int getCountDoctor() {
+        return countDoctor;
+    }
+
+    public static void setCountDoctor(int countDoctor) {
+        Doctor.countDoctor = countDoctor;
+    }
+
     public String getSpecialty() {
         return specialty;
     }
@@ -87,11 +93,11 @@ public abstract class Doctor extends Human implements IWrite {
         this.freeFromDate = freeFromDate;
     }
 
-    public LocalDate[] getReservedDates() {
+    public List<LocalDate> getReservedDates() {
         return reservedDates;
     }
 
-    public void setReservedDatesd(LocalDate[] reservedDates) {
+    public void setReservedDates(List<LocalDate> reservedDates) {
         this.reservedDates = reservedDates;
     }
 
@@ -103,23 +109,11 @@ public abstract class Doctor extends Human implements IWrite {
         this.price = price;
     }
 
-    public static int getCountDoctor() {
-        return countDoctor;
+    public List<Patient> getAppointedPatients() {
+        return appointedPatients;
     }
 
-    public static void setCountDoctor(int countDoctor) {
-        Doctor.countDoctor = countDoctor;
-    }
-
-    public void setReservedDates(LocalDate[] reservedDates) {
-        this.reservedDates = reservedDates;
-    }
-
-    public int getAppointmentCounter() {
-        return appointmentCounter;
-    }
-
-    public void setAppointmentCounter(int appointmentCounter) {
-        this.appointmentCounter = appointmentCounter;
+    public void setAppointedPatients(List<Patient> appointedPatients) {
+        this.appointedPatients = appointedPatients;
     }
 }

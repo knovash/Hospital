@@ -6,19 +6,14 @@ import java.math.BigDecimal;
 
 public class DepartmentSurgery extends Department {
 
-
-
     public DepartmentSurgery(String name) {
         super(name);
     }
 
-
-
     @Override
     public void calculateDoctorsPrice() {
         BigDecimal result = new BigDecimal("0");
-        for (Doctor doctor:this.getDoctor()
-        ) {
+        for (Doctor doctor : this.getDoctor()) {
             result = result.add(doctor.getPrice());
             LOGGER.info(doctor.getName() + " " + doctor.getPrice());
         }

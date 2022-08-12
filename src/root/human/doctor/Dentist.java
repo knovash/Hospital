@@ -2,11 +2,8 @@ package root.human.doctor;
 
 import root.exception.InvalidNameException;
 import root.human.doctor.function.ITooth;
-import root.human.property.Address;
-import root.human.property.Phone;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class Dentist extends Doctor implements ITooth {
 
@@ -14,8 +11,8 @@ public class Dentist extends Doctor implements ITooth {
 
     private String tooth;
 
-    public Dentist(LocalDate dateOfBirth, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
-        super(dateOfBirth, name, address, phone, specialty, price);
+    public Dentist(String name, String specialty, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, price);
         countDentist++;
     }
 

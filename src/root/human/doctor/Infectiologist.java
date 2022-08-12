@@ -2,11 +2,8 @@ package root.human.doctor;
 
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IAnalyze;
-import root.human.property.Address;
-import root.human.property.Phone;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class Infectiologist extends Doctor implements IAnalyze {
 
@@ -14,15 +11,14 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     private String virus;
 
-    public Infectiologist(LocalDate dateOB, String name, Address address, Phone phone, String specialty, BigDecimal price) throws InvalidNameException {
-        super(dateOB, name, address, phone, specialty, price);
+    public Infectiologist(String name, String specialty, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, price);
         countInectiologist++;
     }
 
     public void think() {
         LOGGER.info("thinks");
     }
-
 
     public void doPullOutTooth() {
         LOGGER.info("Infectiologist disinfect virus");

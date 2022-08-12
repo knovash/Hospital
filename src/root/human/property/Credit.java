@@ -61,4 +61,8 @@ public class Credit {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
+    public void addBalance(BigDecimal balance) {
+        this.balance = this.balance.add(balance);
+    }
 }

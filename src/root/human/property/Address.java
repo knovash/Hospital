@@ -2,7 +2,6 @@ package root.human.property;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.human.patient.Patient;
 
 public class Address {
 
@@ -33,12 +32,12 @@ public class Address {
         }
         Address other = (Address) object;
         return this.houseNumber == other.houseNumber &&
-               this.country.equals(other.country) &&
-               this.city.equals(other.city) &&
-               this.street.equals(other.street);
+                this.country.equals(other.country) &&
+                this.city.equals(other.city) &&
+                this.street.equals(other.street);
     }
 
-    public int hashCode(){
+    public int hashCode() {
         int result = houseNumber;
 
         LOGGER.info("country: " + this.country + " " + this.country.hashCode());
@@ -48,8 +47,8 @@ public class Address {
 
         result =
                 this.country.hashCode() +
-                this.city.hashCode() +
-               this.street.hashCode();
+                        this.city.hashCode() +
+                        this.street.hashCode();
         LOGGER.info("HASH: " + result);
         return result;
     }

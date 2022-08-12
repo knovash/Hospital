@@ -25,10 +25,10 @@ public class Phone {
                 this.localNumber.equals(other.localNumber);
     }
 
-    public int hashCode(){
+    public int hashCode() {
         int result = 31 * this.countryCode.hashCode() +
-                    this.cityCode.hashCode() +
-                    this.localNumber.hashCode();
+                this.cityCode.hashCode() +
+                this.localNumber.hashCode();
         return result;
     }
 
