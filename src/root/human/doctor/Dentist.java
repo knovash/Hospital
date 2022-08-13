@@ -1,11 +1,16 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.ITooth;
+import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
 
 public class Dentist extends Doctor implements ITooth {
+
+    private static final Logger LOGGER = LogManager.getLogger(Dentist.class);
 
     private static int countDentist;
 

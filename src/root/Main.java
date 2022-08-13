@@ -10,7 +10,6 @@ import root.human.doctor.*;
 import root.human.patient.Patient;
 import root.utils.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -23,9 +22,13 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        LOGGER.debug("test logger debug");
+        LOGGER.info("test logger info");
+        LOGGER.error("test logger error");
+
         // create hospital
         Hospital hospital = ToolHospital.create();
-        LOGGER.info("Create hospital:");
+        LOGGER.debug("Create hospital:");
         LOGGER.info(hospital);
         LOGGER.info(hospital.getAddress().toString());
         for (Phone item : hospital.getPhones()) {
@@ -57,10 +60,10 @@ public class Main {
         } catch (ArrayOneElementException e) {
             throw new RuntimeException(e);
         }
-        LOGGER.info("");
-        LOGGER.info("Patients:");
+        LOGGER.debug("");
+        LOGGER.debug("Patients:");
         for (Patient item : hospital.getPatients()) {
-            LOGGER.info(item.toString());
+            LOGGER.debug(item.toString());
         }
 
         // create departments and set to hospital
@@ -86,15 +89,16 @@ public class Main {
         };
 
         // set doctors date free from today and sort price
-        LOGGER.info("");
-        LOGGER.info("doctors:");
+        LOGGER.debug("");
+        LOGGER.debug("doctors:");
         for (Map.Entry<String, Department> entry : hospital.getDepartments().entrySet()) {
             Department department = entry.getValue();
             Collections.sort(department.getDoctor(), priceComparator);
-            LOGGER.info(department);
-            for (Doctor doctor : department.getDoctor()) {
+            List<Doctor> doctors = department.getDoctor();
+            LOGGER.debug(department);
+            for (Doctor doctor : doctors) {
                 doctor.setFreeFromDate(LocalDate.now());
-                LOGGER.info("  " + doctor + " free from: " + doctor.getFreeFromDate());
+                LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate());
             }
         }
 
@@ -102,30 +106,5 @@ public class Main {
         HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
         HospitalUtils.matchResultPatients(hospital);
         HospitalUtils.matchResultDoctors(hospital);
-
-        // test Generic
-        LOGGER.info("");
-        LOGGER.info("test Generic");
-
-        Dentist dentist1 = null;
-        Emergency emergency1 = null;
-        Surgeon surgeon1 = null;
-        try {
-            dentist1 = new Dentist("Olga", "Dentist", new BigDecimal("600"));
-            emergency1 = new Emergency("Olga", "Emergency", new BigDecimal("600"));
-            surgeon1 = new Surgeon("Olga", "Surgeon", new BigDecimal("600"));
-        } catch (InvalidNameException e) {
-            throw new RuntimeException(e);
-        }
-
-        Doctor doc1 = hospital.getDepartments().get("dnt").getDoctor().get(0);
-        CurePatient<Dentist> cureDentist = new CurePatient<Dentist>("den", dentist1, patients.get(0));
-        CurePatient<Emergency> cureEmergency = new CurePatient<Emergency>("emr", emergency1, patients.get(0));
-        CurePatient<Surgeon> cureSurgeon = new CurePatient<Surgeon>("sur", surgeon1, patients.get(0));
-
-        cureDentist.getDoc().doPullOutTooth();
-        cureEmergency.getDoc().doFirstAid();
-        cureSurgeon.getDoc().doOperation();
-
     }
 }

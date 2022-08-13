@@ -1,7 +1,5 @@
 package root.human;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.exception.DateInvalidException;
 import root.human.property.Address;
@@ -11,8 +9,6 @@ import root.human.property.Phone;
 import java.time.LocalDate;
 
 public abstract class Human {
-
-    static final Logger LOGGER = LogManager.getLogger(Human.class);
 
     private LocalDate dateOfBirth;
     private String name;
@@ -52,8 +48,7 @@ public abstract class Human {
 
     @Override
     public int hashCode() {
-        int result = this.dateOfBirth.hashCode() + this.name.hashCode();
-        return result;
+        return 31 * this.dateOfBirth.hashCode() + this.name.hashCode();
     }
 
     public abstract void think();

@@ -1,11 +1,16 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IAnalyze;
+import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
 
 public class Infectiologist extends Doctor implements IAnalyze {
+
+    private static final Logger LOGGER = LogManager.getLogger(Infectiologist.class);
 
     private static int countInectiologist;
 

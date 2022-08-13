@@ -1,11 +1,16 @@
 package root.human.doctor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IScreen;
+import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
 
 public class Cardiologist extends Doctor implements IScreen {
+
+    private static final Logger LOGGER = LogManager.getLogger(Cardiologist.class);
 
     private static int countCardiologist;
 

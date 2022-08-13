@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import root.exception.DateInvalidException;
 import root.exception.InvalidNameException;
-import root.hospital.Appointment;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
@@ -17,17 +16,16 @@ import java.util.List;
 
 public class Patient extends Human implements ICure, IRegistrate {
 
-    static final Logger LOGGER = LogManager.getLogger(Patient.class);
+    private static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
     private LocalDate desireedDate;
     private String toDoctor;
-    private Appointment appointment;
     private String diagnosis;
     private String prescription;
     private Doctor appointedDoctor;
     private List<Trouble> troubles;
 
-    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) throws InvalidNameException {
+    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, credit);
         if (super.getDateOfBirth().isBefore(LocalDate.now().minusYears(150))) {
             throw new DateInvalidException(super.getName() + " Human dob is too in past " + super.getDateOfBirth());
@@ -41,15 +39,6 @@ public class Patient extends Human implements ICure, IRegistrate {
         if (super.getName().contains(" ")) {
             throw new InvalidNameException(super.getName() + " Human name contain ( ) ");
         }
-        if (toDoctor.contains("_")) {
-            throw new InvalidNameException(super.getName() + " Patient to Doctor contain (_) " + toDoctor);
-        }
-        if (desireedDate.isBefore(LocalDate.now())) {
-            throw new DateInvalidException(super.getName() + " Patient desiered date in past " + desireedDate);
-        }
-        this.toDoctor = toDoctor;
-        this.desireedDate = desireedDate;
-        this.troubles = new ArrayList<>();
     }
 
     public String toString() {
@@ -64,21 +53,22 @@ public class Patient extends Human implements ICure, IRegistrate {
             return false;
         }
         Patient other = (Patient) object;
-        return
-                super.getDateOfBirth().equals(other.getDateOfBirth()) &&
-                        super.getName().equals(other.getName());
+        return super.getDateOfBirth().equals(other.getDateOfBirth()) && super.getName().equals(other.getName());
     }
 
     public int hashCode() {
-        int result = super.getDateOfBirth().hashCode() +
-                super.getName().hashCode() +
-                super.getAddress().hashCode() +
-                super.getPhone().hashCode();
-        return result;
+        return 31 * super.getDateOfBirth().hashCode() + super.getName().hashCode() + super.getAddress().hashCode() + super.getPhone().hashCode();
     }
 
     public void think() {
         LOGGER.info("Patient thinks");
+    }
+
+    public void addTrouble(Trouble trouble) {
+        if (this.troubles == null) {
+            this.troubles = new ArrayList<>();
+        }
+        this.troubles.add(trouble);
     }
 
     public LocalDate getDesireedDate() {
@@ -99,14 +89,6 @@ public class Patient extends Human implements ICure, IRegistrate {
 
     public void setToDoctor(String toDoctor) {
         this.toDoctor = toDoctor;
-    }
-
-    public Appointment getAppointment() {
-        return appointment;
-    }
-
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
     }
 
     public String getDiagnosis() {
@@ -164,11 +146,5 @@ public class Patient extends Human implements ICure, IRegistrate {
     @Override
     public void getOutHospital() {
         LOGGER.info(super.getName() + " get out hospital");
-    }
-
-    @Override
-    public void makeAppointment(List<Doctor> doctors) {
-        LOGGER.info("make appointment to doctor");
-        LOGGER.info("patient: " + super.getName() + " to doctor " + this.toDoctor);
     }
 }

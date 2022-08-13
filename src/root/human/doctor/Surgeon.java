@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Surgeon extends Doctor implements IOperate {
 
-    static final Logger LOGGER = LogManager.getLogger(Surgeon.class);
+    private static final Logger LOGGER = LogManager.getLogger(Surgeon.class);
 
     private static int countSurgeon;
 

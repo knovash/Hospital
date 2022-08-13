@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class HospitalUtils {
 
-    static final Logger LOGGER = LogManager.getLogger(HospitalUtils.class);
+    private static final Logger LOGGER = LogManager.getLogger(HospitalUtils.class);
 
     public static void match(Map<String, Department> departments, List<Patient> patients) {
         LOGGER.info("");
@@ -24,24 +24,29 @@ public class HospitalUtils {
             LOGGER.info(patient.toString());
             for (Trouble trouble : patient.getTroubles()) {
                 for (Map.Entry<String, Department> entry : departments.entrySet()) {
-                    Department department = entry.getValue();
-                    for (Doctor doctor : department.getDoctor()) {
+//                    Department department = entry.getValue();
+//                    List<Doctor> doctors = department.getDoctor();
+                    List<Doctor> doctors = entry.getValue().getDoctor();
+                    for (Doctor doctor : doctors) {
                         if (trouble.getAppointedDoctor() == null && trouble.getToDoctor().equals(doctor.getSpecialty())) {
                             if (doctor.getPrice().compareTo(patient.getCredit().getBalance()) == -1) {
-                                LOGGER.info(">> " + doctor + " reserved dates: " + doctor.getReservedDates().toString());
-                                LOGGER.debug("Price matched!");
+                                LOGGER.info("Price matched!");
                                 LocalDate date = trouble.getDate();
-                                while (doctor.getReservedDates().contains(date)) {
-                                    LOGGER.debug(date + " date in reserved " + doctor.getReservedDates());
-                                    date = date.plusDays(1);
+                                if (doctor.getReservedDates() == null) {
+                                    doctor.addReservedDates(trouble.getDate());
+                                } else {
+                                    while (doctor.getReservedDates().contains(date)) {
+                                        LOGGER.debug(date + " date in reserved " + doctor.getReservedDates());
+                                        date = date.plusDays(1);
+                                    }
+                                    doctor.getReservedDates().add(date);
                                 }
-                                doctor.getReservedDates().add(trouble.getDate());
-                                doctor.getAppointedPatients().add(patient);
+                                doctor.addAppointedPatients(patient);
                                 patient.getCredit().addBalance(doctor.getPrice().negate());
                                 trouble.setAppointedDoctor(doctor);
                                 trouble.setAppointedDate(date);
-                                LOGGER.info(patient.getName() + " to " + trouble.getAppointedDoctor());
-                                LOGGER.info(doctor.getName() + " " + doctor.getSpecialty() + " " + trouble.getDate() + " date added to reserved " + doctor.getReservedDates());
+                                LOGGER.info(patient.getName() + " $" + patient.getCredit().getBalance() + " to " + trouble.getAppointedDoctor());
+                                LOGGER.info(doctor.getName() + " " + doctor.getSpecialty() + " " + date + " date added to reserved " + doctor.getReservedDates());
                             } else {
                                 LOGGER.info("overprice! " + doctor);
                             }
@@ -52,12 +57,11 @@ public class HospitalUtils {
         }
     }
 
-
     public static void matchResultPatients(Hospital hospital) {
         LOGGER.info("");
         LOGGER.info("Patients match result:");
         for (Patient patient : hospital.getPatients()) {
-            LOGGER.info(patient.getName() + " to " + patient.getTroubles());
+            LOGGER.info(patient.getName() + " " + patient.getTroubles());
         }
     }
 
@@ -65,9 +69,8 @@ public class HospitalUtils {
         LOGGER.info("");
         LOGGER.info("Doctors match result:");
         for (Map.Entry<String, Department> entry : hospital.getDepartments().entrySet()) {
-            Department department = entry.getValue();
-            LOGGER.info(department);
-            for (Doctor doctor : department.getDoctor()) {
+            List<Doctor> doctors = entry.getValue().getDoctor();
+            for (Doctor doctor : doctors) {
                 LOGGER.info("  " + doctor + " dates reserved: " + doctor.getReservedDates());
                 LOGGER.info(doctor.getAppointedPatients());
             }

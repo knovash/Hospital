@@ -1,17 +1,11 @@
 package root.hospital.department;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import root.human.doctor.Doctor;
-
 import java.util.List;
 
-public abstract class Department implements ICalculatePrice {
-
-    static final Logger LOGGER = LogManager.getLogger(Department.class);
+public abstract class Department<D> implements ICalculatePrice {
 
     private String name;
-    private List<Doctor> doctors;
+    private List<D> doctor;
 
     public Department(String name) {
         this.name = name;
@@ -29,11 +23,11 @@ public abstract class Department implements ICalculatePrice {
         this.name = name;
     }
 
-    public List<Doctor> getDoctor() {
-        return doctors;
+    public List<D> getDoctor() {
+        return doctor;
     }
 
-    public void setDoctor(List<Doctor> doctors) {
-        this.doctors = doctors;
+    public void setDoctor(List<D> doctor) {
+        this.doctor = doctor;
     }
 }

@@ -1,14 +1,14 @@
-package root.human.doctor;
+package root.utils;
 
 import root.human.patient.Patient;
 
-public class CurePatient<T> {
+public class CureTestGeneric<T> {
 
     private String name;
     private T doc;
     private Patient pat;
 
-    public CurePatient(String name, T doc, Patient pat) {
+    public CureTestGeneric(String name, T doc, Patient pat) {
         this.name = name;
         this.doc = doc;
         this.pat = pat;

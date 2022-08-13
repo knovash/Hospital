@@ -24,7 +24,6 @@ public class Hospital implements ICalculatePrice {
     private List<Credit> credits;
     private Map<String, Department> departments;
     private List<Patient> patients;
-    private List<Appointment> appointments;
 
     public Hospital(String name, LocalDate dateOfFoundation, Address address, List<Phone> phones, List<Credit> credits) {
         this.name = name;
@@ -32,23 +31,10 @@ public class Hospital implements ICalculatePrice {
         this.address = address;
         this.phones = phones;
         this.credits = credits;
-        this.appointments =  new ArrayList<>();
-    }
-
-    private static void makeAppointment (Patient patient, Doctor doctor){
-
     }
 
     public String toString() {
         return ("Hospital: " + this.name);
-    }
-
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
     }
 
     public String getName() {

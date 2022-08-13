@@ -26,16 +26,11 @@ public class Credit {
             return false;
         }
         Credit other = (Credit) object;
-        return this.balance.equals(other.balance) &&
-               this.bank.equals(other.bank) &&
-               this.currency.equals(other.currency);
+        return this.balance.equals(other.balance) && this.bank.equals(other.bank) && this.currency.equals(other.currency);
     }
 
-    public int hashCode(){
-        int result = this.balance.hashCode() +
-                     this.bank.hashCode() +
-                     31*this.currency.hashCode();
-        return result;
+    public int hashCode() {
+        return 31 * this.balance.hashCode() + this.bank.hashCode() + 31 * this.currency.hashCode();
     }
 
     public String getBank() {

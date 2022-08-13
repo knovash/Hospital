@@ -10,17 +10,17 @@ import root.human.patient.Patient;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class Doctor extends Human implements IWrite {
-
-    static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 
     private static int countDoctor;
 
     private String specialty;
     private LocalDate freeFromDate;
-    private List<LocalDate> reservedDates;
+    private Set<LocalDate> reservedDates;
     private List<Patient> appointedPatients;
     private BigDecimal price;
 
@@ -29,8 +29,6 @@ public abstract class Doctor extends Human implements IWrite {
         this.specialty = specialty;
         this.price = price;
         countDoctor++;
-        this.reservedDates = new ArrayList<>();
-        this.appointedPatients = new ArrayList<>();
     }
 
     @Override
@@ -47,27 +45,31 @@ public abstract class Doctor extends Human implements IWrite {
             return false;
         }
         Doctor other = (Doctor) object;
-        return
-                super.getDateOfBirth().equals(other.getDateOfBirth()) &&
-                        super.getName().equals(other.getName()) &&
-                        this.specialty.equals(other.specialty) &&
-                        this.freeFromDate.equals(other.freeFromDate) &&
-                        this.price.equals(other.price);
+        return super.getDateOfBirth().equals(other.getDateOfBirth()) && super.getName().equals(other.getName()) && this.specialty.equals(other.specialty) && this.freeFromDate.equals(other.freeFromDate) && this.price.equals(other.price);
     }
 
     @Override
     public int hashCode() {
-        int result = super.getDateOfBirth().hashCode() +
-                super.getName().hashCode() +
-                this.specialty.hashCode() +
-                this.freeFromDate.hashCode() +
-                this.price.hashCode();
-        return result;
+        return 31 * super.getDateOfBirth().hashCode() + super.getName().hashCode() + this.specialty.hashCode() + this.freeFromDate.hashCode() + this.price.hashCode();
     }
 
     public abstract String makeDiagnosis();
 
     public abstract void makePrescription();
+
+    public void addReservedDates(LocalDate date) {
+        if (this.reservedDates == null) {
+            this.reservedDates = new HashSet<>();
+        }
+        this.reservedDates.add(date);
+    }
+
+    public void addAppointedPatients(Patient patient) {
+        if (this.appointedPatients == null) {
+            this.appointedPatients = new ArrayList<>();
+        }
+        this.appointedPatients.add(patient);
+    }
 
     public static int getCountDoctor() {
         return countDoctor;
@@ -93,11 +95,11 @@ public abstract class Doctor extends Human implements IWrite {
         this.freeFromDate = freeFromDate;
     }
 
-    public List<LocalDate> getReservedDates() {
+    public Set<LocalDate> getReservedDates() {
         return reservedDates;
     }
 
-    public void setReservedDates(List<LocalDate> reservedDates) {
+    public void setReservedDates(Set<LocalDate> reservedDates) {
         this.reservedDates = reservedDates;
     }
 

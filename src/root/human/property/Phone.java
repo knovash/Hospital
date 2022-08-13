@@ -20,16 +20,11 @@ public class Phone {
             return false;
         }
         Phone other = (Phone) object;
-        return this.countryCode.equals(other.countryCode) &&
-                this.cityCode.equals(other.cityCode) &&
-                this.localNumber.equals(other.localNumber);
+        return this.countryCode.equals(other.countryCode) && this.cityCode.equals(other.cityCode) && this.localNumber.equals(other.localNumber);
     }
 
     public int hashCode() {
-        int result = 31 * this.countryCode.hashCode() +
-                this.cityCode.hashCode() +
-                this.localNumber.hashCode();
-        return result;
+        return 31 * this.countryCode.hashCode() + this.cityCode.hashCode() + this.localNumber.hashCode();
     }
 
     public String toString() {

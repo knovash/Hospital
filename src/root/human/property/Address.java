@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 public class Address {
 
-    static final Logger LOGGER = LogManager.getLogger(Address.class);
-
     private String country;
     private String city;
     private String street;
@@ -38,19 +36,7 @@ public class Address {
     }
 
     public int hashCode() {
-        int result = houseNumber;
-
-        LOGGER.info("country: " + this.country + " " + this.country.hashCode());
-        LOGGER.info("city: " + this.city + " " + this.city.hashCode());
-        LOGGER.info("street: " + this.street + " " + this.street.hashCode());
-        LOGGER.info("houseNumber: " + this.houseNumber + " " + this.houseNumber.hashCode());
-
-        result =
-                this.country.hashCode() +
-                        this.city.hashCode() +
-                        this.street.hashCode();
-        LOGGER.info("HASH: " + result);
-        return result;
+        return 31 * this.country.hashCode() + this.city.hashCode() + this.street.hashCode();
     }
 
     public String getCountry() {
