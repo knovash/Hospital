@@ -34,8 +34,6 @@ public class Test {
         Patient pat;
         try {
             pat = new Patient(LocalDate.of(1999, 2, 13), "A_lex", new Address("Belarus", "Minsk", "Berezovaja", 16), new Phone("+375", "29", "883300"), new Credit("Prior", "BYN", new BigDecimal("500")));
-
-//            pat = new Dentist("Olga", "Dentist", new BigDecimal("600"));
             dentist1 = new Dentist("Olga", "Dentist", new BigDecimal("600"));
             emergency1 = new Emergency("Olga", "Emergency", new BigDecimal("600"));
             surgeon1 = new Surgeon("Olga", "Surgeon", new BigDecimal("600"));

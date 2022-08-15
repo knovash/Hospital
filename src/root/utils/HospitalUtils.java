@@ -24,8 +24,6 @@ public class HospitalUtils {
             LOGGER.info(patient.toString());
             for (Trouble trouble : patient.getTroubles()) {
                 for (Map.Entry<String, Department> entry : departments.entrySet()) {
-//                    Department department = entry.getValue();
-//                    List<Doctor> doctors = department.getDoctor();
                     List<Doctor> doctors = entry.getValue().getDoctor();
                     for (Doctor doctor : doctors) {
                         if (trouble.getAppointedDoctor() == null && trouble.getToDoctor().equals(doctor.getSpecialty())) {
