@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public abstract class Human {
 
-    static final Logger LOGGER = LogManager.getLogger(Human.class);
+    private static final Logger LOGGER = LogManager.getLogger(Human.class);
 
     private LocalDate dateOfBirth;
     private String name;
@@ -87,7 +87,6 @@ public abstract class Human {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) throws InvalidNameException {
         if (name.contains("_")) {

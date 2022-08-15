@@ -6,7 +6,7 @@ import root.human.patient.Patient;
 
 public class Address {
 
-    static final Logger LOGGER = LogManager.getLogger(Address.class);
+    private static final Logger LOGGER = LogManager.getLogger(Address.class);
 
     private String country;
     private String city;

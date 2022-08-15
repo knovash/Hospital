@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ProcedureExternal extends Procedure{
 
-    public ProcedureExternal(String name, String description, BigDecimal price, int quantity) {
+    public ProcedureExternal(String name, String description, BigDecimal price) {
         super(name, description, price);
     }
 }

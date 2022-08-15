@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public class HospitalUtils {
 
-    static final Logger LOGGER = LogManager.getLogger(HospitalUtils.class);
+    private static final Logger LOGGER = LogManager.getLogger(HospitalUtils.class);
 
     public static void match(Doctor[] arrayDoctors, Patient[] arrayPatients) {
         for (int i = 0; i < arrayPatients.length; i++) {

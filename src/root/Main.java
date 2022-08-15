@@ -10,14 +10,11 @@ import root.human.doctor.*;
 import root.human.patient.Patient;
 import root.utils.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.List;
 
 public class Main {
 
@@ -25,7 +22,7 @@ public class Main {
         System.setProperty("log4j.configurationFile", "log4j2.xml");
     }
 
-    static final Logger LOGGER = LogManager.getLogger(Main.class);
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
         LOGGER.debug("log debug");
@@ -75,6 +72,7 @@ public class Main {
                 doctor.setFreeFromDate(LocalDate.now());
                 LOGGER.info("  " + doctor);
             }
+
         }
 
         // create patients
@@ -108,12 +106,12 @@ public class Main {
         LOGGER.info("");
         for (Department department : hospital.getDepartments()) {
             LOGGER.debug(department.toString());
-//            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
+            HospitalUtils.match(department.getDoctor(), hospital.getPatients());
         }
 
         LOGGER.info("");
         LOGGER.info("match result:");
-//        HospitalUtils.matchResult(hospital.getPatients());
+        HospitalUtils.matchResult(hospital.getPatients());
 
         // test interface
         LOGGER.debug("interface");
@@ -127,22 +125,27 @@ public class Main {
         try {
             output = new FileOutputStream("list.txt");
             output.write(2);
-        } catch (ArithmeticException e) {LOGGER.error("ArithmeticException");
-        } catch (IOException e) {LOGGER.error("IOException");
+        } catch (ArithmeticException e) {
+            LOGGER.error("ArithmeticException");
+        } catch (IOException e) {
+            LOGGER.error("IOException");
         } finally {
-            if (output != null){
-            output.close();}
+            if (output != null) {
+                output.close();
+            }
             LOGGER.debug("file closed");
         }
 
         // test try-with-res method already with close()
-        try(FileOutputStream outputNew = new FileOutputStream("list_new.txt"))
-        {outputNew.write(3);}
+        try (FileOutputStream outputNew = new FileOutputStream("list_new.txt")) {
+            outputNew.write(3);
+        }
         LOGGER.debug("file closed");
 
         // test try-with-res my method Text with AutoCloseable
-        try(Text text = new Text("list_new.txt"))
-        {text.write(7/0 + "xxx");}
+        try (Text text = new Text("list_new.txt")) {
+            text.write(7 / 0 + "xxx");
+        }
 
     }
 
@@ -154,7 +157,7 @@ public class Main {
         }
 
         public void write(String value) throws IOException {
-            LOGGER.debug("write to: "+ this.path + " value: " + value);
+            LOGGER.debug("write to: " + this.path + " value: " + value);
             Files.writeString(Path.of(path), value);
         }
 
@@ -162,7 +165,5 @@ public class Main {
         public void close() {
             LOGGER.info("file auto closed");
         }
-
-
     }
 }

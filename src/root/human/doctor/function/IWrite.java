@@ -1,9 +1,11 @@
 package root.human.doctor.function;
 
+import root.human.patient.Patient;
+
 public interface IWrite {
 
-    String makeDiagnosis();
+    void makeDiagnosis(Patient patient);
 
-    void makePrescription();
+    void makePrescription(Patient patient);
 
 }
