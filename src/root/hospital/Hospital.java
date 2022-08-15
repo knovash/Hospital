@@ -4,14 +4,12 @@ import root.exception.ArrayEmptyException;
 import root.exception.ArrayOneElementException;
 import root.hospital.department.Department;
 import root.hospital.department.ICalculatePrice;
-import root.human.doctor.Doctor;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
 import root.human.patient.Patient;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

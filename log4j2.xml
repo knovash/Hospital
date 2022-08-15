@@ -21,7 +21,6 @@
         </Logger>
 
         <Root level="debug">
-<!--            <AppenderRef ref="File"/>-->
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

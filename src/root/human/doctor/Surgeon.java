@@ -5,11 +5,8 @@ import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IOperate;
 import root.human.patient.Patient;
-import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Surgeon extends Doctor implements IOperate {
 

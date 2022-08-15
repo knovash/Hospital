@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.doctor.function.IAnalyze;
-import root.utils.HospitalUtils;
 
 import java.math.BigDecimal;
 

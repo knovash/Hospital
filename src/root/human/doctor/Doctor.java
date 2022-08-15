@@ -1,7 +1,5 @@
 package root.human.doctor;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import root.exception.InvalidNameException;
 import root.human.Human;
 import root.human.doctor.function.IWrite;
