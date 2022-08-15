@@ -2,12 +2,12 @@ package root.hospital.department;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.human.doctor.Doctor;
+import root.human.doctor.Cardiologist;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class DepartmentCardiology extends Department {
+public class DepartmentCardiology extends Department<Cardiologist> {
 
     private static final Logger LOGGER = LogManager.getLogger(DepartmentCardiology.class);
 
@@ -17,8 +17,8 @@ public class DepartmentCardiology extends Department {
 
     public void calculateDoctorsPrice() {
         BigDecimal result = new BigDecimal("0");
-        List<Doctor> doctors = super.getDoctor();
-        for (Doctor doctor : doctors) {
+        List<Cardiologist> doctors = super.getDoctor();
+        for (Cardiologist doctor : doctors) {
             result = result.add(doctor.getPrice());
             LOGGER.info(doctor.getName() + " " + doctor.getPrice());
         }

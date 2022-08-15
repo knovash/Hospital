@@ -25,15 +25,6 @@ public class Surgeon extends Doctor implements IOperate {
         LOGGER.info("thinks");
     }
 
-    public void doOperation() {
-        System.out.println("SURGEON");
-        LOGGER.info("Surgeon do operation");
-        LOGGER.info(super.getAppointedPatients());
-        for (Patient patient : super.getAppointedPatients()) {
-            LOGGER.info(patient);
-        }
-    }
-
     public String getOperation() {
         return operation;
     }
@@ -55,7 +46,7 @@ public class Surgeon extends Doctor implements IOperate {
 
     @Override
     public void makeOperation() {
-        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make operation");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make operation" + this.operation);
     }
 
     public static int getCountSurgeon() {

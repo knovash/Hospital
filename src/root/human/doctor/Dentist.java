@@ -34,10 +34,6 @@ public class Dentist extends Doctor implements ITooth {
         LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
-    public void doPullOutTooth() {
-        LOGGER.info("Dentist pull out tooth");
-    }
-
     public String getTooth() {
         return tooth;
     }

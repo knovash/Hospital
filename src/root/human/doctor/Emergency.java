@@ -24,10 +24,6 @@ public class Emergency extends Doctor implements IRescue {
         LOGGER.info("thinks");
     }
 
-    public void doFirstAid() {
-        LOGGER.info("Emergency do first aid " + this.aid);
-    }
-
     public String makeDiagnosis() {
         LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
@@ -56,6 +52,6 @@ public class Emergency extends Doctor implements IRescue {
 
     @Override
     public void makeFirstAid() {
-        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make first aid");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make first aid" + this.aid);
     }
 }

@@ -34,10 +34,6 @@ public class Cardiologist extends Doctor implements IScreen {
     public void think() {
     }
 
-    public void doEkg() {
-        LOGGER.info("Cardiologist make cardiogram");
-    }
-
     public String getEkg() {
         return ekg;
     }

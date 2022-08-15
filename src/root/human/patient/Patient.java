@@ -32,8 +32,6 @@ public class Patient extends Human implements ICure, IRegistrate {
         }
         if (super.getName().contains("_")) {
             super.setName(super.getName().replace("_", "-"));
-            this.toDoctor = toDoctor;
-            this.desireedDate = desireedDate;
             LOGGER.info("in name (_) replaced by (-)");
         }
         if (super.getName().contains(" ")) {

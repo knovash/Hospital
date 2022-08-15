@@ -24,10 +24,6 @@ public class Infectiologist extends Doctor implements IAnalyze {
         LOGGER.info("thinks");
     }
 
-    public void doPullOutTooth() {
-        LOGGER.info("Infectiologist disinfect virus");
-    }
-
     public String getVirus() {
         return virus;
     }
@@ -38,18 +34,18 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     @Override
     public String makeDiagnosis() {
-        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make diagnosis");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make diagnosis");
         return "diagnosis";
     }
 
     @Override
     public void makePrescription() {
-        LOGGER.info( this.getSpecialty() + " " + super.getName() + " make prescription");
+        LOGGER.info(this.getSpecialty() + " " + super.getName() + " make prescription");
     }
 
     @Override
     public void makeAnalisis() {
-        LOGGER.info(super.getName() + " make Analisis");
+        LOGGER.info(super.getName() + " make Analisis" + this.virus);
     }
 
     public static int getCountInectiologist() {

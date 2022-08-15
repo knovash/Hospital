@@ -67,7 +67,7 @@ public class Main {
         }
 
         // create departments and set to hospital
-        Map<String, Department> departments = null;
+        Map<String, Department> departments;
         try {
             departments = new ToolDepartment().createDepartment();
         } catch (InvalidNameException e) {
