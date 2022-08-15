@@ -1,10 +1,14 @@
 package root.hospital.department;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.human.doctor.Doctor;
 
 import java.math.BigDecimal;
 
 public class DepartmentSurgery extends Department {
+
+    private static final Logger LOGGER = LogManager.getLogger(DepartmentSurgery.class);
 
     private Doctor[] doctors;
 
@@ -23,8 +27,7 @@ public class DepartmentSurgery extends Department {
     @Override
     public void calculateDoctorsPrice() {
         BigDecimal result = new BigDecimal("0");
-        for (Doctor doctor:this.getDoctor()
-        ) {
+        for (Doctor doctor : this.getDoctor()) {
             result = result.add(doctor.getPrice());
             LOGGER.info(doctor.getName() + " " + doctor.getPrice());
         }

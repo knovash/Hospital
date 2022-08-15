@@ -4,25 +4,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import root.exception.DateInvalidException;
 import root.exception.InvalidNameException;
-import root.exception.NameReplaceException;
 import root.human.Human;
 import root.human.doctor.Doctor;
 import root.human.property.Address;
 import root.human.property.Credit;
 import root.human.property.Phone;
+import root.medicine.procedure.Procedure;
 import root.utils.HospitalUtils;
 
 import java.time.LocalDate;
 
 public class Patient extends Human implements ICure, IRegistrate {
 
-    static final Logger LOGGER = LogManager.getLogger(Patient.class);
+    private static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
     private LocalDate desireedDate;
     private String toDoctor;
     private Appointment appointment;
     private String diagnosis;
     private String prescription;
+    private Procedure procedure;
 
     public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit, String toDoctor, LocalDate desireedDate) throws InvalidNameException {
         super(dateOfBirth, name, address, phone, credit);
@@ -68,17 +69,15 @@ public class Patient extends Human implements ICure, IRegistrate {
     }
 
     public int hashCode() {
-        int result = super.getDateOfBirth().hashCode() +
+        return super.getDateOfBirth().hashCode() +
                 super.getName().hashCode() +
                 super.getAddress().hashCode() +
                 super.getPhone().hashCode();
-        return result;
     }
 
     public void think() {
         LOGGER.info("Patient thinks");
     }
-
 
     public LocalDate getDesireedDate() {
         return desireedDate;
@@ -118,6 +117,14 @@ public class Patient extends Human implements ICure, IRegistrate {
 
     public void setPrescription(String prescription) {
         this.prescription = prescription;
+    }
+
+    public Procedure getProcedure() {
+        return procedure;
+    }
+
+    public void setProcedure(Procedure procedure) {
+        this.procedure = procedure;
     }
 
     @Override

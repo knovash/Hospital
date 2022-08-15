@@ -2,13 +2,12 @@ package root.medicine;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import root.human.property.Address;
 
 import java.math.BigDecimal;
 
 public class Medicine {
 
-    static final Logger LOGGER = LogManager.getLogger(Medicine.class);
+    private static final Logger LOGGER = LogManager.getLogger(Medicine.class);
 
     private String name;
     private String description;
@@ -22,11 +21,9 @@ public class Medicine {
         this.quantity = quantity;
     }
 
-
     public void takeMedicine() {
         LOGGER.info("take medicine");
     }
-
 
     public String getName() {
         return name;

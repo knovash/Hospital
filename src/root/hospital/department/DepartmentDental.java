@@ -1,10 +1,14 @@
 package root.hospital.department;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import root.human.doctor.Doctor;
 
 import java.math.BigDecimal;
 
 public class DepartmentDental extends Department {
+
+    private static final Logger LOGGER = LogManager.getLogger(DepartmentDental.class);
 
     private Doctor[] doctors;
 
