@@ -12,30 +12,24 @@ public class ToolDepartment {
 
     public Map<String, Department> createDepartment() throws InvalidNameException {
 
-        DepartmentCardiology<Cardiologist> depCar = new DepartmentCardiology<Cardiologist>("cardio");
+        DepartmentCardiology<Cardiologist> depCar = new DepartmentCardiology("cardio");
         depCar.setDoctor(new ArrayList<Cardiologist>());
-        DepartmentDental<Dentist> depDen = new DepartmentDental<Dentist>("dental");
+        DepartmentDental<Dentist> depDen = new DepartmentDental("dental");
         depDen.setDoctor(new ArrayList<Dentist>());
-        DepartmentEmergency<Emergency> depEmr = new DepartmentEmergency<Emergency>("emergency");
+        DepartmentEmergency<Emergency> depEmr = new DepartmentEmergency("emergency");
         depEmr.setDoctor(new ArrayList<Emergency>());
-        DepartmentInfectious<Infectiologist> depInf = new DepartmentInfectious<Infectiologist>("infect");
+        DepartmentInfectious<Infectiologist> depInf = new DepartmentInfectious("infect");
         depInf.setDoctor(new ArrayList<Infectiologist>());
-        DepartmentSurgery<Surgeon> depSur = new DepartmentSurgery<Surgeon>("surgery");
+        DepartmentSurgery<Surgeon> depSur = new DepartmentSurgery("surgery");
         depSur.setDoctor(new ArrayList<Surgeon>());
 
-        Map<String,Department> departments = new HashMap<>();
+        Map<String, Department> departments = new HashMap<>();
 
         departments.put("crd", depCar);
         departments.put("dnt", depDen);
         departments.put("emr", depEmr);
         departments.put("inf", depInf);
         departments.put("sur", depSur);
-
-//        departments.put("crd", new DepartmentCardiology<Cardiologist>("Cardiology"));
-//        departments.put("dnt", new DepartmentDental<Dentist>("Dental"));
-//        departments.put("emr", new DepartmentEmergency<Emergency>("Emergency"));
-//        departments.put("inf", new DepartmentInfectious<Infectiologist>("Infectious"));
-//        departments.put("sur", new DepartmentSurgery<Surgeon>("Surgery"));
 
         return departments;
     }

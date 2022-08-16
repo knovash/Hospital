@@ -3,7 +3,6 @@ package com.solvd.hospital.hospital;
 import com.solvd.hospital.exception.ArrayEmptyException;
 import com.solvd.hospital.exception.ArrayOneElementException;
 import com.solvd.hospital.hospital.department.Department;
-import com.solvd.hospital.hospital.department.ICalculatePrice;
 import com.solvd.hospital.human.property.Address;
 import com.solvd.hospital.human.property.Credit;
 import com.solvd.hospital.human.property.Phone;

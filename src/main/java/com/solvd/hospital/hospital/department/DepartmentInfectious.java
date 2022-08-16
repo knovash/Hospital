@@ -16,14 +16,14 @@ public class DepartmentInfectious<D extends Doctor> extends Department<D> {
         super(name);
     }
 
-    @Override
-    public void calculateDoctorsPrice() {
-        BigDecimal result = new BigDecimal("0");
-        List<D> doctors = super.getDoctor();
-        for (Doctor doctor : doctors) {
-            result = result.add(doctor.getPrice());
-            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
-        }
-        LOGGER.info(this.getName() + " total price: " + result);
-    }
+//    @Override
+//    public void calculateDoctorsPrice() {
+//        BigDecimal result = new BigDecimal("0");
+//        List<D> doctors = super.getDoctor();
+//        for (Doctor doctor : doctors) {
+//            result = result.add(doctor.getPrice());
+//            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
+//        }
+//        LOGGER.info(this.getName() + " total price: " + result);
+//    }
 }

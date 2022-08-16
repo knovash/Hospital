@@ -10,17 +10,10 @@ import com.solvd.hospital.human.doctor.*;
 import com.solvd.hospital.human.patient.Patient;
 import com.solvd.hospital.utils.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
-import static javax.print.attribute.standard.MediaSizeName.D;
-
 public class Main {
-
-//    static {
-//        System.setProperty("log4j.configurationFile", "log4j2.xml");
-//    }
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
@@ -69,54 +62,35 @@ public class Main {
             LOGGER.debug(item.toString());
         }
 
-        Surgeon sur1 = new Surgeon("dd","dd",new BigDecimal(99));
-        List<Surgeon> surs = new ArrayList<>();
-        surs.add(sur1);
+        // TRY create List departments
 
-        Dentist den1 = new Dentist("dd","dd",new BigDecimal(99));
-        List<Dentist> dens = new ArrayList<>();
-        dens.add(den1);
+//
+        List<Department> deps = new ArrayList<>();
+//
+        DepartmentCardiology<Cardiologist> depCar = new DepartmentCardiology<>("card");
+        DepartmentDental<Dentist> depDen = new DepartmentDental<>("dent");
+        DepartmentEmergency<Emergency> depEmr = new DepartmentEmergency<>("emrg");
+//
+        depCar.setDoctor(cardiologists);
+        depDen.setDoctor(dentists);
+        depEmr.setDoctor(emergencys);
+//        depEmr.setDoctor(dentists); //test
+//
+        deps.add(depCar);
+        deps.add(depDen);
+        deps.add(depEmr);
 
-        DepartmentCardiology<Cardiologist> depCar = new DepartmentCardiology<Cardiologist>("car");
-        DepartmentDental<Dentist> depDen = new DepartmentDental<Dentist>("den");
-        DepartmentEmergency<Emergency> depEmr = new DepartmentEmergency<Emergency>("emr");
-        DepartmentInfectious<Infectiologist> depInf = new DepartmentInfectious<Infectiologist>("inf");
-        DepartmentSurgery<Surgeon> depSur = new DepartmentSurgery<Surgeon>("sur");
-
-
-        depSur.setDoctor(surgeons);
-        depDen.setDoctor(dens);
-        depDen.getDoctor().get(0).makeDentalFilling();
-
-        Map<String , Department> departments = new HashMap<>();
-        departments.put("crd", depCar);
-        departments.put("dnt", depDen);
-        departments.put("emr", depEmr);
-        departments.put("inf", depInf);
-        departments.put("sur", depSur);
+        deps.get(0).getDoctor().get(0).toString();
 
 
+        // create Map departments and set to hospital
+        Map<String, Department> departments;
 
-
-//        Map<String,Department> departments = new HashMap<>();
-//        departments.put("crd", new DepartmentCardiology<Cardiologist>("Cardiology"));
-//        departments.put("dnt", new DepartmentDental<Dentist>("Dental"));
-//        departments.put("emr", new DepartmentEmergency<Emergency>("Emergency"));
-//        departments.put("inf", new DepartmentInfectious<Infectiologist>("Infectious"));
-//        departments.put("sur", new DepartmentSurgery<Surgeon>("Surgery"));
-
-
-
-
-
-
-        // create departments and set to hospital
-//        Map<String, Department> departments;
-//        try {
-//            departments = new ToolDepartment().createDepartment();
-//        } catch (InvalidNameException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            departments = new ToolDepartment().createDepartment();
+        } catch (InvalidNameException e) {
+            throw new RuntimeException(e);
+        }
         hospital.setDepartments(departments);
 
         hospital.getDepartments().get("crd").setDoctor(cardiologists);

@@ -16,13 +16,13 @@ public class DepartmentCardiology<D extends Doctor> extends Department<D> {
         super(name);
     }
 
-    public void calculateDoctorsPrice() {
-        BigDecimal result = new BigDecimal("0");
-        List<D> doctors = super.getDoctor();
-        for (Doctor doctor : doctors) {
-            result = result.add(doctor.getPrice());
-            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
-        }
-        LOGGER.info(this.getName() + " total price: " + result);
-    }
+//    public void calculateDoctorsPrice() {
+//        BigDecimal result = new BigDecimal("0");
+//        List<D> doctors = super.getDoctor();
+//        for (Doctor doctor : doctors) {
+//            result = result.add(doctor.getPrice());
+//            LOGGER.info(doctor.getName() + " " + doctor.getPrice());
+//        }
+//        LOGGER.info(this.getName() + " total price: " + result);
+//    }
 }
