@@ -16,8 +16,8 @@ public class Surgeon extends Doctor implements IOperate {
 
     private String operation;
 
-    public Surgeon(String name, String specialty, BigDecimal price) throws InvalidNameException {
-        super(name, specialty, price);
+    public Surgeon(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, spec, price);
         countSurgeon++;
     }
 

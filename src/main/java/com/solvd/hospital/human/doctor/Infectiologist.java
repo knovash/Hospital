@@ -15,8 +15,8 @@ public class Infectiologist extends Doctor implements IAnalyze {
 
     private String virus;
 
-    public Infectiologist(String name, String specialty, BigDecimal price) throws InvalidNameException {
-        super(name, specialty, price);
+    public Infectiologist(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, spec, price);
         countInectiologist++;
     }
 

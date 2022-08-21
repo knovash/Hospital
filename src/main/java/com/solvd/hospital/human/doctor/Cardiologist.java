@@ -15,8 +15,8 @@ public class Cardiologist extends Doctor implements IScreen {
 
     private String ekg;
 
-    public Cardiologist(String name, String specialty, BigDecimal price) throws InvalidNameException {
-        super(name, specialty, price);
+    public Cardiologist(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, spec, price);
         countCardiologist++;
     }
 

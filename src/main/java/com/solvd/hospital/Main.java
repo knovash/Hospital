@@ -1,5 +1,6 @@
 package com.solvd.hospital;
 
+import com.solvd.hospital.human.doctor.function.Searchable;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import com.solvd.hospital.exception.*;
@@ -10,6 +11,7 @@ import com.solvd.hospital.human.doctor.*;
 import com.solvd.hospital.human.patient.Patient;
 import com.solvd.hospital.utils.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -48,57 +50,39 @@ public class Main {
 
         // create patients and set to hospital
         List<Patient> patients;
+        patients = new ToolPatient().createPatient();
         try {
-            patients = new ToolPatient().createPatient();
             hospital.setPatients(patients);
-        } catch (InvalidNameException e) {
-            throw new RuntimeException(e);
         } catch (ArrayOneElementException e) {
             throw new RuntimeException(e);
         }
+
         LOGGER.debug("");
         LOGGER.debug("Patients:");
         for (Patient item : hospital.getPatients()) {
             LOGGER.debug(item.toString());
         }
 
-        // TRY create List departments
+        DepartmentCardiology depCardiology = new DepartmentCardiology("Department Cardiology", Dep.CARD);
+        DepartmentDental depDental = new DepartmentDental("Department Dental", Dep.DENT);
+        DepartmentEmergency depEmergency = new DepartmentEmergency("Department Emergency", Dep.EMER);
+        DepartmentInfectious depInfectious = new DepartmentInfectious("Department Infectious", Dep.INFECT);
+        DepartmentSurgery depSurgery = new DepartmentSurgery("Department Surgery", Dep.SURG);
 
-//
-        List<Department> deps = new ArrayList<>();
-//
-        DepartmentCardiology<Cardiologist> depCar = new DepartmentCardiology<>("card");
-        DepartmentDental<Dentist> depDen = new DepartmentDental<>("dent");
-        DepartmentEmergency<Emergency> depEmr = new DepartmentEmergency<>("emrg");
-//
-        depCar.setDoctor(cardiologists);
-        depDen.setDoctor(dentists);
-        depEmr.setDoctor(emergencys);
-//        depEmr.setDoctor(dentists); //test
-//
-        deps.add(depCar);
-        deps.add(depDen);
-        deps.add(depEmr);
+        depCardiology.setDoctors(cardiologists);
+        depDental.setDoctors(dentists);
+        depEmergency.setDoctors(emergencys);
+        depInfectious.setDoctors(infectiologysts);
+        depSurgery.setDoctors(surgeons);
 
-        deps.get(0).getDoctor().get(0).toString();
+        Map<String, Department<? extends Doctor>> departments = new HashMap<>();
+        departments.put("crd", depCardiology);
+        departments.put("dnt", depDental);
+        departments.put("emr", depEmergency);
+        departments.put("inf", depInfectious);
+        departments.put("sur", depSurgery);
 
-
-        // create Map departments and set to hospital
-        Map<String, Department> departments;
-
-        try {
-            departments = new ToolDepartment().createDepartment();
-        } catch (InvalidNameException e) {
-            throw new RuntimeException(e);
-        }
         hospital.setDepartments(departments);
-
-        hospital.getDepartments().get("crd").setDoctor(cardiologists);
-        hospital.getDepartments().get("dnt").setDoctor(emergencys);
-        hospital.getDepartments().get("emr").setDoctor(emergencys);
-        hospital.getDepartments().get("inf").setDoctor(infectiologysts);
-        hospital.getDepartments().get("sur").setDoctor(surgeons);
-
         Comparator<Doctor> priceComparator = new Comparator<Doctor>() {
             @Override
             public int compare(Doctor doc1, Doctor doc2) {
@@ -109,10 +93,10 @@ public class Main {
         // set doctors date free from today and sort price
         LOGGER.debug("");
         LOGGER.debug("doctors:");
-        for (Map.Entry<String, Department> entry : hospital.getDepartments().entrySet()) {
-            Department department = entry.getValue();
-            Collections.sort(department.getDoctor(), priceComparator);
-            List<Doctor> doctors = department.getDoctor();
+        for (Map.Entry<String, Department<? extends Doctor>> entry : hospital.getDepartments().entrySet()) {
+            Department<? extends Doctor> department = entry.getValue();
+            department.getDoctors().sort(priceComparator);
+            List<? extends Doctor> doctors = department.getDoctors();
             LOGGER.debug(department);
             for (Doctor doctor : doctors) {
                 doctor.setFreeFromDate(LocalDate.now());
@@ -124,5 +108,22 @@ public class Main {
         HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
         HospitalUtils.matchResultPatients(hospital);
         HospitalUtils.matchResultDoctors(hospital);
+
+        // test
+        System.out.println("getExpensiveDoctorsNames");
+        System.out.println(HospitalUtils.getExpensiveDoctorsNames(hospital));
+        System.out.println("getLuxDoctorsNames");
+        System.out.println(HospitalUtils.getLuxDoctorsNames(hospital));
+        System.out.println("getDoctorsNamesContains");
+        System.out.println(HospitalUtils.getDoctorsNamesContains(hospital));
+
+        System.out.println("getSearchDoctorsNames ExpDoctor");
+        System.out.println(HospitalUtils.getSearchDoctorsNames(hospital, new ExpDoctor()));
+        System.out.println("getSearchDoctorsNames LuxDoctor");
+        System.out.println(HospitalUtils.getSearchDoctorsNames(hospital, new LuxDoctor()));
+
+        System.out.println("Lambda hospital");
+        System.out.println(HospitalUtils.getSearchDoctorsNames(hospital,
+                (Doctor doctor) -> doctor.getPrice().compareTo(new BigDecimal(500)) == 1));
     }
 }
