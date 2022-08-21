@@ -1,6 +1,7 @@
 package com.solvd.hospital.human.patient;
 
 import com.solvd.hospital.human.doctor.Doctor;
+import com.solvd.hospital.human.doctor.Spec;
 
 import java.time.LocalDate;
 
@@ -8,17 +9,19 @@ public class Trouble {
 
     private LocalDate date;
     private String toDoctor;
+    private Spec toSpec;
     private LocalDate appointedDate;
     private Doctor appointedDoctor;
 
-    public Trouble(LocalDate date, String toDoctor) {
+    public Trouble(LocalDate date, String toDoctor, Spec toSpec) {
         this.date = date;
         this.toDoctor = toDoctor;
+        this.toSpec = toSpec;
     }
 
     @Override
     public String toString() {
-        return date + " " + toDoctor + " >> " + appointedDate + " " + appointedDoctor;
+        return date + " " + toSpec + " >> " + appointedDate + " " + appointedDoctor;
     }
 
     public LocalDate getDate() {
@@ -51,5 +54,13 @@ public class Trouble {
 
     public void setAppointedDoctor(Doctor appointedDoctor) {
         this.appointedDoctor = appointedDoctor;
+    }
+
+    public Spec getToSpec() {
+        return toSpec;
+    }
+
+    public void setToSpec(Spec toSpec) {
+        this.toSpec = toSpec;
     }
 }

@@ -15,11 +15,13 @@ public abstract class Human {
     private Address address;
     private Phone phone;
     private Credit credit;
+    private Gender gender;
 
-    public Human(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) {
+    public Human(LocalDate dateOfBirth, String name, Gender gender, Address address, Phone phone, Credit credit) {
 
         this.dateOfBirth = dateOfBirth;
         this.name = name;
+        this.gender = gender;
         this.address = address;
         this.phone = phone;
         this.credit = credit;
@@ -27,6 +29,21 @@ public abstract class Human {
 
     public Human(String name) {
         this.name = name;
+    }
+
+    public enum Gender {
+        MALE("man"), FEMALE("woman");
+
+        private final String displayName;
+
+        Gender(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+
+        }
     }
 
     @Override
@@ -103,5 +120,13 @@ public abstract class Human {
 
     public void setCredit(Credit credit) {
         this.credit = credit;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

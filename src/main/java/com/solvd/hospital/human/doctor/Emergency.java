@@ -15,8 +15,8 @@ public class Emergency extends Doctor implements IRescue {
 
     private String aid;
 
-    public Emergency(String name, String specialty, BigDecimal price) throws InvalidNameException {
-        super(name, specialty, price);
+    public Emergency(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, spec, price);
         countEmergency++;
     }
 

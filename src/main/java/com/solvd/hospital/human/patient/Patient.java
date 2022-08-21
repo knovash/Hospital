@@ -18,15 +18,13 @@ public class Patient extends Human implements ICure, IRegistrate {
 
     private static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
-    private LocalDate desireedDate;
-    private String toDoctor;
     private String diagnosis;
     private String prescription;
     private Doctor appointedDoctor;
     private List<Trouble> troubles;
 
-    public Patient(LocalDate dateOfBirth, String name, Address address, Phone phone, Credit credit) throws InvalidNameException {
-        super(dateOfBirth, name, address, phone, credit);
+    public Patient(LocalDate dateOfBirth, String name, Gender gender, Address address, Phone phone, Credit credit) throws InvalidNameException {
+        super(dateOfBirth, name, gender, address, phone, credit);
         if (super.getDateOfBirth().isBefore(LocalDate.now().minusYears(150))) {
             throw new DateInvalidException(super.getName() + " Human dob is too in past " + super.getDateOfBirth());
         }
@@ -40,7 +38,7 @@ public class Patient extends Human implements ICure, IRegistrate {
     }
 
     public String toString() {
-        return ("Patient: " + super.getName() + " $" + super.getCredit().getBalance() + " to " + this.troubles);
+        return ("Patient: " + super.getName() + " " + super.getGender().getDisplayName() + " $" + super.getCredit().getBalance() + " to " + this.troubles);
     }
 
     public boolean equals(Object object) {
@@ -67,26 +65,6 @@ public class Patient extends Human implements ICure, IRegistrate {
             this.troubles = new ArrayList<>();
         }
         this.troubles.add(trouble);
-    }
-
-    public LocalDate getDesireedDate() {
-        return desireedDate;
-    }
-
-    public void setDesireedDate(LocalDate desireedDate) {
-        this.desireedDate = desireedDate;
-    }
-
-    public void plusDesireedDate() {
-        this.desireedDate = this.desireedDate.plusDays(1);
-    }
-
-    public String getToDoctor() {
-        return toDoctor;
-    }
-
-    public void setToDoctor(String toDoctor) {
-        this.toDoctor = toDoctor;
     }
 
     public String getDiagnosis() {

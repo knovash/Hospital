@@ -1,0 +1,13 @@
+package com.solvd.hospital.human.doctor;
+
+import com.solvd.hospital.human.doctor.function.Searchable;
+
+import java.math.BigDecimal;
+
+public class ExpDoctor implements Searchable {
+
+    @Override
+    public boolean search(Doctor doctor) {
+        return doctor.getPrice().compareTo(new BigDecimal(500)) == -1;
+    }
+}

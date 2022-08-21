@@ -3,6 +3,7 @@ package com.solvd.hospital.hospital;
 import com.solvd.hospital.exception.ArrayEmptyException;
 import com.solvd.hospital.exception.ArrayOneElementException;
 import com.solvd.hospital.hospital.department.Department;
+import com.solvd.hospital.human.doctor.Doctor;
 import com.solvd.hospital.human.property.Address;
 import com.solvd.hospital.human.property.Credit;
 import com.solvd.hospital.human.property.Phone;
@@ -12,14 +13,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class Hospital implements ICalculatePrice {
+public class Hospital {
 
     private String name;
     private LocalDate dateOfFoundation;
     private Address address;
     private List<Phone> phones;
     private List<Credit> credits;
-    private Map<String, Department> departments;
+    private Map<String, Department<? extends Doctor>> departments;
     private List<Patient> patients;
 
     public Hospital(String name, LocalDate dateOfFoundation, Address address, List<Phone> phones, List<Credit> credits) {
@@ -74,11 +75,11 @@ public class Hospital implements ICalculatePrice {
         this.credits = credits;
     }
 
-    public Map<String, Department> getDepartments() {
+    public Map<String, Department<? extends Doctor>> getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Map<String, Department> departments) {
+    public void setDepartments(Map<String, Department<? extends Doctor>> departments) {
         this.departments = departments;
     }
 
@@ -95,10 +96,5 @@ public class Hospital implements ICalculatePrice {
             throw new ArrayOneElementException("patients only one");
         }
         this.patients = patients;
-    }
-
-    @Override
-    public void calculateDoctorsPrice() {
-
     }
 }

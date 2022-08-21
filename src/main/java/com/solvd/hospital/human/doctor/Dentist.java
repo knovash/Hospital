@@ -15,8 +15,8 @@ public class Dentist extends Doctor implements ITooth {
 
     private String tooth;
 
-    public Dentist(String name, String specialty, BigDecimal price) throws InvalidNameException {
-        super(name, specialty, price);
+    public Dentist(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
+        super(name, specialty, spec, price);
         countDentist++;
     }
 
