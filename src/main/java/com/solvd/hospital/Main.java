@@ -88,21 +88,33 @@ public class Main {
         };
 
         // set doctors date free from today and sort price
+
+//        LOGGER.debug("");
+//        LOGGER.debug("D O C T O R S:");
+//        hospital.getDepartments().entrySet().forEach(entry -> {
+//            Department<? extends Doctor> department = entry.getValue();
+//            department.getDoctors().sort(priceComparator);
+//            List<? extends Doctor> doctors = department.getDoctors();
+//            LOGGER.debug(department);
+//            doctors.forEach(doctor -> {
+//                doctor.setFreeFromDate(LocalDate.now());
+//                LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate());
+//            });
+//        });
+
         LOGGER.debug("");
         LOGGER.debug("D O C T O R S:");
-        hospital.getDepartments().entrySet().forEach(entry -> {
-            Department<? extends Doctor> department = entry.getValue();
-            department.getDoctors().sort(priceComparator);
-            List<? extends Doctor> doctors = department.getDoctors();
-            LOGGER.debug(department);
-            doctors.forEach(doctor -> {
-                doctor.setFreeFromDate(LocalDate.now());
-                LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate());
-            });
-        });
+        hospital.getDepartments().entrySet().stream()
+                .peek(departmentEntry -> departmentEntry.getValue().getDoctors().sort(priceComparator))
+                .peek(departmentEntry -> LOGGER.debug(departmentEntry.getValue().getName()))
+                .flatMap(departmentEntry -> departmentEntry.getValue().getDoctors().stream())
+                .forEach(doctor -> LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate()));
 
         // match patients and doctors
-        HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
+        System.out.println("M A T C H");
+//        HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
+        System.out.println("M A T C H  2");
+        HospitalUtils.match3(hospital.getDepartments(), hospital.getPatients());
         HospitalUtils.matchResultPatients(hospital);
         HospitalUtils.matchResultDoctors(hospital);
 

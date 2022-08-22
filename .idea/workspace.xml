@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db3df726-bb3b-4022-9b85-e017c127708b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Spec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Spec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/CureTestGeneric.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/HospitalUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/HospitalUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
