@@ -1,4 +1,6 @@
 log
+.idea
+*.iml
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -13,7 +15,7 @@ target/
 *.iws
 *.iml
 *.ipr
-.idea
+
 
 ### Eclipse ###
 .apt_generated

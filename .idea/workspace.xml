@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db3df726-bb3b-4022-9b85-e017c127708b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" afterDir="false" />
@@ -53,7 +54,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Konstantin/IdeaProjects/countwords",
+    "last_opened_file_path": "C:/Users/Konstantin/IdeaProjects/hospital",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
