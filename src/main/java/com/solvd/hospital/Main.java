@@ -6,11 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import com.solvd.hospital.exception.*;
 import com.solvd.hospital.hospital.Hospital;
 import com.solvd.hospital.hospital.department.*;
-import com.solvd.hospital.human.property.Phone;
 import com.solvd.hospital.human.doctor.*;
 import com.solvd.hospital.human.patient.Patient;
 import com.solvd.hospital.utils.*;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -29,9 +29,8 @@ public class Main {
         LOGGER.debug("Create hospital:");
         LOGGER.info(hospital);
         LOGGER.info(hospital.getAddress().toString());
-        for (Phone item : hospital.getPhones()) {
-            LOGGER.info(item.toString());
-        }
+        hospital.getPhones().forEach(phone -> LOGGER.info(phone.toString()));
+
         // create doctors
         List<Cardiologist> cardiologists;
         List<Dentist> dentists;
@@ -58,10 +57,8 @@ public class Main {
         }
 
         LOGGER.debug("");
-        LOGGER.debug("Patients:");
-        for (Patient item : hospital.getPatients()) {
-            LOGGER.debug(item.toString());
-        }
+        LOGGER.debug("P A T I E N T S:");
+        hospital.getPatients().forEach(patient -> LOGGER.debug(patient.toString()));
 
         DepartmentCardiology depCardiology = new DepartmentCardiology("Department Cardiology", Dep.CARD);
         DepartmentDental depDental = new DepartmentDental("Department Dental", Dep.DENT);
@@ -92,17 +89,17 @@ public class Main {
 
         // set doctors date free from today and sort price
         LOGGER.debug("");
-        LOGGER.debug("doctors:");
-        for (Map.Entry<String, Department<? extends Doctor>> entry : hospital.getDepartments().entrySet()) {
+        LOGGER.debug("D O C T O R S:");
+        hospital.getDepartments().entrySet().forEach(entry -> {
             Department<? extends Doctor> department = entry.getValue();
             department.getDoctors().sort(priceComparator);
             List<? extends Doctor> doctors = department.getDoctors();
             LOGGER.debug(department);
-            for (Doctor doctor : doctors) {
+            doctors.forEach(doctor -> {
                 doctor.setFreeFromDate(LocalDate.now());
                 LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate());
-            }
-        }
+            });
+        });
 
         // match patients and doctors
         HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
@@ -122,8 +119,10 @@ public class Main {
         System.out.println("getSearchDoctorsNames LuxDoctor");
         System.out.println(HospitalUtils.getSearchDoctorsNames(hospital, new LuxDoctor()));
 
+
         System.out.println("Lambda hospital");
         System.out.println(HospitalUtils.getSearchDoctorsNames(hospital,
                 (Doctor doctor) -> doctor.getPrice().compareTo(new BigDecimal(500)) == 1));
+
     }
 }

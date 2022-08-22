@@ -22,20 +22,18 @@ public class HospitalUtils {
     public static void match(Map<String, Department<? extends Doctor>> departments, List<Patient> patients) {
         LOGGER.info("");
         LOGGER.info("matching patients and doctors...");
-        for (Patient patient : patients) {
+        patients.forEach(patient -> {
             LOGGER.info("");
             LOGGER.info(patient.toString());
-            for (Trouble trouble : patient.getTroubles()) {
-                for (Map.Entry<String, Department<? extends Doctor>> entry : departments.entrySet()) {
-                    List<? extends Doctor> doctors = entry.getValue().getDoctors();
-                    for (Doctor doctor : doctors) {
+            patient.getTroubles().forEach(trouble -> {
+                departments.forEach((key, value) -> {
+                    List<? extends Doctor> doctors = value.getDoctors();
+                    doctors.forEach(doctor -> {
                         if (trouble.getAppointedDoctor() == null
                                 && trouble.getToSpec().equals(doctor.getSpec())
                                 && patient.getGender().equals(doctor.getGender())
                                 && doctor.getPrice().compareTo(patient.getCredit().getBalance()) == -1) {
-                            LOGGER.info("Spec matched!" + trouble.getToSpec() + " = " + doctor.getSpec());
-                            LOGGER.info("Gender matched!" + patient.getGender() + " = " + doctor.getGender());
-                            LOGGER.info("Price matched!");
+                            LOGGER.info("Spec & Gender & Price matched!");
                             LocalDate date = trouble.getDate();
                             if (doctor.getReservedDates() == null) {
                                 doctor.addReservedDates(trouble.getDate());
@@ -53,36 +51,35 @@ public class HospitalUtils {
                             LOGGER.info(patient.getName() + " $" + patient.getCredit().getBalance() + " to " + trouble.getAppointedDoctor());
                             LOGGER.info(doctor.getName() + " " + doctor.getSpecialty() + " " + date + " date added to reserved " + doctor.getReservedDates());
                         }
-                    }
-                }
-            }
-        }
+                    });
+                });
+            });
+        });
     }
 
     public static void matchResultPatients(Hospital hospital) {
         LOGGER.info("");
         LOGGER.info("Patients match result:");
-        for (Patient patient : hospital.getPatients()) {
-            LOGGER.info(patient.getName() + " " + patient.getTroubles());
-        }
+        hospital.getPatients()
+                .forEach(patient -> LOGGER.info(patient.getName() + " " + patient.getTroubles()));
     }
 
     public static void matchResultDoctors(Hospital hospital) {
         LOGGER.info("");
         LOGGER.info("Doctors match result:");
-        for (Map.Entry<String, Department<? extends Doctor>> entry : hospital.getDepartments().entrySet()) {
-            List<? extends Doctor> doctors = entry.getValue().getDoctors();
-            for (Doctor doctor : doctors) {
-                LOGGER.info("  " + doctor + " dates reserved: " + doctor.getReservedDates());
-                LOGGER.info(doctor.getAppointedPatients());
-            }
-        }
+        hospital.getDepartments().entrySet().stream()
+                .flatMap(departmentEntry -> departmentEntry.getValue().getDoctors().stream())
+                .forEach(doctor -> {
+                    LOGGER.info("  " + doctor + " dates reserved: " + doctor.getReservedDates());
+                    LOGGER.info(doctor.getAppointedPatients());
+                });
     }
 
     public static int getExpensiveDoctorsNames(Hospital hospital) {
-        List<? extends Doctor> dentists = hospital.getDepartments().get("dnt").getDoctors();
+        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
         int result = 0;
-        for (Doctor doctor : dentists) {
+
+        for (Doctor doctor : doctors) {
             if (doctor.getPrice().compareTo(new BigDecimal(500)) == -1) {
                 System.out.println("Exp: " + doctor.getName() + " " + doctor.getPrice());
                 result++;
@@ -92,9 +89,9 @@ public class HospitalUtils {
     }
 
     public static int getLuxDoctorsNames(Hospital hospital) {
-        List<? extends Doctor> dentists = hospital.getDepartments().get("dnt").getDoctors();
+        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
         int result = 0;
-        for (Doctor doctor : dentists) {
+        for (Doctor doctor : doctors) {
             if (doctor.getPrice().compareTo(new BigDecimal(500)) == 1) {
                 System.out.println("Lux: " + doctor.getName() + " " + doctor.getPrice());
                 result++;
@@ -103,27 +100,22 @@ public class HospitalUtils {
         return result;
     }
 
-    public static int getSearchDoctorsNames(Hospital hospital, Searchable s) {
-        List<? extends Doctor> dentists = hospital.getDepartments().get("dnt").getDoctors();
-        int result = 0;
-        for (Doctor doctor : dentists) {
-            if (s.search(doctor)) {
-                System.out.println("Search: " + doctor.getName() + " " + doctor.getPrice());
-                result++;
-            }
-        }
-        return result;
-    }
-
     public static int getDoctorsNamesContains(Hospital hospital) {
-        List<? extends Doctor> dentists = hospital.getDepartments().get("dnt").getDoctors();
+        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
         int result = 0;
-        for (Doctor doctor : dentists) {
+        for (Doctor doctor : doctors) {
             if (doctor.getName().contains("a")) {
                 System.out.println("Contain: " + doctor.getName());
                 result++;
             }
         }
         return result;
+    }
+
+    public static int getSearchDoctorsNames(Hospital hospital, Searchable s) {
+        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
+        return (int) doctors.stream().filter(doctor -> s.search(doctor))
+                .peek(doctor -> System.out.println("----Search: " + doctor.getName() + " " + doctor.getPrice()))
+                .count();
     }
 }

@@ -5,30 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db3df726-bb3b-4022-9b85-e017c127708b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/Hospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/Hospital.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Dep.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentCardiology.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentCardiology.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentDental.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentDental.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentEmergency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentEmergency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentInfectious.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentInfectious.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentSurgery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/hospital/department/DepartmentSurgery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Cardiologist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Cardiologist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Dentist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Dentist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Emergency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Emergency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Infectiologist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Infectiologist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Surgeon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Surgeon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/patient/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/patient/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/patient/Trouble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/patient/Trouble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Spec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/human/doctor/Spec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/CureTestGeneric.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/HospitalUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/HospitalUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/ToolDepartment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/ToolDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/ToolDoctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/ToolPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/hospital/utils/ToolPatient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,7 +54,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Konstantin/IdeaProjects/micro-hospital",
+    "last_opened_file_path": "C:/Users/Konstantin/IdeaProjects/hospital",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",

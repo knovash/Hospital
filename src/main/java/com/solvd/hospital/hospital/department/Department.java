@@ -16,7 +16,7 @@ public abstract class Department<D extends Doctor> {
     }
 
     public String toString() {
-        return ("Department: " + this.name + " " + this.dep + " total doctors: " + this.getDoctors().size());
+        return ("Department: " + " " + this.dep.getDisplayName() + " total doctors: " + this.getDoctors().size());
     }
 
     public String getName() {

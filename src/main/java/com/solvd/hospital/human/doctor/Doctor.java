@@ -24,7 +24,6 @@ public abstract class Doctor extends Human implements IWrite, Searchable {
     private BigDecimal price;
     private Spec spec;
 
-
     public Doctor(String name, String specialty, Spec spec, BigDecimal price) throws InvalidNameException {
         super(name);
         this.specialty = specialty;
