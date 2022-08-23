@@ -112,9 +112,7 @@ public class Main {
 
         // match patients and doctors
         System.out.println("M A T C H");
-//        HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
-        System.out.println("M A T C H  2");
-        HospitalUtils.match3(hospital.getDepartments(), hospital.getPatients());
+        HospitalUtils.match(hospital.getDepartments(), hospital.getPatients());
         HospitalUtils.matchResultPatients(hospital);
         HospitalUtils.matchResultDoctors(hospital);
 
