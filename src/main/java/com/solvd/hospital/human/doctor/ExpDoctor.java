@@ -1,6 +1,6 @@
 package com.solvd.hospital.human.doctor;
 
-import com.solvd.hospital.human.doctor.function.Searchable;
+import com.solvd.hospital.utils.Searchable;
 
 import java.math.BigDecimal;
 

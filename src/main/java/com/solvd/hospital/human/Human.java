@@ -42,7 +42,6 @@ public abstract class Human {
 
         public String getDisplayName() {
             return displayName;
-
         }
     }
 

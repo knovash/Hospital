@@ -5,5 +5,4 @@ public interface IWrite {
     String makeDiagnosis();
 
     void makePrescription();
-
 }

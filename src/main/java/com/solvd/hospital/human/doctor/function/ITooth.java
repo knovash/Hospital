@@ -5,5 +5,4 @@ public interface ITooth {
     void makeDentalFilling();
 
     void makePullOutTooth();
-
 }

@@ -7,5 +7,4 @@ public interface ICure {
     void takeInjection();
 
     void takeProcedure();
-
 }

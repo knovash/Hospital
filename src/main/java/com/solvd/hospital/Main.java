@@ -1,6 +1,5 @@
 package com.solvd.hospital;
 
-import com.solvd.hospital.human.doctor.function.Searchable;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import com.solvd.hospital.exception.*;
@@ -10,9 +9,7 @@ import com.solvd.hospital.human.doctor.*;
 import com.solvd.hospital.human.patient.Patient;
 import com.solvd.hospital.utils.*;
 
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -20,6 +17,7 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws InvalidNameException {
+
         LOGGER.debug("test logger debug");
         LOGGER.info("test logger info");
         LOGGER.error("test logger error");
@@ -88,20 +86,6 @@ public class Main {
         };
 
         // set doctors date free from today and sort price
-
-//        LOGGER.debug("");
-//        LOGGER.debug("D O C T O R S:");
-//        hospital.getDepartments().entrySet().forEach(entry -> {
-//            Department<? extends Doctor> department = entry.getValue();
-//            department.getDoctors().sort(priceComparator);
-//            List<? extends Doctor> doctors = department.getDoctors();
-//            LOGGER.debug(department);
-//            doctors.forEach(doctor -> {
-//                doctor.setFreeFromDate(LocalDate.now());
-//                LOGGER.debug("  " + doctor + " free from: " + doctor.getFreeFromDate());
-//            });
-//        });
-
         LOGGER.debug("");
         LOGGER.debug("D O C T O R S:");
         hospital.getDepartments().entrySet().stream()
@@ -129,10 +113,8 @@ public class Main {
         System.out.println("getSearchDoctorsNames LuxDoctor");
         System.out.println(HospitalUtils.getSearchDoctorsNames(hospital, new LuxDoctor()));
 
-
         System.out.println("Lambda hospital");
         System.out.println(HospitalUtils.getSearchDoctorsNames(hospital,
                 (Doctor doctor) -> doctor.getPrice().compareTo(new BigDecimal(500)) == 1));
-
     }
 }
