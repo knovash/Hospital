@@ -12,13 +12,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class HospitalUtils {
 
     private static final Logger LOGGER = LogManager.getLogger(HospitalUtils.class);
 
     public static void match(Map<String, Department<? extends Doctor>> departments, List<Patient> patients) {
-        LOGGER.info("\n\nmatching patients and doctors...");
+        LOGGER.info("\nmatching patients and doctors...");
         patients.stream()
                 .peek((patient) -> LOGGER.info("\n\n" + patient.toString()))
                 .forEach(patient -> patient.getTroubles().stream()
@@ -59,15 +60,13 @@ public class HospitalUtils {
     }
 
     public static void matchResultPatients(Hospital hospital) {
-        LOGGER.info("");
-        LOGGER.info("Patients match result:");
+        LOGGER.info("\n\nPatients match R E S U L T:");
         hospital.getPatients()
                 .forEach(patient -> LOGGER.info(patient.getName() + " " + patient.getTroubles()));
     }
 
     public static void matchResultDoctors(Hospital hospital) {
-        LOGGER.info("");
-        LOGGER.info("Doctors match result:");
+        LOGGER.info("\n\nDoctors match R E S U L T:");
         hospital.getDepartments().entrySet().stream()
                 .flatMap(departmentEntry -> departmentEntry.getValue().getDoctors().stream())
                 .forEach(doctor -> {
@@ -101,22 +100,18 @@ public class HospitalUtils {
         return result;
     }
 
-    public static int getDoctorsNamesContains(Hospital hospital) {
-        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
-        int result = 0;
-        for (Doctor doctor : doctors) {
-            if (doctor.getName().contains("a")) {
-                System.out.println("Contain: " + doctor.getName());
-                result++;
-            }
-        }
-        return result;
-    }
-
-    public static int getSearchDoctorsNames(Hospital hospital, Searchable s) {
+    public static int searchDoctors(Hospital hospital, Searchable s) {
         List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
         return (int) doctors.stream().filter(doctor -> s.search(doctor))
                 .peek(doctor -> System.out.println("----Search: " + doctor.getName() + " " + doctor.getPrice()))
                 .count();
+    }
+
+    public static Optional<Integer> searchDoctorsOpt(Hospital hospital, Searchable s) {
+        List<? extends Doctor> doctors = hospital.getDepartments().get("dnt").getDoctors();
+         int result = (int) doctors.stream().filter(doctor -> s.search(doctor))
+                .peek(doctor -> System.out.println("----Search: " + doctor.getName() + " " + doctor.getPrice()))
+                .count();
+         return Optional.ofNullable(result);
     }
 }
