@@ -3,7 +3,7 @@ package com.solvd.hospital.human.doctor;
 import com.solvd.hospital.exception.InvalidNameException;
 import com.solvd.hospital.human.Human;
 import com.solvd.hospital.human.doctor.function.IWrite;
-import com.solvd.hospital.human.doctor.function.Searchable;
+import com.solvd.hospital.utils.Searchable;
 import com.solvd.hospital.human.patient.Patient;
 
 import java.math.BigDecimal;
